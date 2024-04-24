@@ -1,0 +1,25 @@
+<!-- start banner slider -->
+<section class="pb-0 top-space-padding bg-dark-gray full-screen border-top position-relative md-h-700px sm-h-600px sm-pb-70px" data-parallax-background-ratio="0.3" style="background-image: url('{{ backgroundImage }}')">
+    <div class="position-absolute left-0px top-0px d-none d-lg-inline-block" data-anime='{ "el": "childs", "translateY": [100, 0], "opacity": [0,1], "duration": 600, "delay": 600, "staggervalue": 300, "easing": "easeOutQuad" }'>
+        <img src="{{ leftImage }}" data-bottom-top="transform: translateY(-150px)" data-top-bottom="transform: translateY(150px)" alt="">
+    </div>
+    <div class="pe-8 pt-8 absolute-middle-right lg-pe-2 lg-pt-2 d-none d-lg-inline-block">
+        <img src="{{ rightImage }}" class="animation-rotation" alt="">
+    </div>
+    <div class="container h-100">
+        <div class="row align-items-center h-100">
+            <div class="col-md-6 position-relative" data-anime='{ "el": "childs", "translateY": [30, 1], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'>  
+                <div class="alt-font fs-150 text-white ls-minus-3px lh-120 mb-25px lg-fs-120 xs-fs-90 xs-lh-80 lg-lh-100">{{ mainTitle }}</div> 
+                <div class="text-light-medium-gray fs-20 w-60 mb-35px xs-mb-25px lg-w-75 md-w-100 sm-w-70 xs-w-90">{{ subTitle }}</div>
+                <a href="{{ buttonLink }}" class="btn btn-extra-large btn-base-color btn-hover-animation-switch btn-round-edge btn-box-shadow">
+                    <span>
+                        <span class="btn-text">{{ buttonText }}</span>
+                        <span class="btn-icon"><i class="fa-solid fa-arrow-right fs-14"></i></span>
+                        <span class="btn-icon"><i class="fa-solid fa-arrow-right fs-14"></i></span>
+                    </span> 
+                </a>
+            </div>
+        </div> 
+    </div>
+</section>
+<!-- end banner slider -->

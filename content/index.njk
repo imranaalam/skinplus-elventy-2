@@ -5,24 +5,279 @@ eleventyNavigation:
   order: 1
 numberOfLatestPostsToShow: 3
 ---
-{% set postsCount = collections.posts | length %}
-{% set latestPostsCount = postsCount | min(numberOfLatestPostsToShow) %}
-<h1>Latest {{ latestPostsCount }} Post{% if latestPostsCount != 1 %}s{% endif %}</h1>
 
-{% set postslist = collections.posts | head(-1 * numberOfLatestPostsToShow) %}
-{% set postslistCounter = postsCount %}
-{% include "postslist.njk" %}
+{# {% set backgroundImage = '/public/images/custom-bg.jpg' %}
+{% set leftImage = '/public/images/custom-left-img.png' %}
+{% set rightImage = '/public/images/custom-right-img.png' %}
+{% set mainTitle = 'Custom Beauty Studio' %}
+{% set subTitle = 'Explore our professional beauty treatments.' %}
+{% set buttonLink = '/contact-us.html' %}
+{% set buttonText = 'Contact Us Now' %}
 
-{% set morePosts = postsCount - numberOfLatestPostsToShow %}
-{% if morePosts > 0 %}
-<p>{{ morePosts }} more post{% if morePosts != 1 %}s{% endif %} can be found in <a href="/blog/">the archive</a>.</p>
-{% endif %}
+{% include "parallax.njk" %} #}
 
-{# List every content page in the project #}
-{#
-<ul>
-	{%- for entry in collections.all %}
-	<li><a href="{{ entry.url }}"><code>{{ entry.url }}</code></a></li>
-	{%- endfor %}
-</ul>
-#}
+   
+
+	{% bannerSlider {} %}
+    
+{% featureSection {} %}
+
+{% featuredSection {} %}
+
+   {% statsBox "4.98", "98", "200", "4.98 rating.", "Genuine positive feedback.", "Daily patients consulted.", 5 %}
+
+
+
+{% processStepsSection {
+   steps: [
+       { number: "011", title: "Excellent care", description: "No compromises" },
+       { number: "02", title: "Cruelty free", description: "Not tested on animals" },
+       { number: "03", title: "Certified experts", description: "Professional people" }
+   ]
+} %}
+
+{% ServicesSection {
+       headerText: "Beauty salon services",
+       headerSubText: "Makeup and hairstyles",
+       services: [
+           {
+               imageUrl: "https://via.placeholder.com/755x510",
+               title: "Hair treatment",
+               description: "Advanced hair treatment",
+               link: "/hair-treatment.html"
+           },
+           {
+               imageUrl: "https://via.placeholder.com/755x510",
+               title: "Reflexology",
+               description: "Different amounts of pressure",
+               link: "/reflexology.html"
+           },
+           {
+               imageUrl: "https://via.placeholder.com/755x510",
+               title: "Makeup",
+               description: "Rethink your lash look",
+               link: "/makeup.html"
+           },
+           {
+               imageUrl: "https://via.placeholder.com/755x510",
+               title: "Skin care",
+               description: "Believe in your beauty",
+               link: "/skin-care.html"
+           },
+           {
+               imageUrl: "https://via.placeholder.com/755x510",
+               title: "Cosmetology",
+               description: "Fabulous in every way",
+               link: "/cosmetology.html"
+           },
+           {
+               imageUrl: "https://via.placeholder.com/755x510",
+               title: "Grooming",
+               description: "Especially crafted to suit",
+               link: "/grooming.html"
+           }
+       ],
+       exploreLink: "/pricing-plans.html",
+       exploreText: "View All Pricing Plans",
+       learnMoreLink: "/about.html",
+       learnMoreText: "Learn More About Us"
+   } %}
+
+
+{% PricingSection {
+       headerText: "Beauty salon services",
+       headerSubText: "Makeup and hairstyles",
+       pricing: [
+           {
+               imageUrl: "https://via.placeholder.com/100x105",
+               title: "Hair wash and dry",
+               description: "Quick hair wash and blow",
+               price: "$35"
+           }
+       ],
+       exploreLink: "/demo-beauty-salon-wedding.html",
+       exploreText: "Explore package",
+       learnMoreLink: "/about-us.html",
+       learnMoreText: "Learn More"
+   } %}
+
+
+
+
+
+
+
+
+
+{% ImageAndTextSection {
+       mainImage: "https://via.placeholder.com/580x450",
+       featureIcon: "https://via.placeholder.com/120x84",
+       featureText: "One of the leading cardiac centres.",
+       headerIcon: "bi bi-bookmark-star",
+       headerText: "Clinical excellence",
+       slides: [
+           {
+               title: "Best advanced infrastructure.",
+               text: "Lorem ipsum dolor sit amet consectetur adipiscing elit do eiusmod tempor incididunt ut labore et dolore magna ut enim veniam."
+           },
+           {
+               title: "Certified renal transplant.",
+               text: "Lorem ipsum dolor sit amet consectetur adipiscing elit do eiusmod tempor incididunt ut labore et dolore magna ut enim veniam."
+           },
+           {
+               title: "Microscope for tumor surgery.",
+               text: "Lorem ipsum dolor sit amet consectetur adipiscing elit do eiusmod tempor incididunt ut labore et dolore magna ut enim veniam."
+           }
+       ]
+   } %}
+
+
+
+
+
+
+
+
+
+
+{% ServiceSliderSection {
+       backgroundPatternImage: "images/demo-medical-pattern.svg",
+       mainTitle: "Our advance services",
+       subTitle: "Our clinical departments.",
+       description: "Lorem ipsum is simply dummy text printing typesetting industry's standard.",
+       linkUrl: "demo-medical-treatments.html",
+       linkText: "All treatments",
+       slides: [
+           {
+               iconUrl: "images/demo-medical-icon-04.svg",
+               title: "Blood test",
+               text: "Lorem ipsum is simply dummy text of simply printing typesetting.",
+               detailUrl: "demo-medical-treatments.html"
+           },
+           {
+               iconUrl: "images/demo-medical-icon-02.svg",
+               title: "Cardiology",
+               text: "Lorem ipsum is simply dummy text of simply printing typesetting.",
+               detailUrl: "demo-medical-treatments.html"
+           },
+                  {
+               iconUrl: "images/demo-medical-icon-02.svg",
+               title: "Cardiology",
+               text: "Lorem ipsum is simply dummy text of simply printing typesetting.",
+               detailUrl: "demo-medical-treatments.html"
+           },
+                  {
+               iconUrl: "images/demo-medical-icon-02.svg",
+               title: "Cardiology",
+               text: "Lorem ipsum is simply dummy text of simply printing typesetting.",
+               detailUrl: "demo-medical-treatments.html"
+           }
+       ]
+   } %}
+
+
+
+
+
+
+   {% DynamicShowcaseSection{
+    banners: [
+        {
+            imageUrl: "https://via.placeholder.com/1160x640",
+            tag: "Flat 50% off",
+            title: "Bridal makeup",
+            description: "Special packages for wedding.",
+            link: "demo-beauty-salon-wedding.html"
+        },
+        {
+            imageUrl: "https://via.placeholder.com/1160x640",
+            tag: "Flat 50% off",
+            title: "Expert makeup",
+            description: "Unlock your true beauty potential.",
+            link: "demo-beauty-salon-wedding.html"
+        }
+    ],
+    headerText: "Associates brand",
+    headerSubText: "Brands available",
+    clients: [
+        {
+            imageUrl: "https://via.placeholder.com/225x110",
+            link: "#"
+        },
+        {
+            imageUrl: "https://via.placeholder.com/225x110",
+            link: "#"
+        }
+    ]
+} %}
+
+
+
+
+
+
+
+
+ {% BenefitsSection {
+       headerText: "Open your body and soul to yoga",
+       headerSubText: "Still need some reasons to start practicing meditation?",
+       benefits: [
+           {
+               imageUrl: "https://via.placeholder.com/100x100",
+               title: "Improves strength and flexibility",
+               description: "Strength and flexibility improvements"
+           },
+           {
+               imageUrl: "https://via.placeholder.com/100x100",
+               title: "Yoga can ease arthritis symptoms",
+               description: "Ease arthritis symptoms through yoga"
+           },
+           {
+               imageUrl: "https://via.placeholder.com/100x100",
+               title: "Yoga helps with back pain relief",
+               description: "Helpful yoga positions for back pain relief"
+           }
+
+       ],
+       primaryLink: "/learn-more.html",
+       primaryButtonText: "Learn More"
+   } %}
+
+
+
+
+
+   {% AppointmentRequestSection {
+       urgentContactImage: "https://via.placeholder.com/112x68",
+       backgroundImage: "https://via.placeholder.com/448x434",
+       contactNumber: "+1 234 567 8910",
+       formActionURL: "/path/to/submit/appointment",
+       doctorOptions: [
+           {value: "Pediatrician - Dr. Bryan Johnson", text: "Pediatrician - Dr. Bryan Johnson"},
+           {value: "Cardiology - Dr. Jemmy Watson", text: "Cardiology - Dr. Jemmy Watson"},
+           {value: "Neurology - Dr. Jeremy Dupont", text: "Neurology - Dr. Jeremy Dupont"},
+           {value: "Orthopedics - Dr. Evan Thomson", text: "Orthopedics - Dr. Evan Thomson"},
+           {value: "Optometrists - Dr. Shoko Mugikura", text: "Optometrists - Dr. Shoko Mugikura"}
+       ]
+   } %}
+
+   {% DynamicMediaSection {
+       mainImage: "https://via.placeholder.com/435x559",
+       iconImage: "https://via.placeholder.com/58x51",
+       secondaryImage: "https://via.placeholder.com/336x430",
+       sectionTitle: "About medcare hospital",
+       header: "Welcome to our medcare hospital.",
+       description: "We value each and every human life placed in our hands and constantly work towards meeting the expectations of our customers and stake holders.",
+       primaryLink: "demo-medical-about.html",
+       primaryButtonText: "About hospital",
+       secondaryLink: "demo-medical-timetable.html",
+       secondaryButtonText: "Check timetable"
+   } %}
+
+
+
+
+
+
+
+
