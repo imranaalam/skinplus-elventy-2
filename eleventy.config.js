@@ -1958,6 +1958,64 @@ eleventyConfig.addShortcode("DynamicSwiperSlider", function({ slides }) {
 
 
 
+
+///////////////////
+// CustomCounterSection
+//////////////////
+
+/*
+   Usage:
+   /*
+   {% CustomCounterSection {
+    counters: [
+      {
+        number: 4586,
+        title: "Telephonic talk",
+        background: "https://via.placeholder.com/150",
+        highlightColor: "gradient-flamingo-amethyst-green"
+      }
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("CustomCounterSection", function({ counters }) {
+    let counterHtml = counters.map(counter => `
+        <div class="col text-center sm-mb-30px">
+            <h2 class="vertical-counter d-inline-flex text-dark-gray fw-800 mb-0 ls-minus-3px position-relative z-index-0 appear" style="height: 50px;">
+                <span class="text-highlight position-absolute bottom-9px w-100">
+                    <span class="bg-${counter.highlightColor} h-10px opacity-2"></span>
+                </span>
+                <span class="vertical-counter-number" data-to="${counter.number.toString().substring(0,1)}">
+                    <ul style="transform: translateY(-${parseInt(counter.number.toString().substring(0,1)) * 10}%);">
+                        ${[...Array(10).keys()].map(n => `<li>${n}</li>`).join('')}
+                    </ul>
+                </span>
+                ${counter.number.toString().substring(1).split('').map((digit, index) => `
+                    <span class="vertical-counter-number" data-to="${digit}">
+                        <ul style="transform: translateY(-${digit * 10}%);">
+                            ${[...Array(10).keys()].map(n => `<li>${n}</li>`).join('')}
+                        </ul>
+                    </span>
+                `).join('')}
+            </h2>
+            <span class="d-block fs-14 fw-700 text-uppercase text-dark-gray">${counter.title}</span>
+        </div>
+    `).join('');
+
+    return `
+        <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 justify-content-center counter-style-07 ps-3 pe-3">
+            ${counterHtml}
+        </div>
+    `;
+});
+
+
+
+
+
+
+
+
 ///////////////////
 // CustomContentSection
 //////////////////
@@ -2306,22 +2364,94 @@ eleventyConfig.addShortcode("DynamicTestimonialsSection", function({ backgroundI
 
 
 ///////////////////
-// TrustedByClients
+// CustomTextSection
 //////////////////
 
 /*
    Usage:
    /*
-{% TrustedByClients %}
-
+   {% CustomTextSection {
+    text: "Drive business growth with our customized branding solutions -",
+    fontSize: {
+      desktop: "130",
+      medium: "90",
+      small: "70"
+    },
+    letterSpacing: {
+      desktop: "-6px",
+      small: "-2px"
+    }
+   } %}
 */
 
-eleventyConfig.addShortcode("TrustedByClients", function() {
+eleventyConfig.addShortcode("CustomTextSection", function({ text, fontSize, letterSpacing }) {
     return `
-        <h2 class="alt-font text-dark-gray mb-30px fw-600 ls-minus-3px">
-            We are trusted by our clients
-            <i class="bi bi-heart-fill d-inline-block align-top ms-10px animation-zoom icon-very-medium text-red"></i>
-        </h2>
+        <div class="fs-${fontSize.desktop} md-fs-${fontSize.medium} sm-fs-${fontSize.small} alt-font text-dark-gray fw-600 ls-${letterSpacing.desktop} sm-ls-${letterSpacing.small} word-break-normal">
+            ${text} <span class="ms-20px">-</span>
+        </div>
+    `;
+});
+
+
+
+
+
+///////////////////
+// CustomStackSection
+//////////////////
+
+/*
+   Usage:
+   /*
+   {% CustomStackSection {
+    stacks: [
+      {
+        backgroundImage: "https://via.placeholder.com/500x300",
+        hoverImage: "https://via.placeholder.com/500x300/cccccc/969696",
+        socialLink: "https://www.twitter.com/",
+        socialIcon: "twitter",
+        memberName: "Jeremy Dupont",
+        role: "Designer",
+        projectTitle: "Latest projects",
+        mainTitle: "Whiteline face beauty.",
+        description: "Creating products with a strong identity...",
+        buttonLink: "link-to-project.html",
+        buttonText: "Explore project"
+      },
+      // Additional stacks can be added here
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("CustomStackSection", function({ stacks }) {
+    let stackHtml = stacks.map(stack => `
+        <div class="col team-style-10 md-ps-15px md-pe-15px md-mb-30px" style="">
+            <figure class="mb-0 position-relative overflow-hidden">
+                <img src="${stack.backgroundImage}" class="w-100" alt="" data-no-retina="">
+                <img src="${stack.hoverImage}" class="hover-switch-image" alt="" data-no-retina="">
+                <figcaption class="w-100 h-100 d-flex flex-wrap">
+                    <div class="social-icon d-flex flex-column flex-shrink-1 mb-auto p-30px ms-auto">
+                        <a href="${stack.socialLink}" target="_blank" class="text-white bg-dark-gray">
+                            <i class="fa-brands fa-${stack.socialIcon} icon-small"></i>
+                        </a>
+                    </div>
+                    <div class="team-member-strip w-100 mt-auto d-flex align-items-center pt-15px pb-15px ps-30px pe-30px bg-white">
+                        <span class="team-member-name fw-600 alt-font text-dark-gray fs-18 ls-minus-05px">${stack.memberName}</span>
+                        <span class="member-designation fs-15 lh-20 ms-auto alt-font">${stack.role}</span>
+                    </div>
+                </figcaption>
+            </figure>
+        </div>
+    `).join('');
+
+    return `
+        <section class="pb-0">
+            <div class="container-fluid p-0">
+                <div class="row row-cols-1 row-cols-lg-4 row-cols-sm-2 g-0 appear anime-child anime-complete" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [30, 0], &quot;rotateX&quot;:[30, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                    ${stackHtml}
+                </div>
+            </div>
+        </section>
     `;
 });
 
@@ -2361,7 +2491,6 @@ eleventyConfig.addShortcode("SvgPathWaveAnimation", function({ startPath, middle
 
 
 
-
 ///////////////////
 // TeamShowcaseSection
 //////////////////
@@ -2372,23 +2501,24 @@ eleventyConfig.addShortcode("SvgPathWaveAnimation", function({ startPath, middle
    {% TeamShowcaseSection {
     teamMembers: [
         {
-            defaultImg: "https://via.placeholder.com/500x500",
-            hoverImg: "https://via.placeholder.com/500x500",
+            defaultImg: "https://via.placeholder.com/500",
+            hoverImg: "https://via.placeholder.com/500",
             socialLink: "https://www.twitter.com/",
+            socialIcon: "fa-twitter",
             name: "Jeremy Dupont",
             designation: "Designer"
         },
         {
-            defaultImg: "https://via.placeholder.com/500x500",
-            hoverImg: "https://via.placeholder.com/500x500",
+            defaultImg: "https://via.placeholder.com/500",
+            hoverImg: "https://via.placeholder.com/500",
             socialLink: "https://www.facebook.com/",
+            socialIcon: "fa-facebook-f",
             name: "Matthew Taylor",
             designation: "Writer"
-        }
-     
+        },
+        
     ]
    } %}
-
 */
 
 eleventyConfig.addShortcode("TeamShowcaseSection", function({ teamMembers }) {
@@ -2399,7 +2529,9 @@ eleventyConfig.addShortcode("TeamShowcaseSection", function({ teamMembers }) {
                 <img src="${member.hoverImg}" class="hover-switch-image" alt="" data-no-retina>
                 <figcaption class="w-100 h-100 d-flex flex-wrap">
                     <div class="social-icon d-flex flex-column flex-shrink-1 mb-auto p-30px ms-auto">
-                        <a href="${member.socialLink}" target="_blank" class="text-white bg-dark-gray"><i class="fa-brands fa-twitter icon-small"></i></a>
+                        <a href="${member.socialLink}" target="_blank" class="text-white bg-dark-gray">
+                            <i class="fa-brands ${member.socialIcon} icon-small"></i>
+                        </a>
                     </div>
                     <div class="team-member-strip w-100 mt-auto d-flex align-items-center pt-15px pb-15px ps-30px pe-30px bg-white">
                         <span class="team-member-name fw-600 alt-font text-dark-gray fs-18 ls-minus-05px">${member.name}</span>
@@ -2413,7 +2545,7 @@ eleventyConfig.addShortcode("TeamShowcaseSection", function({ teamMembers }) {
     return `
         <section class="pb-0">
             <div class="container-fluid p-0">
-                <div class="row row-cols-1 row-cols-lg-4 row-cols-sm-2 g-0" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [30, 0], &quot;rotateX&quot;:[30, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                <div class="row row-cols-1 row-cols-lg-4 row-cols-sm-2 g-0 " data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [30, 0], &quot;rotateX&quot;: [30, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
                     ${memberHtml}
                 </div>
             </div>
