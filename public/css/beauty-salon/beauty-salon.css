@@ -159,6 +159,12 @@ footer .elements-social .medium-icon li {
 footer .nav-link {
     color: var(--white);
 }
+
+
+
+
+
+
 @media (max-width: 1600px) {
     section {
         padding-top: 90px;
@@ -199,4 +205,52 @@ footer .nav-link {
     .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
         margin-bottom: 20px;
     }
+}
+
+
+
+
+
+
+
+
+
+
+
+a:hover {
+    color: var(--dark-gray);
+}
+.input-small, .textarea-small, .select-small {
+    font-size: 14px;
+}
+.input-small {
+    padding: 9px 15px;
+}
+/* bg color */
+.bg-nero-grey, .bg-nero-grey:focus {
+    background-color: #1B1B1B;
+}
+/* min-width */
+.min-w-150px {
+    min-width: 150px;
+}
+
+.btn.btn-link {
+    padding: 0 0 2px;
+}
+/* tooltip */
+.tooltip.show {
+    opacity: 1;
+}
+.bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before, .bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: var(--dark-gray);
+    top: -2px;
+}
+.tooltip .tooltip-inner {
+    background-color: var(--dark-gray);
+    border-radius: 3px;
+    font-size: 10px;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    font-weight: 500;
 }

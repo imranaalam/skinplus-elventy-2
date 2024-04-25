@@ -438,7 +438,7 @@ eleventyConfig.addShortcode("ServicesSection", function({ headerText, headerSubT
     return `
         <section class="overlap-height">
             <div class="container overlap-gap-section">
-                <div class="row justify-content-center align-items-center mb-6">
+                <div class="row justify-content-center align-items-center mb-6" data-anime='{ "el": "childs", "translateY": [30, 1], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue":200, "easing": "easeOutQuad" }'>
                     <div class="col-auto pe-25px border-2 border-end border-color-dark-gray sm-border-end-0 sm-pe-15px">
                         <span class="fs-16 text-uppercase text-gradient-san-blue-new-york-red fw-700 ls-1px">${headerText}</span>
                     </div>
@@ -446,7 +446,7 @@ eleventyConfig.addShortcode("ServicesSection", function({ headerText, headerSubT
                         <h3 class="alt-font fw-400 text-dark-gray ls-minus-1px mb-0">${headerSubText}</h3>
                     </div>
                 </div>
-                <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 transition-inner-all justify-content-center mb-4">
+                <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 transition-inner-all justify-content-center mb-4" data-anime='{ "el": "childs", "translateY": [20, 0], "opacity": [0,1], "duration": 600, "delay": 300, "staggervalue": 300, "easing": "easeOutQuad" }'>
                     ${serviceItems}
                 </div>
                 <div class="row">
@@ -500,7 +500,7 @@ eleventyConfig.addShortcode("ServicesSection", function({ headerText, headerSubT
 
 eleventyConfig.addShortcode("PricingSection", function({ headerText, headerSubText, pricing, exploreLink = "#", exploreText = "Explore package", learnMoreLink = "#", learnMoreText = "Learn More" }) {
     const pricingItems = pricing.map(item => `
-        <div class="col-lg-6 pe-50px lg-pe-30px md-pe-15px pricing-table-style-09">
+        <div class="col-lg-6 pe-50px lg-pe-30px md-pe-15px pricing-table-style-09"  data-anime='{ "el": "childs", "translateX": [30, 1], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue":200, "easing": "easeOutQuad" }'>
             <div class="row border-top border-color-extra-medium-gray g-0 xs-pt-20px xs-pb-20px">
                 <div class="col-sm-3 text-center align-self-center">
                     <img src="${item.imageUrl || 'https://via.placeholder.com/100x105'}" class="w-55px" alt="">
@@ -525,7 +525,7 @@ eleventyConfig.addShortcode("PricingSection", function({ headerText, headerSubTe
                         <h3 class="alt-font fw-400 text-dark-gray ls-minus-1px mb-6">${headerSubText}</h3>
                     </div>
                 </div>
-                <div class="row justify-content-between align-items-center mb-5 xs-mb-6">
+                <div class="row justify-content-between align-items-center mb-5 xs-mb-6"  data-anime='{ "el": "childs", "translateX": [-30, 1], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue":200, "easing": "easeOutQuad" }'>
                     ${pricingItems}
                 </div>
 				<div class="row">
@@ -595,20 +595,24 @@ eleventyConfig.addShortcode("BenefitsSection", function({ headerText, headerSubT
     `).join('');
 
     return `
+    <section class="overlap-height">
         <div class="container">
-            <div class="row justify-content-center mb-3">
+            <div class="row justify-content-center mb-3" data-anime='{ "el": "childs", "translateY": [30, 1], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue":200, "easing": "easeOutQuad" }' >
                 <div class="col-xl-6 col-lg-8 text-center">
                     <span class="fs-15 fw-600 text-base-color text-uppercase ls-3px">${headerText}</span>
                     <h3 class="alt-font text-dark-gray ls-minus-1px">${headerSubText}</h3>
                 </div>
             </div>
-            <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 text-center icon-with-style-2 g-0 border-top border-start border-color-extra-medium-gray">
+            <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 text-center icon-with-style-2 g-0 border-top border-start border-color-extra-medium-gray" data-anime='{ "el": "childs", "translateY": [20, 0], "opacity": [0,1], "duration": 600, "delay": 300, "staggervalue": 300, "easing": "easeOutQuad" }'>
                 ${benefitItems}
             </div>
       
         </div>
+        </section>
     `;
 });
+
+
 
 
 
@@ -701,6 +705,48 @@ eleventyConfig.addShortcode("ImageAndTextSection", function({ mainImage, feature
 
 
 
+///////////////////
+// MarqueeSection
+//////////////////
+
+/*
+   Usage
+   /*
+
+   {% MarqueeSection {
+    messages: [
+        { text: "Pay with multiple credit cards" },
+        { text: "Get 20% off for your first order" },
+        { text: "The fashion core collection" },
+        { text: "100% secure protected payment" },
+        { text: "Free shipping for orders over $130" }
+    ]
+   } %}
+
+*/
+
+eleventyConfig.addShortcode("MarqueeSection", function({ messages }) {
+    const messageItems = messages.map((message, index) => `
+        <div class="swiper-slide swiper-slide-next" role="group" aria-label="${index + 1} / ${messages.length}" data-swiper-slide-index="${index}">
+            <div class="alt-font fs-26 fw-500 text-dark-gray border-color-extra-medium-gray border-end pt-30px pb-30px ps-60px pe-60px sm-p-25px">${message.text}</div>
+        </div>
+    `).join('');
+
+    return `
+        <section class="p-0 border-top border-bottom border-color-extra-medium-gray">
+            <div class="container-fluid">
+                <div class="row position-relative">
+                    <div class="col swiper text-center swiper-width-auto swiper-initialized swiper-horizontal swiper-backface-hidden" data-slider-options="{ 'slidesPerView': 'auto', 'spaceBetween': 0, 'speed': 10000, 'loop': true, 'pagination': { 'el': '.slider-four-slide-pagination-2', 'clickable': false }, 'allowTouchMove': false, 'autoplay': { 'delay': 0, 'disableOnInteraction': false }, 'navigation': { 'nextEl': '.slider-four-slide-next-2', 'prevEl': '.slider-four-slide-prev-2' }, 'keyboard': { 'enabled': true, 'onlyInViewport': true }, 'effect': 'slide' }">
+                        <div class="swiper-wrapper marquee-slide" id="swiper-wrapper-10cf8e6adb59d2157" aria-live="off" style="transition-duration: 10000ms; transform: translate3d(-2335.33px, 0px, 0px);">
+                            ${messageItems}
+                        </div>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+});
 
 
 
@@ -713,17 +759,64 @@ eleventyConfig.addShortcode("ImageAndTextSection", function({ mainImage, feature
 
 
 
+///////////////////
+// CategoryShowcaseSection
+//////////////////
 
+/*
+   Usage
+   /*
 
+   {%  CategoryShowcaseSection  {
+    categories: [
+        { icon: "Microphone-4", title: "Publishing", link: "#publishing" },
+        { icon: "Basket-Coins", title: "Finance", link: "#finance" },
+        { icon: "Bee", title: "Sciences", link: "#sciences" },
+        { icon: "Management", title: "Consultant", link: "#consultant" },
+        { icon: "French-Fries", title: "Food", link: "#food" },
+        { icon: "Road-3", title: "Travel", link: "#travel" },
+        { icon: "Cow", title: "Dairy", link: "#dairy" },
+        { icon: "Diamond", title: "Jewellery", link: "#jewellery" },
+        { icon: "Drop", title: "Energy", link: "#energy" },
+        { icon: "Environmental-3", title: "Farming", link: "#farming" },
+        { icon: "Gear", title: "Industries", link: "#industries" },
+        { icon: "Environmental-3", title: "Events", link: "#events" }
+    ]
+   } %}
 
+*/
 
+eleventyConfig.addShortcode("CategoryShowcaseSection", function({ categories }) {
+    const categoryItems = categories.map(category => `
+        <div class="col icon-with-text-style-04 transition-inner-all">
+            <div class="feature-box hover-box h-100 transition dark-hover pt-25 pb-25 xs-p-12 last-paragraph-no-margin overflow-hidden border-bottom border-end border-1 border-color-transparent-white-light border-color-transparent-on-hover">
+                <div class="feature-box-icon">
+                    <i class="line-icon-${category.icon} icon-extra-large text-white mb-15px"></i>
+                </div>
+                <div class="feature-box-content">
+                    <span class="d-inline-block text-white fw-600 fs-14 text-uppercase">${category.title}</span>
+                </div>
+                <div class="feature-box-overlay bg-base-color"></div>
+                <a href="${category.link}" class="stretched-link"></a>
+            </div>
+        </div>
+    `).join('');
 
-
-
-
-
-
-
+    return `
+        <section class="bg-dark-gray">
+            <div class="container">
+                <div class="row justify-content-center mb-5 sm-mb-30px">
+                    <div class="col-xl-6 col-lg-8 col-md-10 text-center" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [30, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                        <h3 class="text-white mb-0 fw-600">Explore our diverse categories.</h3>
+                    </div>
+                </div>
+                <div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-0 " data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [15, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 300, &quot;delay&quot;:0, &quot;staggervalue&quot;: 100, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                    ${categoryItems}
+                </div>
+            </div>
+        </section>
+    `;
+});
 
 
 
@@ -762,7 +855,7 @@ eleventyConfig.addShortcode("statsBox", function(rating, feedback, patients, rat
 	<section class="pt-0 position-relative">
 	<div class="container">
 	<div class="row align-items-center">
-	  <div class="row row-cols-1 row-cols-lg-3 row-cols-sm-2 mt-5 align-items-center justify-content-center appear anime-child anime-complete" data-anime="{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 800, "delay": 0, "staggervalue": 200, "easing": "easeOutQuad" }">
+	  <div class="row row-cols-1 row-cols-lg-3 row-cols-sm-2 mt-5 align-items-center justify-content-center" data-anime="{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 800, "delay": 0, "staggervalue": 200, "easing": "easeOutQuad" }">
 		  <!-- start content box item -->
 		  <div class="col md-mb-40px border-end xs-border-end-0 border-color-transparent-dark-very-light" style="">
 			  <div class="d-flex flex-column flex-md-row justify-content-center align-items-center text-center text-md-start">
@@ -870,7 +963,7 @@ eleventyConfig.addShortcode("ServiceSliderSection", function({ backgroundPattern
             <div class="bg-light-red border-radius-8px lg-no-border-radius pt-6 pb-6 md-pt-50px md-pb-50px overflow-hidden position-relative">
                 <div class="container">
                     <div class="row align-items-center">
-                        <div class="col-xl-4 col-lg-5 md-mb-30px appear anime-child anime-complete" data-anime="{&quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [30, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 800, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot;}"> 
+                        <div class="col-xl-4 col-lg-5 md-mb-30px" data-anime="{&quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [30, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 800, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot;}"> 
                             <span class="fs-18 fw-600 text-dark-gray mb-20px d-flex align-items-center"><span class="text-center w-60px h-60px d-flex justify-content-center align-items-center rounded-circle bg-light-sea-green-transparent-light align-middle me-15px"><i class="bi bi-shield-check text-base-color fs-22"></i></span>${mainTitle}</span>
                             <h2 class="fw-600 alt-font  text-dark-gray ls-minus-2px">${subTitle}</h2>
                             <p class="mb-30px">${description}</p>
@@ -1097,7 +1190,6 @@ eleventyConfig.addShortcode("DynamicMediaSection", function({ mainImage = "https
 
 
 
-
 ///////////////////
 // DynamicShowcaseSection
 //////////////////
@@ -1106,7 +1198,7 @@ eleventyConfig.addShortcode("DynamicMediaSection", function({ mainImage = "https
    Usage
    /*
 
-   {% DynamicShowcaseSection{
+   {% set DynamicShowcaseSection = {
     banners: [
         {
             imageUrl: "https://via.placeholder.com/1160x640",
@@ -1174,7 +1266,7 @@ eleventyConfig.addShortcode("DynamicShowcaseSection", function({ banners, header
     return `
         <section class="bg-gradient-solitude-blue-fair-pink">
             <div class="container">
-                <div class="row row-cols-1 row-cols-lg-2 mb-8 overlap-section">
+                <div class="row row-cols-1 row-cols-lg-2 mb-8 overlap-section"  data-anime='{"el": "childs", "translateY": [30, 0], "perspective": [1200,1200], "scale": [1.05, 1], "rotateX": [30, 0], "opacity": [0,1], "duration": 800, "delay": 200, "staggervalue": 300, "easing": "easeOutQuad" }'>
                     ${bannerItems}
                 </div>
                 <div class="row justify-content-center align-items-center mb-5 sm-mb-30px">
@@ -1206,6 +1298,312 @@ eleventyConfig.addShortcode("DynamicShowcaseSection", function({ banners, header
 
 
 
+///////////////////
+// ProjectShowcaseSection
+//////////////////
+
+/*
+   Usage
+   /*
+
+   {% ProjectShowcaseSection {
+    projects: [
+        {
+            imageUrl: "https://via.placeholder.com/500x300",
+            category: "Digital",
+            title: "Pixflow",
+            description: "A comprehensive digital platform",
+            link: "#project1"
+        },
+        {
+            imageUrl: "https://via.placeholder.com/500x300",
+            category: "Branding",
+            title: "Herbal",
+            description: "Branding for natural wellness products",
+            link: "#project2"
+        },
+        // Add more projects as needed
+    ],
+    tabs: [
+        { filter: "*", title: "All" },
+        { filter: ".digital", title: "Digital" },
+        { filter: ".branding", title: "Branding" },
+        // Add more tabs as needed
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("ProjectShowcaseSection", function({ projects, tabs }) {
+    const tabItems = tabs.map(tab => `
+        <li class="nav"><a data-filter="${tab.filter}" href="#">${tab.title}</a></li>
+    `).join('');
+
+    const projectItems = projects.map(project => `
+        <li class="grid-item ${project.category.toLowerCase()} transition-inner-all" style="position: absolute;">
+            <a href="${project.link}">
+                <div class="portfolio-box">
+                    <div class="portfolio-image border-radius-6px">
+                        <img src="${project.imageUrl}" alt="" data-no-retina="">
+                    </div>
+                    <div class="portfolio-hover box-shadow-extra-large">
+                        <div class="bg-white d-flex align-items-center align-self-end text-start border-radius-4px ps-30px pe-30px pt-20px pb-20px lg-p-20px w-100">
+                            <div class="me-auto">
+                                <div class="fs-12 fw-500 text-medium-gray text-uppercase lh-24">${project.category}</div>
+                                <div class="fw-700 text-dark-gray text-uppercase lh-initial">${project.title}</div>
+                            </div>
+                            <div class="ms-auto"><i class="feather icon-feather-plus icon-extra-medium text-dark-gray lh-36"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </li>
+    `).join('');
+
+    return `
+        <section class="position-relative">
+            <div class="container">
+                <div class="row align-items-center mb-4" data-anime='{ "el": "childs", "translateY": [30, 1], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue":200, "easing": "easeOutQuad" }'>
+                    <div class="col-xl-5 lg-mb-30px text-center text-xl-start">
+                        <h3 class="text-dark-gray fw-700 mb-0 ls-minus-2px">Recent case studies</h3>
+                    </div>
+                    <div class="col-xl-7 tab-style-04 text-center text-xl-end">
+                        <ul class="portfolio-filter nav nav-tabs justify-content-center justify-content-xl-end border-0 fw-500">
+                            ${tabItems}
+                        </ul>
+                    </div>
+                </div>
+                <div class="row" data-anime='{ "el": "childs", "translateY": [20, 0], "opacity": [0,1], "duration": 600, "delay": 300, "staggervalue": 300, "easing": "easeOutQuad" }'>
+                    <div class="col-12 filter-content p-md-0">
+                        <ul class="portfolio-modern portfolio-wrapper grid grid-3col xxl-grid-3col xl-grid-3col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-extra-large">
+                            <li class="grid-sizer"></li>
+                            ${projectItems}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+});
+
+
+
+
+
+
+
+
+///////////////////
+// DynamicCreativeSolutionsSection
+//////////////////
+
+/*
+   Usage
+   /*
+   {% DynamicCreativeSolutionsSection {
+    backgroundImageUrl: "url('https://via.placeholder.com/1920x1080')",
+    videoUrl: "https://www.youtube.com/watch?v=cfXHhfNy7tU",
+    rotationWords: ["business!", "problems!", "brands!"],
+    contactUrl: "demo-corporate-contact.html"
+   } %}
+*/
+
+eleventyConfig.addShortcode("DynamicCreativeSolutionsSection", function({ backgroundImageUrl, videoUrl, rotationWords, contactUrl }) {
+    const rotationWordsMarkup = rotationWords.map(word => `<span class="char">${word.split('').join('</span><span class="char">')}</span>`).join('');
+
+    return `
+        <section class="p-0">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="border-radius-6px h-450px md-h-350px sm-h-400px d-flex flex-wrap align-items-center justify-content-center overflow-hidden cover-background box-shadow-quadruple-large pt-15" style="background-image: ${backgroundImageUrl}">
+                            <div class="opacity-full-dark bg-gradient-regal-blue-transparent"></div>
+                            <div class="row justify-content-center m-0">
+                                <div class="col-lg-7 col-md-8 z-index-1 text-center text-md-start sm-mb-20px">
+                                    <h3 class="text-white mb-0 fw-400 fancy-text-style-4">We make the creative solutions for <span class="fw-600 appear" data-fancy-text='{ "effect": "rotate", "strings": ${JSON.stringify(rotationWords)} }'>
+                                        <span class="anime-text words chars splitting" data-splitting="true">${rotationWordsMarkup}</span>
+                                    </span></h3>
+                                </div>
+                                <div class="col-md-2 position-relative z-index-1 text-center sm-mb-20px">
+                                    <a href="${videoUrl}" class="position-relative d-inline-block text-center border border-2 border-color-white rounded-circle video-icon-box video-icon-large popup-youtube">
+                                        <span><span class="video-icon"><i class="fa-solid fa-play fs-20 text-white"></i></span></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="w-100 text-center position-relative mt-auto pt-20px pb-25px ps-15px pe-15px border-top border-color-transparent-white-light">
+                                <div class="fs-14 text-uppercase text-white fw-600 ls-05px">Let's make something great work together. <a href="${contactUrl}" class="text-decoration-line-bottom text-white">Got a project in mind?</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+});
+
+
+
+
+
+
+///////////////////
+// AdvancedStatsSection
+//////////////////
+
+/*
+   Usage
+   /*
+   {% AdvancedStatsSection {
+    title: "In providing corporate finance and business statistics advice.",
+    leftPercentage: 96,
+    rightPercentage: 98,
+    leftText: "Prefer cloud accounting",
+    rightText: "Most outsourced tasks",
+    description1: "Lorem ipsum simply dummy text printing type setting.",
+    description2: "Lorem ipsum simply dummy text printing type setting."
+   } %}
+*/
+
+eleventyConfig.addShortcode("AdvancedStatsSection", function({ title, leftPercentage, rightPercentage, leftText, rightText, description1, description2 }) {
+    return `
+        <section class="pb-4 sm-pb-50px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 md-mb-35px text-center text-lg-start">
+                        <h3 class="fw-700 mb-0 text-dark-gray ls-minus-2px sm-ls-minus-1px appear words lines splitting anime-child anime-complete" data-anime="{ "el": "lines", "translateY": [30, 0], "opacity": [0,1], "delay": 0, "staggervalue": 250, "easing": "easeOutQuad" }" style="--word-total: 8; --line-total: 3;"><span class="d-inline" style="will-change: inherit;">${title}</span></h3>
+                    </div>
+                    <div class="col-xl-6 col-lg-7 offset-xl-1 text-center text-lg-start">
+                        <div class="row align-items-center">
+                            <div class="col-sm-6 last-paragraph-no-margin counter-style-04 xs-mb-35px">
+                                <h2 class="vertical-counter d-inline-flex alt-font text-dark-gray fw-700 ls-minus-2px xs-ls-minus-1px mb-5px appear" data-text="%" data-to="${leftPercentage}" style="height: 41.25px;"><sup class="text-emerald-green top-minus-5px"><i class="bi bi-arrow-up icon-medium"></i></sup><span class="vertical-counter-number" data-to="${leftPercentage.toString()[0]}"><ul style="transform: translateY(-${leftPercentage.toString()[0]*10}%);"><li>0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li></ul></span><span class="vertical-counter-number" data-to="${leftPercentage.toString()[1]}"><ul style="transform: translateY(-${leftPercentage.toString()[1]*10}%);"><li>0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li></ul></span></h2>
+                                <span class="fs-19 fw-600 ls-minus-05px mb-5px d-block text-dark-gray appear words lines splitting anime-child anime-complete" data-anime="{ "el": "lines", "translateY": [30, 0], "opacity": [0,1], "delay": 0, "staggervalue": 250, "easing": "easeOutQuad" }" style="--word-total: 3; --line-total: 1;"><span class="d-inline" style="will-change: inherit;">${leftText}</span></span>
+                                <p class="w-90 sm-w-100 md-mx-auto appear words lines splitting anime-child anime-complete" data-anime="{ "el": "lines", "translateY": [30, 0], "opacity": [0,1], "delay": 100, "staggervalue": 250, "easing": "easeOutQuad" }" style="--word-total: 8; --line-total: 2;"><span class="d-inline" style="will-change: inherit;">${description1}</span></p>
+                            </div>
+                            <div class="col-sm-6 last-paragraph-no-margin counter-style-04">
+                                <h2 class="vertical-counter d-inline-flex alt-font text-dark-gray fw-700 ls-minus-2px xs-ls-minus-1px mb-5px appear" data-text="%" data-to="${rightPercentage}" style="height: 41.25px;"><sup class="text-emerald-green top-minus-5px"><i class="bi bi-arrow-up icon-medium"></i></sup><span class="vertical-counter-number" data-to="${rightPercentage.toString()[0]}"><ul style="transform: translateY(-${rightPercentage.toString()[0]*10}%);"><li>0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li></ul></span><span class="vertical-counter-number" data-to="${rightPercentage.toString()[1]}"><ul style="transform: translateY(-${rightPercentage.toString()[1]*10}%);"><li>0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li></ul></span></h2>
+                                <span class="fs-19 fw-600 ls-minus-05px mb-5px d-block text-dark-gray appear words lines splitting anime-child anime-complete" data-anime="{ "el": "lines", "translateY": [30, 0], "opacity": [0,1], "delay": 0, "staggervalue": 250, "easing": "easeOutQuad" }" style="--word-total: 3; --line-total: 1;"><span class="d-inline" style="will-change: inherit;">${rightText}</span></span>
+                                <p class="w-90 sm-w-100 md-mx-auto appear words lines splitting anime-child anime-complete" data-anime="{ "el": "lines", "translateY": [30, 0], "opacity": [0,1], "delay": 100, "staggervalue": 250, "easing": "easeOutQuad" }" style="--word-total: 8; --line-total: 2;"><span class="d-inline" style="will-change: inherit;">${description2}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+});
+
+
+
+
+///////////////////
+// DynamicTabSection
+//////////////////
+
+/*
+   Usage
+   /*
+   {% DynamicTabSection {
+       tabs: [
+           {
+               title: "Premium cottage",
+               imageUrl: "https://via.placeholder.com/600x400",
+               price: "$50.00",
+               description: "Discover a private home in the orchard...",
+               bookingUrl: "demo-hotel-and-resort-contact.html",
+               features: [
+                   { icon: "fa-bathrobe", text: "Laundry facilities" },
+                   { icon: "fa-french-fries", text: "Breakfast included" },
+                   { icon: "fa-car", text: "Pickup and drop" }
+               ]
+           },
+           {
+               title: "Studios with terrace",
+               imageUrl: "https://via.placeholder.com/600x400",
+               price: "$70.00",
+               description: "Enjoy the luxury of space...",
+               bookingUrl: "demo-hotel-and-resort-contact.html",
+               features: [
+                   { icon: "fa-bathrobe", text: "Laundry facilities" },
+                   { icon: "fa-french-fries", text: "Breakfast included" },
+                   { icon: "fa-car", text: "Pickup and drop" }
+               ]
+           }
+       ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("DynamicTabSection", function({ tabs }) {
+    const tabLinks = tabs.map((tab, index) => `
+        <li class="nav-item" role="presentation">
+            <a class="${index === 0 ? 'nav-link active' : 'nav-link'}" data-bs-toggle="tab" href="#tab_seven${index + 1}" aria-selected="${index === 0 ? 'true' : 'false'}" role="tab">
+                <span><span class="primary-font me-10px fs-18 fw-800">${index + 1}</span>${tab.title}</span>
+                <span class="number-box d-flex justify-content-center align-items-center rounded-circle h-70px w-70px bg-base-color text-white"><i class="bi bi-arrow-right icon-extra-medium"></i></span>
+                <span class="bg-hover bg-base-color"></span>
+            </a>
+        </li>
+    `).join('');
+
+    const tabContent = tabs.map((tab, index) => `
+        <div class="tab-pane fade ${index === 0 ? 'in h-100 active show' : 'in h-100'}" id="tab_seven${index + 1}" role="tabpanel">
+            <div class="row g-0 h-100 lg-h-auto">
+                <div class="col-xl-6">
+                    <div class="h-100 lg-h-400px cover-background position-relative" style="background-image: url(${tab.imageUrl})">
+                        <div class="position-absolute right-0px bottom-0 d-flex">
+                            <div class="ps-40px pe-40px h-110px bg-white d-flex align-items-center">
+                                <div class="fs-30 fw-700 text-dark-gray"><span class="fs-16 fw-500 d-table lh-22 text-medium-gray">Starting from</span>${tab.price}</div>
+                            </div>
+                            <div class="ps-40px pe-40px xs-ps-30px xs-pe-30px h-110px bg-dark-gray d-flex align-items-center">
+                                <a href="${tab.bookingUrl}" class="d-flex align-items-center text-white">
+                                    <span class="fs-18 fw-800 lh-22 text-uppercase me-15px">Book<br>now</span>
+                                    <span class="w-55px h-55px bg-white-transparent-extra-light border-radius-100 text-white position-relative"><i class="bi bi-arrow-right-short icon-extra-medium absolute-middle-center lh-0px"></i></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 bg-very-light-gray pt-6 pb-6 ps-8 pe-8">
+                    <div class="d-flex align-items-xl-start align-items-center text-center text-xl-start flex-column justify-content-center h-100">
+                        <span class="text-base-color fw-500">${tab.title}</span>
+                        <h3 class="text-dark-gray mb-15px alt-font">${tab.title}</h3>
+                        <p>${tab.description}</p>
+                        <div class="row row-cols-1 row-cols-lg-3 row-cols-sm-3 justify-content-center mt-25px md-mt-15px g-0 w-100">
+                            ${tab.features.map(feature => `
+                                <div class="col icon-with-text-style-03">
+                                    <div class="feature-box ps-25px pe-25px xl-ps-15px xl-pe-15px xs-mb-30px overflow-hidden border-end xs-border-end-0 border-color-transparent-base-color">
+                                        <div class="feature-box-icon">
+                                            <i class="line-icon-${feature.icon} icon-large text-base-color mb-15px"></i>
+                                        </div>
+                                        <div class="feature-box-content last-paragraph-no-margin">
+                                            <span class="d-inline-block text-dark-gray fw-800 fs-14 text-uppercase lh-20">${feature.text}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    return `
+        <section class="p-0 overflow-hidden">
+            <div class="container-fluid p-0">
+                <div class="row g-0 bg-very-light-gray">
+                    <div class="col-xl-3 col-lg-4 col-md-5 tab-style-07 d-flex align-items-start align-items-xl-center">
+                        <ul class="nav nav-tabs justify-content-center border-0 text-left fs-24 alt-font" role="tablist">
+                            ${tabLinks}
+                        </ul>
+                    </div>
+                    <div class="col-xl-9 col-lg-8 col-md-7">
+                        <div class="tab-content h-100">
+                            ${tabContent}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+});
 
 
 
@@ -1222,6 +1620,885 @@ eleventyConfig.addShortcode("DynamicShowcaseSection", function({ banners, header
 
 
 
+
+
+
+
+
+
+///////////////////
+// TabsContentShowcase
+//////////////////
+
+/*
+   Usage
+   /*
+   {% TabsContentShowcase {
+    tabs: [
+        {
+            id: "tab_eight1",
+            label: "Strategic planning",
+            imageUrl: "https://via.placeholder.com/500",
+            counter: "85",
+            description: "Organization's process of defining strategy.",
+            link: "demo-accounting-services.html"
+        },
+        {
+            id: "tab_eight2",
+            label: "Audit assurance",
+            imageUrl: "https://via.placeholder.com/500",
+            counter: "80",
+            description: "An excellent audit service for company.",
+            link: "demo-accounting-services.html"
+        },
+        {
+            id: "tab_eight3",
+            label: "Financial projections",
+            imageUrl: "https://via.placeholder.com/500",
+            counter: "85",
+            description: "We are leader in tax advisor and financial.",
+            link: "demo-accounting-services.html"
+        },
+        {
+            id: "tab_eight4",
+            label: "Business planning",
+            imageUrl: "https://via.placeholder.com/500",
+            counter: "80",
+            description: "We creating specific business strategies.",
+            link: "demo-accounting-services.html"
+        }
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("TabsContentShowcase", function({ tabs }) {
+    const tabNavs = tabs.map(tab => `
+        <li class="nav-item" role="presentation"><a data-bs-toggle="tab" href="#${tab.id}" class="nav-link" aria-selected="${tab.isActive}" role="tab">${tab.label}<span class="tab-border bg-base-color"></span></a></li>
+    `).join('');
+
+    const tabContents = tabs.map(tab => `
+        <div class="tab-pane fade ${tab.isActive ? 'show active' : ''}" id="${tab.id}" role="tabpanel">
+            <div class="row align-items-center justify-content-center g-lg-0">
+                <div class="col-md-6 sm-mb-30px position-relative overflow-hidden">
+                    <img src="${tab.imageUrl}" alt="" class="w-100 border-radius-6px" data-no-retina="">
+                    <div class="bg-very-light-gray w-250px position-absolute pt-20px pb-20px ps-25px pe-25px border-radius-4px bottom-30px left-35px box-shadow-large">
+                        <h2 class="vertical-counter d-inline-flex text-dark-gray fw-700 ls-minus-2px md-ls-minus-1px mb-0 text-nowrap border-end border-1 border-color-transparent-dark-very-light pe-20px me-20px" data-to="${tab.counter}">
+                            <span class="vertical-counter-number">${tab.counter.substring(0,1)}</span>
+                            <span class="vertical-counter-number">${tab.counter.substring(1)}</span>
+                        </h2>
+                        <span class="text-dark-gray ls-minus-05px d-inline-block lh-22">Project completed</span>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-5 offset-lg-1 col-md-6 text-center text-md-start">
+                    <div class="mb-20px">
+                        <div class="separator-line-1px w-50px bg-base-color d-inline-block align-middle me-10px opacity-2"></div>
+                        <span class="d-inline-block text-dark-gray align-middle fw-500 fs-20 ls-minus-05px">${tab.description}</span>
+                    </div>
+                    <p class="mb-35px md-mb-25px">We provide simplified accounting solutions and qualitative business process services to the customers which helps streamline your business and give your company a competitive.</p>
+                    <a href="${tab.link}" class="btn btn-large btn-rounded with-rounded btn-white btn-box-shadow fw-600">Learn more<span class="bg-base-color text-white"><i class="bi bi-arrow-right-short icon-extra-medium"></i></span></a>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    return `
+        <section class="bg-very-light-gray pb-0" id="services">
+            <div class="container">
+                <div class="row mb-8 sm-mb-10">
+                    <div class="col-12 tab-style-08">
+                        <div class="tab-content">
+                            ${tabContents}
+                        </div>
+                        <div class="tab-style-08 border-bottom border-color-extra-medium-gray bg-white box-shadow-quadruple-large">
+                            <div class="container">
+                                <ul class="nav nav-tabs border-0 fw-500 fs-19 text-center" role="tablist">
+                                    ${tabNavs}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+});
+
+
+
+
+///////////////////
+// LargeSizeCategoriesShowcaseSection
+//////////////////
+
+/*
+   Usage
+   /*
+   {% LargeSizeCategoriesShowcaseSection {
+    categories: [
+        {
+            imageUrl: "https://via.placeholder.com/500",
+            itemsCount: 8,
+            label: "Women",
+            link: "demo-fashion-store-shop.html"
+        },
+        {
+            imageUrl: "https://via.placeholder.com/500",
+            itemsCount: 9,
+            label: "Men",
+            link: "demo-fashion-store-shop.html"
+        },
+        {
+            imageUrl: "https://via.placeholder.com/500",
+            itemsCount: 8,
+            label: "Accessories",
+            link: "demo-fashion-store-shop.html"
+        },
+        {
+            imageUrl: "https://via.placeholder.com/500",
+            itemsCount: 8,
+            label: "Kids",
+            link: "demo-fashion-store-shop.html"
+        }
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("LargeSizeCategoriesShowcaseSection", function({ categories }) {
+    const categoryItems = categories.map(category => `
+        <div class="col categories-style-02 lg-mb-30px">
+            <div class="categories-box">
+                <a href="${category.link}">
+                    <img class="sm-w-100" src="${category.imageUrl}" alt="" data-no-retina="">
+                </a>
+                <div class="border-color-transparent-dark-very-light border alt-font fw-500 text-dark-gray text-uppercase ps-15px pe-15px fs-11 lh-26 border-radius-100px d-inline-block position-absolute right-20px top-20px">${category.itemsCount} items</div>
+                <div class="absolute-bottom-center bottom-40px md-bottom-25px">
+                    <a href="${category.link}" class="btn btn-white btn-switch-text btn-round-edge btn-box-shadow fs-18 text-uppercase-inherit p-5 min-w-150px">
+                        <span>
+                            <span class="btn-double-text ls-0px" data-text="${category.label}">${category.label}</span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    return `
+        <section class="pt-0 pb-0 ps-7 pe-7 lg-ps-3 lg-pe-3 xs-p-0">
+            <div class="container-fluid">
+                <div class="row row-cols-1 row-cols-xl-4 row-cols-lg-2 row-cols-md-2" data-anime='{ "el": "childs", "translateY": [20, 0], "opacity": [0,1], "duration": 600, "delay": 300, "staggervalue": 300, "easing": "easeOutQuad" }'>
+                    ${categoryItems}
+                </div>
+            </div>
+        </section>
+    `;
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////
+// ProductsShowcase
+//////////////////
+
+/*
+   Usage:
+   {% ProductsShowcase {
+    products: [
+        {
+            imageUrl: "https://via.placeholder.com/600x765",
+            label: "New",
+            productUrl: "demo-fashion-store-single-product.html",
+            title: "Textured sweater",
+            originalPrice: "$200.00",
+            salePrice: "$189.00"
+        },
+        {
+            imageUrl: "https://via.placeholder.com/600x765",
+            productUrl: "demo-fashion-store-single-product.html",
+            title: "Traveller shirt",
+            originalPrice: "$350.00",
+            salePrice: "$289.00"
+        }
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("ProductsShowcase", function({ products }) {
+    const productItems = products.map(product => `
+        <li class="grid-item" style="position: absolute; left: ${product.position || 0}%; top: 0px; transition-behavior: normal; transition-timing-function: ease;">
+            <div class="shop-box mb-10px">
+                <div class="shop-image mb-20px">
+                    <a href="${product.productUrl}">
+                        <img src="${product.imageUrl}" alt="${product.title}" data-no-retina="">
+                        ${product.label ? `<span  class="label new alt-font fw-800 btn-white btn-round-edge position-absolute left-20px top-20px">${product.label}</span>` : ''}
+                    </a>
+                </div>
+                <div class="shop-footer text-center">
+                    <a href="${product.productUrl}" class="alt-font text-dark-gray fs-19 fw-500">${product.title}</a>
+                    <div class="price lh-22 fs-16"><del>${product.originalPrice}</del> ${product.salePrice}</div>
+                </div>
+            </div>
+        </li>
+    `).join('');
+
+    return `
+        <section class="ps-7 pe-7 pb-3 lg-ps-3 lg-pe-3 sm-pb-6 xs-px-0">
+            <div class="container">
+                <div class="row mb-5 xs-mb-8">
+                    <div class="col-12 text-center">
+                        <h2 class="alt-font text-dark-gray mb-0 ls-minus-2px">Best seller <span class="text-highlight fw-600">products<span class="bg-base-color h-5px bottom-2px"></span></span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="shop-modern shop-wrapper grid grid-5col lg-grid-4col md-grid-3col sm-grid-2col xs-grid-1col gutter-extra-large text-center" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [-15, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 300, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 100, &quot;easing&quot;: &quot;easeOutQuad&quot; }" style="position: relative; height: 1283.72px;">
+                            <li class="grid-sizer"></li>
+                            ${productItems}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+});
+
+
+
+
+///////////////////
+// DynamicSwiperSlider
+//////////////////
+
+/*
+   Usage
+   /*
+   {% DynamicSwiperSlider {
+    slides: [
+        {
+            imageUrl: "https://via.placeholder.com/1920x1060",
+            label: "Discount on selected collection!",
+            title: "Women's",
+            subtitle: "collection",
+            link: "demo-fashion-store-shop.html"
+        },
+        {
+            imageUrl: "https://via.placeholder.com/1920x1060",
+            label: "Discount on selected collection!",
+            title: "Men's",
+            subtitle: "collection",
+            link: "demo-fashion-store-shop.html"
+        },
+        {
+            imageUrl: "https://via.placeholder.com/1920x1060",
+            label: "Discount on selected collection!",
+            title: "Children's",
+            subtitle: "collection",
+            link: "demo-fashion-store-shop.html"
+        }
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("DynamicSwiperSlider", function({ slides }) {
+    const slideItems = slides.map((slide, index) => `
+        <div class="swiper-slide overflow-hidden ${index === 0 ? 'swiper-slide-visible swiper-slide-fully-visible swiper-slide-active' : (index === 1 ? 'swiper-slide-next' : 'swiper-slide-prev')}" role="group" aria-label="${index + 1} / ${slides.length}" data-swiper-slide-index="${index}" style="width: 851px;">
+            <div class="cover-background position-absolute top-0 start-0 w-100 h-100" data-swiper-parallax="500" style="background-image: url('${slide.imageUrl}');">
+                <div class="container h-100">
+                    <div class="row align-items-center h-100 justify-content-start">
+                        <div class="col-md-10 position-relative text-white d-flex flex-column justify-content-center h-100">
+                            <div data-anime="{ 'opacity': [0, 1], 'translateY': [50, 0], 'easing': 'easeOutQuad', 'duration': 500, 'delay': 300 }" class="alt-font text-dark-gray mb-25px fs-20 sm-mb-15px"><span class="text-highlight">${slide.label}<span class="bg-base-color h-8px bottom-0px"></span></span></div>
+                            <div class="alt-font fs-120 xs-fs-95 lh-100 mb-40px text-dark-gray fw-600 transform-origin-right ls-minus-5px sm-mb-25px" data-anime="{ 'el': 'childs', 'rotateX': [90, 0], 'opacity': [0,1], 'staggervalue': 150, 'easing': 'easeOutQuad' }">
+                                <span class="d-block">${slide.title}</span>
+                                <span class="d-block fw-300">${slide.subtitle}</span>
+                            </div>
+                            <div data-anime="{ 'opacity': [0, 1], 'translateY': [100, 0], 'easing': 'easeOutQuad', 'duration': 800, 'delay': 400 }">
+                                <a href="${slide.link}" class="btn btn-dark-gray btn-box-shadow btn-large">View collection</a>
+                            </div> 
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    return `
+        <section class="p-0">
+            <div class="swiper full-screen top-space-margin md-h-600px sm-h-500px magic-cursor magic-cursor-vertical swiper-number-pagination-progress swiper-number-pagination-progress-vertical swiper-initialized swiper-horizontal swiper-watch-progress swiper-backface-hidden" data-slider-options="{ 'slidesPerView': 1, 'direction': 'horizontal', 'loop': true, 'parallax': true, 'speed': 1000, 'pagination': { 'el': '.swiper-number', 'clickable': true }, 'autoplay': { 'delay': 4000, 'disableOnInteraction': false },  'keyboard': { 'enabled': true, 'onlyInViewport': true }, 'breakpoints': { '1199': { 'direction': 'vertical' }}, 'effect': 'slide' }" data-swiper-number-pagination-progress="true">
+                <div class="swiper-wrapper" id="swiper-wrapper-524464f925b8c9f2" aria-live="off">
+                    ${slideItems}
+                </div>
+                <div class="swiper-pagination-wrapper">
+                    <div class="pagination-progress-vertical d-flex align-items-center justify-content-center">
+                        <div class="number-prev text-dark-gray fs-16 fw-500">01</div>
+                        <div class="swiper-pagination-progress" style="--swiper-progress: 33.33%;">
+                            <span class="swiper-progress"></span>
+                        </div>
+                        <div class="number-next text-dark-gray fs-16 fw-500">03</div>    
+                    </div>
+                </div>
+                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+            </div>
+        </section>
+    `;
+});
+
+
+
+
+///////////////////
+// CustomContentSection
+//////////////////
+
+/*
+   Usage
+   /*
+   {% CustomContentSection {
+    leftImage: "https://via.placeholder.com/600x400",
+    rightImage: "https://via.placeholder.com/50x50",
+    rating: "4.8",
+    reviewCount: "2488",
+    reviewType: "Excellent score",
+    sectionTitle: "Frequently asked questions",
+    question: "What is tax and legal advisory?",
+    answer: "The focus of the tax and legal department is on advisory services in the tax law."
+   } %}
+*/
+
+eleventyConfig.addShortcode("CustomContentSection", function({ leftImage, rightImage, rating, reviewCount, reviewType, sectionTitle, question, answer }) {
+    return `
+        <section>
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 md-mb-50px appear" data-anime="{ "effect": "slide", "color": "#005153", "direction":"rl", "easing": "easeOutQuad", "delay":50}" style="position: relative;">
+                        <figure class="position-relative m-0 md-w-90" style="opacity: 1;">
+                            <img src="${leftImage}" class="w-90 border-radius-6px" alt="" data-no-retina="">
+                            <figcaption class="position-absolute bg-dark-gray border-radius-8px box-shadow-quadruple-large bottom-100px xs-bottom-minus-20px right-minus-30px w-230px xs-w-210px text-center last-paragraph-no-margin">
+                                <div class="bg-white pt-35px pb-35px border-radius-6px mb-10px">
+                                    <h1 class="fw-700 ls-minus-2px text-dark-gray mb-0">${rating}</h1>
+                                    <div class="text-golden-yellow fs-18 ls-1px mb-5px">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <span class="text-dark-gray d-block fw-600 ls-minus-05px">${reviewCount} Reviews</span>
+                                    <div class="d-inline-block fs-11 text-uppercase bg-green ps-20px pe-20px lh-30 fw-600 text-white border-radius-100px box-shadow-large">${reviewType}</div>
+                                </div>
+                                <img src="${rightImage}" class="h-30px mb-15px" alt="" data-no-retina="">
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="col-lg-5 offset-lg-1" data-anime="{ "el": "childs", "translateX": [50, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }">
+                        <div class="mb-20px md-mb-15px" style="">
+                            <div class="separator-line-1px w-50px bg-base-color d-inline-block align-middle me-10px opacity-2"></div>
+                            <span class="d-inline-block text-dark-gray align-middle fw-500 fs-20">${sectionTitle}</span>
+                        </div>
+                        <h3 class="fw-700 text-dark-gray ls-minus-2px sm-ls-minus-1px w-90 lg-w-100" style="">What we can do for you and company.</h3>
+                        <div class="accordion accordion-style-02 w-90 lg-w-100" id="accordion-style-02" data-active-icon="fa-chevron-up" data-inactive-icon="fa-chevron-down" style="">
+                            <div class="accordion-item">
+                                <div class="accordion-header border-bottom border-color-transparent-dark-very-light">
+                                    <a href="#" data-bs-toggle="collapse" data-bs-target="#accordion-style-02-01" aria-expanded="false" data-bs-parent="#accordion-style-02" class="collapsed">
+                                        <div class="accordion-title mb-0 position-relative text-dark-gray">
+                                            <i class="fa-solid fs-15 fa-chevron-down"></i><span class="fs-19 fw-600 ls-minus-05px">${question}</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div id="accordion-style-02-01" class="accordion-collapse collapse" data-bs-parent="#accordion-style-02" style="">
+                                    <div class="accordion-body last-paragraph-no-margin border-bottom border-color-transparent-dark-very-light">
+                                        <p>${answer}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+});
+
+
+
+///////////////////
+// DynamicInstagramFeed
+//////////////////
+
+/*
+   Usage
+   /*
+{% DynamicInstagramFeed {
+   images: [
+       "https://via.placeholder.com/150",
+       "https://via.placeholder.com/150",
+       "https://via.placeholder.com/150",
+       "https://via.placeholder.com/150",
+       "https://via.placeholder.com/150"
+   ],
+   username: "crafto"
+} %}
+
+*/
+
+eleventyConfig.addShortcode("DynamicInstagramFeed", function(data) {
+    const images = data.images;
+    const username = data.username;
+
+    if (!Array.isArray(images)) {
+        console.error('DynamicInstagramFeed expects "images" to be an array.');
+        images = [];
+    }
+
+    const imageElements = images.map(image => `
+        <div class="col instafeed-grid md-mb-30px xs-mb-15px">
+            <figure class="border-radius-0px">
+                <a href="https://www.instagram.com/${username}" target="_blank">
+                    <img src="${image}" class="insta-image" alt="" data-no-retina="">
+                    <span class="insta-icon"><i class="fa-brands fa-instagram"></i></span>
+                </a>
+            </figure>
+        </div>
+    `).join('');
+
+    return `
+    <div class = "section">
+        <div class="row row-cols-3 row-cols-lg-5 row-cols-sm-3 align-items-center justify-content-center mb-4 md-mb-50px xs-mb-40px instagram-follow-api position-relative">
+            ${imageElements}
+            <div class="absolute-middle-center z-index-1 w-auto">
+                <a href="https://www.instagram.com/${username}" target="_blank" class="btn btn-large btn-switch-text btn-white btn-rounded left-icon btn-box-shadow instagram-button">
+                    <span>
+                        <span><i class="fa-brands fa-instagram text-base-color"></i></span>
+                        <span class="btn-double-text" data-text="Follow ${username}">Follow ${username}</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+        </div>
+    `;
+});
+
+
+
+
+///////////////////
+// DynamicDataAnalyticsSection
+//////////////////
+
+/*
+   Usage
+   /*
+   {% DynamicDataAnalyticsSection {
+    backgroundImgUrl: "https://via.placeholder.com/1920x1080",
+    analysisImgUrl: "https://via.placeholder.com/800x600",
+    pricing: [
+        {
+            planName: "Standard plan",
+            description: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod.",
+            price: "$29.99",
+            pricePeriod: "/ Monthly",
+            linkUrl: "link/to/standard/plan"
+        },
+        {
+            planName: "Premium plan",
+            description: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod.",
+            price: "$39.99",
+            pricePeriod: "/ Monthly",
+            linkUrl: "link/to/premium/plan"
+        }
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("DynamicDataAnalyticsSection", function({ backgroundImgUrl, analysisImgUrl, pricing }) {
+    const pricingItems = pricing.map(item => `
+        <div class="accordion-item bg-white box-shadow-quadruple-large mb-25px">
+            <div class="accordion-header">
+                <a href="#" data-bs-toggle="collapse" data-bs-target="#accordion-${item.planName.replace(/\s/g, '-')}" aria-expanded="false" data-bs-parent="#accordion-style-01" class="collapsed">
+                    <div class="accordion-title position-relative d-flex align-items-center pe-20px mb-0 text-dark-gray fw-600 fs-20 alt-font ls-05px">${item.planName}<span class="icon-round bg-extra-medium-gray text-dark-gray w-25px h-25px"><i class="fa-solid fa-angle-down"></i></span></div>
+                </a>
+            </div>
+            <div id="accordion-${item.planName.replace(/\s/g, '-')}" class="accordion-collapse collapse" data-bs-parent="#accordion-style-01">
+                <div class="accordion-body last-paragraph-no-margin">
+                    <p class="opacity-4 alt-font ls-05px w-80 xl-w-90">${item.description}</p>
+                    <div class="d-sm-flex align-items-end mt-25px">
+                        <h5 class="text-white mb-0 alt-font ls-05px fw-500 xs-mb-20px">${item.price} <span class="fs-17 opacity-4 fw-400">${item.pricePeriod}</span></h5>
+                        <a href="${item.linkUrl}" class="btn btn-transparent-white-light btn-round-edge btn-small border-1 ms-auto fw-500">Get started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    return `
+        <section class="p-0 position-relative">
+            <img src="${backgroundImgUrl}" class="position-absolute top-50px left-0px lg-w-50" data-bottom-top="transform: translateY(150px)" data-top-bottom="transform: translateY(-150px)" alt="" style="" data-no-retina="">
+            <div class="container">
+                <div class="row align-items-end mb-4">
+                    <div class="col-xl-6 col-lg-6 animation-float text-center text-lg-start appear anime-complete" data-anime="{ &quot;translate&quot;: [0, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }" style="translate: 0px;">
+                        <img src="${analysisImgUrl}" class="md-w-70 sm-w-100" data-bottom-top="transform: translateY(-50px)" data-top-bottom="transform: translateY(50px)" alt="" style="" data-no-retina="">
+                    </div>
+                    <div class="col-xl-5 col-lg-6 offset-xl-1 appear anime-complete" data-anime="{ &quot;translate&quot;: [0, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }" style="translate: 0px;">
+                        <div class="bg-base-color fw-600 text-white text-uppercase ps-20px pe-20px fs-12 border-radius-100px d-inline-block mb-20px">Flexible pricing</div>
+                        <h2 class="fw-700 alt-font text-dark-gray ls-minus-1px mb-50px sm-mb-35px">Tailored <span class="text-highlight">pricing<span class="bg-base-color opacity-3 h-10px bottom-10px"></span></span> plans for everyone.</h2>
+                        <div class="accordion pricing-table-style-04 mb-50px" id="accordion-style-01" data-active-icon="fa-angle-up" data-inactive-icon="fa-angle-down">
+                            ${pricingItems}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+});
+
+
+
+
+///////////////////
+// DynamicCreativeSolutionsSection
+//////////////////
+
+/*
+   Usage
+   /*
+   {% DynamicCreativeSolutionsSection {
+    backgroundImage: "path/to/background/image.jpg",
+    buttonLink: "link/to/project"
+   } %}
+*/
+
+eleventyConfig.addShortcode("DynamicCreativeSolutionsSection", function({ backgroundImage, buttonLink }) {
+    return `
+        <section class="cover-background one-third-screen sm-h-500px pb-0 position-relative" style="background-image:url('${backgroundImage}');">
+            <div class="opacity-extra-medium bg-dark-gray"></div>
+            <div class="container h-100">
+                <div class="row align-items-center justify-content-center h-100">
+                    <div class="col-xl-8 col-lg-10 mb-9 md-mb-15 position-relative z-index-1 text-center d-flex flex-wrap align-items-center justify-content-center appear anime-child anime-complete" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [50, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                        <span class="ps-25px pe-25px pt-5px pb-5px mb-25px text-uppercase text-white fs-12 ls-1px fw-600 border-radius-100px bg-gradient-dark-gray-transparent d-inline-flex align-items-center text-start sm-lh-20" style=""><i class="bi bi-megaphone text-white d-inline-block align-middle icon-small me-10px"></i> Let's make something great work together.</span>
+                        <h1 class="text-white fw-600 ls-minus-2px mb-50px" style="">We make the creative solutions for business!</h1>
+                        <a href="${buttonLink}" class="btn btn-extra-large btn-switch-text btn-gradient-purple-pink btn-rounded me-10px" style="">
+                            <span>
+                                <span class="btn-double-text" data-text="Got a project in mind">Got a project in mind</span>
+                                <span><i class="fa-solid fa-arrow-right"></i></span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="shape-image-animation p-0 w-100 bottom-minus-40px xl-bottom-0px d-none d-md-block">
+                <svg xmlns="http://www.w3.org/2000/svg" widht="3000" height="400" viewBox="0 180 2500 200" fill="#ffffff">
+                    <path class="st1" d="M 0 250 C 1200 400 1200 50 3000 250 L 3000 550 L 0 550 L 0 250">
+                        <animate attributeName="d" dur="5s" values="M 0 250 C 1200 400 1200 50 3000 250 L 3000 550 L 0 550 L 0 250;
+                                                        M 0 250 C 400 50 400 400 3000 250 L 3000 550 L 0 550 L 0 250;
+                                                        M 0 250 C 1200 400 1200 50 3000 250 L 3000 550 L 0 550 L 0 250" repeatCount="indefinite"></animate>
+                    </path>
+                </svg>
+            </div>
+        </section>
+    `;
+});
+
+
+
+///////////////////
+// DynamicTestimonialsSection
+//////////////////
+
+/*
+   Usage:
+   /*
+   {% DynamicTestimonialsSection {
+    backgroundImg: "https://via.placeholder.com/1920x1080",
+    testimonials: [
+        {
+            imageUrl: "https://via.placeholder.com/400x400",
+            logoUrl: "https://via.placeholder.com/100x35",
+            text: "Their team are easy to work with and helped me make amazing websites in a short amount of time. Thanks guys for all your hard work. Trust us we looked for a very long time.",
+            author: "Herman miller, Monday"
+        },
+        {
+            imageUrl: "https://via.placeholder.com/400x400",
+            logoUrl: "https://via.placeholder.com/100x35",
+            text: "Their team are easy to work with and helped me make amazing websites in a short amount of time. Thanks guys for all your hard work. Trust us we looked for a very long time.",
+            author: "Leonel mooney, Logitech"
+        }
+    ],
+    stats: [
+        {
+            logoUrl: "https://via.placeholder.com/100x35",
+            description: "Project management - 275% Growth"
+        },
+        {
+            logoUrl: "https://via.placeholder.com/100x35",
+            description: "Team management - 195% Growth"
+        }
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("DynamicTestimonialsSection", function({ backgroundImg, testimonials, stats }) {
+    const testimonialSlides = testimonials.map(t => `
+        <div class="swiper-slide overflow-hidden" style="width: 930px;">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-8 col-md-4 col-sm-6 text-center md-mb-30px">
+                    <img src="${t.imageUrl}" alt="" style="width: 400px; height: 400px;" data-no-retina>
+                </div>
+                <div class="col-lg-5 col-md-7 last-paragraph-no-margin text-center text-md-start">
+                    <a href="#" class="mb-15px d-block"><img src="${t.logoUrl}" alt="" style="height: 35px;" data-no-retina></a>
+                    <span class="mb-5px d-table fs-18 lh-30 fw-500 text-dark-gray">${t.text}</span>
+                    <span class="fs-15 text-uppercase fw-800 text-dark-gray ls-05px">${t.author}</span>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    const statsItems = stats.map(s => `
+        <div class="col sm-mb-30px">
+            <div class="bg-white h-100 border-radius-6px text-center box-shadow-quadruple-large box-shadow-quadruple-large-hover">
+                <div class="pt-10 pb-10">
+                    <img src="${s.logoUrl}" alt="" style="height: 35px;" data-no-retina>
+                </div>
+                <div class="border-top fs-16 p-15px last-paragraph-no-margin">
+                    <p>${s.description}</p>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    return `
+        <section class="pt-0">
+            <div class="container background-no-repeat background-position-top" style="background-image: url('${backgroundImg}')">
+                <div class="row justify-content-center mb-2">
+                    <div class="col-xxl-6 col-lg-8 col-md-9 text-center appear anime-child anime-complete" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [0, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                        <h3 class="text-dark-gray fw-700 ls-minus-2px" style="">Trusted by the world's fastest growing companies.</h3>
+                    </div>
+                </div>
+                <div class="row justify-content-center align-items-center mb-6 sm-mb-8">
+                    <div class="col-xl-10 position-relative">
+                        <div class="swiper magic-cursor testimonials-style-06 swiper-initialized swiper-horizontal swiper-backface-hidden" data-slider-options="{ &quot;loop&quot;: true, &quot;autoplay&quot;: { &quot;delay&quot;: 4000, &quot;disableOnInteraction&quot;: false }, &quot;keyboard&quot;: { &quot;enabled&quot;: true, &quot;onlyInViewport&quot;: true }, &quot;navigation&quot;: { &quot;nextEl&quot;: &quot;.swiper-button-next-nav&quot;, &quot;prevEl&quot;: &quot;.swiper-button-previous-nav&quot;, &quot;effect&quot;: &quot;fade&quot; } }">
+                            <div class="swiper-wrapper" id="swiper-wrapper-5754288fbd74a3f6" aria-live="off" style="transition-duration: 0ms; transform: translate3d(-1860px, 0px, 0px); transition-delay: 0ms;">
+                                ${testimonialSlides}
+                            </div>
+                            <div class="swiper-button-previous-nav swiper-button-prev md-left-0px" tabindex="0" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-5754288fbd74a3f6"><i class="feather icon-feather-arrow-left icon-extra-medium text-dark-gray"></i></div>
+                            <div class="swiper-button-next-nav swiper-button-next md-right-0px" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-5754288fbd74a3f6"><i class="feather icon-feather-arrow-right icon-extra-medium text-dark-gray"></i></div>
+                            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-cols-1 row-cols-md-3 justify-content-center appear anime-child anime-complete" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [0, 0], &quot;perspective&quot;: [1200,1200], &quot;scale&quot;: [1.1, 1], &quot;rotateX&quot;: [50, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 800, &quot;delay&quot;: 200, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                    ${statsItems}
+                </div>
+            </div>
+        </section>
+    `;
+});
+
+
+
+
+
+///////////////////
+// TrustedByClients
+//////////////////
+
+/*
+   Usage:
+   /*
+{% TrustedByClients %}
+
+*/
+
+eleventyConfig.addShortcode("TrustedByClients", function() {
+    return `
+        <h2 class="alt-font text-dark-gray mb-30px fw-600 ls-minus-3px">
+            We are trusted by our clients
+            <i class="bi bi-heart-fill d-inline-block align-top ms-10px animation-zoom icon-very-medium text-red"></i>
+        </h2>
+    `;
+});
+
+
+
+
+
+
+///////////////////
+// SvgPathWaveAnimation
+//////////////////
+
+/*
+   Usage:
+   /*
+   {% SvgPathWaveAnimation {
+    startPath: "M 0 250 C 1200 400 1200 50 3000 250 L 3000 550 L 0 550 L 0 250",
+    middlePath: "M 0 250 C 400 50 400 400 3000 250 L 3000 550 L 0 550 L 0 250",
+    endPath: "M 0 250 C 1200 400 1200 50 3000 250 L 3000 550 L 0 550 L 0 250",
+    animationDuration: "5s",
+    repeatCount: "indefinite",
+    fillColor: "#ffffff"
+   } %}
+*/
+
+eleventyConfig.addShortcode("SvgPathWaveAnimation", function({ startPath, middlePath, endPath, animationDuration, repeatCount, fillColor }) {
+    return `
+        <div class="shape-image-animation bottom-0 p-0 w-100 d-none d-md-block">
+            <svg xmlns="http://www.w3.org/2000/svg" width="3000" height="400" viewBox="0 180 2500 200" fill="${fillColor}">
+                <path class="st1" d="${startPath}">
+                    <animate attributeName="d" dur="${animationDuration}" values="${startPath}; ${middlePath}; ${endPath}" repeatCount="${repeatCount}"></animate>
+                </path>
+            </svg>
+        </div>
+    `;
+});
+
+
+
+
+///////////////////
+// TeamShowcaseSection
+//////////////////
+
+/*
+   Usage:
+   /*
+   {% TeamShowcaseSection {
+    teamMembers: [
+        {
+            defaultImg: "https://via.placeholder.com/500x500",
+            hoverImg: "https://via.placeholder.com/500x500",
+            socialLink: "https://www.twitter.com/",
+            name: "Jeremy Dupont",
+            designation: "Designer"
+        },
+        {
+            defaultImg: "https://via.placeholder.com/500x500",
+            hoverImg: "https://via.placeholder.com/500x500",
+            socialLink: "https://www.facebook.com/",
+            name: "Matthew Taylor",
+            designation: "Writer"
+        }
+     
+    ]
+   } %}
+
+*/
+
+eleventyConfig.addShortcode("TeamShowcaseSection", function({ teamMembers }) {
+    const memberHtml = teamMembers.map(member => `
+        <div class="col team-style-10 md-ps-15px md-pe-15px md-mb-30px" style="">
+            <figure class="mb-0 position-relative overflow-hidden">
+                <img src="${member.defaultImg}" class="w-100" alt="" data-no-retina>
+                <img src="${member.hoverImg}" class="hover-switch-image" alt="" data-no-retina>
+                <figcaption class="w-100 h-100 d-flex flex-wrap">
+                    <div class="social-icon d-flex flex-column flex-shrink-1 mb-auto p-30px ms-auto">
+                        <a href="${member.socialLink}" target="_blank" class="text-white bg-dark-gray"><i class="fa-brands fa-twitter icon-small"></i></a>
+                    </div>
+                    <div class="team-member-strip w-100 mt-auto d-flex align-items-center pt-15px pb-15px ps-30px pe-30px bg-white">
+                        <span class="team-member-name fw-600 alt-font text-dark-gray fs-18 ls-minus-05px">${member.name}</span>
+                        <span class="member-designation fs-15 lh-20 ms-auto alt-font">${member.designation}</span>
+                    </div>
+                </figcaption>
+            </figure>
+        </div>
+    `).join('');
+
+    return `
+        <section class="pb-0">
+            <div class="container-fluid p-0">
+                <div class="row row-cols-1 row-cols-lg-4 row-cols-sm-2 g-0" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [30, 0], &quot;rotateX&quot;:[30, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                    ${memberHtml}
+                </div>
+            </div>
+        </section>
+    `;
+});
+
+
+
+
+
+
+///////////////////
+// testimonial section
+//////////////////
+
+/*
+   Usage:
+   /*
+
+{% DynamicSection {
+    testimonials: [
+        { image: "https://via.placeholder.com/500x500", name: "Charlotte Smith", text: "Testimonial text here", role: "Role here", stars: [1,1,1,1,1], index: 0, label: "1 / 3" },
+        { image: "https://via.placeholder.com/500x500", name: "Herman Miller", text: "Another testimonial text", role: "Role here", stars: [1,1,1,1,1], index: 1, label: "2 / 3" }
+    ],
+    clients: [
+        { logo: "https://via.placeholder.com/200x50", link: "#" },
+        { logo: "https://via.placeholder.com/200x50", link: "#" }
+    ]
+} %}
+
+
+*/
+
+
+eleventyConfig.addShortcode("DynamicSection", function(data) {
+    // Construct HTML for testimonials dynamically
+    const testimonialsHtml = data.testimonials.map(testimonial => `
+        <div class="swiper-slide" style="width: 690px; margin-right: 50px;" role="group" aria-label="${testimonial.label}" data-swiper-slide-index="${testimonial.index}">
+            <div class="row g-0 border-radius-6px overflow-hidden">
+                <div class="col-sm-5 services-box-img xs-h-350px">
+                    <div class="h-100 cover-background" style="background-image: url('${testimonial.image}')"></div>
+                </div>
+                <div class="col-sm-7 testimonials-box bg-white p-9 sm-p-7 box-shadow-extra-large">
+                    <div class="d-inline-block bg-orange text-white border-radius-50px ps-20px pe-20px fs-15 lh-34 sm-lh-30 ls-minus-1px mb-25px align-middle">
+                        ${testimonial.stars.map(() => `<i class="bi bi-star-fill"></i>`).join('')}
+                    </div>
+                    <div class="testimonials-box-content">
+                        <p class="mb-20px">${testimonial.text}</p>
+                        <div class="fs-18 lh-20 fw-600 text-dark-gray">${testimonial.name}</div>
+                        <span class="fs-16 lh-20">${testimonial.role}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    // Construct HTML for clients dynamically
+    const clientsHtml = data.clients.map(client => `
+        <div class="col md-mb-40px" style="">
+            <div class="client-box">
+                <a href="${client.link}"><img src="${client.logo}" class="h-40px" alt="" data-no-retina=""></a>
+            </div>
+        </div>
+    `).join('');
+
+    // Return the full section HTML
+    return `
+        <section class="position-relative bg-gradient-aztec-green overflow-hidden">
+            <div class="container">
+                <div class="row justify-content-center align-items-center appear anime-child anime-complete" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;opacity&quot;: [0, 1], &quot;duration&quot;: 600, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                    <!-- Testimonials swiper here -->
+                    <div class="swiper magic-cursor swiper-initialized swiper-horizontal swiper-backface-hidden" data-slider-options="{ &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 50, &quot;loop&quot;: true, &quot;autoplay&quot;: { &quot;delay&quot;: 4000, &quot;disableOnInteraction&quot;: false },  &quot;keyboard&quot;: { &quot;enabled&quot;: true, &quot;onlyInViewport&quot;: true }, &quot;effect&quot;: &quot;slide&quot;, &quot;navigation&quot;: { &quot;nextEl&quot;: &quot;.swiper-button-next-nav&quot;, &quot;prevEl&quot;: &quot;.swiper-button-previous-nav&quot; } }">
+                        <div class="swiper-wrapper">${testimonialsHtml}</div>
+                        <div class="swiper-button-next-nav swiper-button-next bg-white box-shadow-small"></div>
+                        <div class="swiper-button-previous-nav swiper-button-prev bg-white box-shadow-small"></div>
+                    </div>
+                </div>
+                <div class="row row-cols-1 row-cols-lg-5 row-cols-md-3 row-cols-sm-3 text-center justify-content-center clients-style-05 mt-6 appear anime-child anime-complete" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;opacity&quot;: [0, 1], &quot;duration&quot;: 600, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                    ${clientsHtml}
+                </div>
+            </div>
+        </section>
+    `;
+});
 
 
 
@@ -1272,3 +2549,5 @@ eleventyConfig.addShortcode("DynamicShowcaseSection", function({ banners, header
 		pathPrefix: "/",
 	};
 };
+
+

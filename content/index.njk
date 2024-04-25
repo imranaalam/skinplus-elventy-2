@@ -17,8 +17,53 @@ numberOfLatestPostsToShow: 3
 {% include "parallax.njk" %} #}
 
    
+   {# {% DynamicSwiperSlider {
+    slides: [
+        {
+            imageUrl: "https://via.placeholder.com/1920x1060",
+            label: "Discount on selected collection!",
+            title: "Women's",
+            subtitle: "collection",
+            link: "demo-fashion-store-shop.html"
+        },
+        {
+            imageUrl: "https://via.placeholder.com/1920x1060",
+            label: "Discount on selected collection!",
+            title: "Men's",
+            subtitle: "collection",
+            link: "demo-fashion-store-shop.html"
+        },
+        {
+            imageUrl: "https://via.placeholder.com/1920x1060",
+            label: "Discount on selected collection!",
+            title: "Children's",
+            subtitle: "collection",
+            link: "demo-fashion-store-shop.html"
+        }
+    ]
+   } %} #}
+
+
 
 	{% bannerSlider {} %}
+
+
+
+
+
+
+      {# {% SvgPathWaveAnimation {
+    startPath: "M 0 250 C 1200 400 1200 50 3000 250 L 3000 550 L 0 550 L 0 250",
+    middlePath: "M 0 250 C 400 50 400 400 3000 250 L 3000 550 L 0 550 L 0 250",
+    endPath: "M 0 250 C 1200 400 1200 50 3000 250 L 3000 550 L 0 550 L 0 250",
+    animationDuration: "5s",
+    repeatCount: "indefinite",
+    fillColor: "#ffffff"
+   } %} #}
+
+
+
+
     
 {% featureSection {} %}
 
@@ -35,6 +80,40 @@ numberOfLatestPostsToShow: 3
        { number: "03", title: "Certified experts", description: "Professional people" }
    ]
 } %}
+
+
+   {% LargeSizeCategoriesShowcaseSection {
+    categories: [
+        {
+            imageUrl: "https://via.placeholder.com/500",
+            itemsCount: 8,
+            label: "Women",
+            link: "demo-fashion-store-shop.html"
+        },
+        {
+            imageUrl: "https://via.placeholder.com/500",
+            itemsCount: 9,
+            label: "Men",
+            link: "demo-fashion-store-shop.html"
+        },
+        {
+            imageUrl: "https://via.placeholder.com/500",
+            itemsCount: 8,
+            label: "Accessories",
+            link: "demo-fashion-store-shop.html"
+        },
+        {
+            imageUrl: "https://via.placeholder.com/500",
+            itemsCount: 8,
+            label: "Kids",
+            link: "demo-fashion-store-shop.html"
+        }
+    ]
+   } %}
+
+
+
+
 
 {% ServicesSection {
        headerText: "Beauty salon services",
@@ -105,11 +184,21 @@ numberOfLatestPostsToShow: 3
 
 
 
+   {% CustomContentSection {
+    leftImage: "https://via.placeholder.com/600x400",
+    rightImage: "https://via.placeholder.com/50x50",
+    rating: "4.8",
+    reviewCount: "2488",
+    reviewType: "Excellent score",
+    sectionTitle: "Frequently asked questions",
+    question: "What is tax and legal advisory?",
+    answer: "The focus of the tax and legal department is on advisory services in the tax law."
+   } %}
 
 
 
 
-{% ImageAndTextSection {
+{# {% ImageAndTextSection {
        mainImage: "https://via.placeholder.com/580x450",
        featureIcon: "https://via.placeholder.com/120x84",
        featureText: "One of the leading cardiac centres.",
@@ -129,7 +218,7 @@ numberOfLatestPostsToShow: 3
                text: "Lorem ipsum dolor sit amet consectetur adipiscing elit do eiusmod tempor incididunt ut labore et dolore magna ut enim veniam."
            }
        ]
-   } %}
+   } %} #}
 
 
 
@@ -180,7 +269,7 @@ numberOfLatestPostsToShow: 3
 
 
 
-   {% DynamicShowcaseSection{
+  {%  DynamicShowcaseSection {
     banners: [
         {
             imageUrl: "https://via.placeholder.com/1160x640",
@@ -211,6 +300,81 @@ numberOfLatestPostsToShow: 3
     ]
 } %}
 
+
+   {# {% MarqueeSection {
+    messages: [
+        { text: "Pay with multiple credit cards" },
+        { text: "Get 20% off for your first order" },
+        { text: "The fashion core collection" },
+        { text: "100% secure protected payment" },
+        { text: "Free shipping for orders over $130" }
+    ]
+   } %} #}
+
+
+
+
+{# <section class="p-0 border-top border-bottom border-color-extra-medium-gray">
+<div class="container-fluid">
+<div class="row position-relative">
+<div class="col swiper text-center swiper-width-auto swiper-initialized swiper-horizontal swiper-backface-hidden" data-slider-options="{ &quot;slidesPerView&quot;: &quot;auto&quot;, &quot;spaceBetween&quot;:0, &quot;speed&quot;: 10000, &quot;loop&quot;: true, &quot;pagination&quot;: { &quot;el&quot;: &quot;.slider-four-slide-pagination-2&quot;, &quot;clickable&quot;: false }, &quot;allowTouchMove&quot;: false, &quot;autoplay&quot;: { &quot;delay&quot;:0, &quot;disableOnInteraction&quot;: false }, &quot;navigation&quot;: { &quot;nextEl&quot;: &quot;.slider-four-slide-next-2&quot;, &quot;prevEl&quot;: &quot;.slider-four-slide-prev-2&quot; }, &quot;keyboard&quot;: { &quot;enabled&quot;: true, &quot;onlyInViewport&quot;: true }, &quot;effect&quot;: &quot;slide&quot; }">
+<div class="swiper-wrapper marquee-slide" id="swiper-wrapper-10cf8e6adb59d2157" aria-live="off" style="transition-duration: 10000ms; transform: translate3d(-2335.33px, 0px, 0px);">
+<div class="swiper-slide" role="group" aria-label="5 / 8" data-swiper-slide-index="4">
+<div class="alt-font fs-26 fw-500 text-dark-gray border-color-extra-medium-gray border-end pt-30px pb-30px ps-60px pe-60px sm-p-25px">Pay with multiple credit cards</div>
+</div>
+
+
+<div class="swiper-slide" role="group" aria-label="6 / 8" data-swiper-slide-index="5">
+<div class="alt-font fs-26 fw-500 text-dark-gray border-color-extra-medium-gray border-end pt-30px pb-30px ps-60px pe-60px sm-p-25px">Get 20% off for your first order</div>
+</div>
+
+
+<div class="swiper-slide" role="group" aria-label="7 / 8" data-swiper-slide-index="6">
+<div class="alt-font fs-26 fw-500 text-dark-gray border-color-extra-medium-gray border-end pt-30px pb-30px ps-60px pe-60px sm-p-25px">The fashion core collection</div>
+</div>
+
+
+<div class="swiper-slide" role="group" aria-label="8 / 8" data-swiper-slide-index="7">
+<div class="alt-font fs-26 fw-500 text-dark-gray border-color-extra-medium-gray border-end pt-30px pb-30px ps-60px pe-60px sm-p-25px">100% secure protected payment</div>
+</div>
+
+<div class="swiper-slide" role="group" aria-label="1 / 8" data-swiper-slide-index="0">
+<div class="alt-font fs-26 fw-500 text-dark-gray border-color-extra-medium-gray border-end pt-30px pb-30px ps-60px pe-60px sm-p-25px">Get 20% off for your first order</div>
+</div><div class="swiper-slide swiper-slide-prev" role="group" aria-label="2 / 8" data-swiper-slide-index="1">
+<div class="alt-font fs-26 fw-500 text-dark-gray border-color-extra-medium-gray border-end pt-30px pb-30px ps-60px pe-60px sm-p-25px">The fashion core collection</div>
+</div><div class="swiper-slide swiper-slide-active" role="group" aria-label="3 / 8" data-swiper-slide-index="2">
+<div class="alt-font fs-26 fw-500 text-dark-gray border-color-extra-medium-gray border-end pt-30px pb-30px ps-60px pe-60px sm-p-25px">100% secure protected payment</div>
+</div><div class="swiper-slide swiper-slide-next" role="group" aria-label="4 / 8" data-swiper-slide-index="3">
+<div class="alt-font fs-26 fw-500 text-dark-gray border-color-extra-medium-gray border-end pt-30px pb-30px ps-60px pe-60px sm-p-25px">Free shipping for orders over $130</div>
+</div></div>
+<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+</div>
+</div>
+</section> #}
+
+
+
+
+
+
+
+
+   {%  CategoryShowcaseSection  {
+    categories: [
+        { icon: "Microphone-4", title: "Publishing", link: "#publishing" },
+        { icon: "Basket-Coins", title: "Finance", link: "#finance" },
+        { icon: "Bee", title: "Sciences", link: "#sciences" },
+        { icon: "Management", title: "Consultant", link: "#consultant" },
+        { icon: "French-Fries", title: "Food", link: "#food" },
+        { icon: "Road-3", title: "Travel", link: "#travel" },
+        { icon: "Cow", title: "Dairy", link: "#dairy" },
+        { icon: "Diamond", title: "Jewellery", link: "#jewellery" },
+        { icon: "Drop", title: "Energy", link: "#energy" },
+        { icon: "Environmental-3", title: "Farming", link: "#farming" },
+        { icon: "Gear", title: "Industries", link: "#industries" },
+        { icon: "Environmental-3", title: "Events", link: "#events" }
+    ]
+   } %}
 
 
 
@@ -276,6 +440,250 @@ numberOfLatestPostsToShow: 3
 
 
 
+  {% ProjectShowcaseSection {
+    projects: [
+        {
+            imageUrl: "https://via.placeholder.com/500x300",
+            category: "Digital",
+            title: "Pixflow",
+            description: "A comprehensive digital platform",
+            link: "#project1"
+        },
+        {
+            imageUrl: "https://via.placeholder.com/500x300",
+            category: "Branding",
+            title: "Herbal",
+            description: "Branding for natural wellness products",
+            link: "#project2"
+        }
+ 
+    ],
+    tabs: [
+        { filter: "*", title: "All" },
+        { filter: ".digital", title: "Digital" },
+        { filter: ".branding", title: "Branding" }
+ 
+    ]
+   } %}
+
+
+
+
+
+   {# {% DynamicCreativeSolutionsSection {
+    backgroundImageUrl: "url('https://via.placeholder.com/1920x1080')",
+    videoUrl: "https://www.youtube.com/watch?v=cfXHhfNy7tU",
+    rotationWords: ["business!", "problems!", "brands!"],
+    contactUrl: "demo-corporate-contact.html"
+   } %} #}
+
+
+
+      {% DynamicTabSection {
+       tabs: [
+           {
+               title: "Premium cottage",
+               imageUrl: "https://via.placeholder.com/800x400",
+               price: "$50.00",
+               description: "Discover a private home in the orchard...",
+               bookingUrl: "demo-hotel-and-resort-contact.html",
+               features: [
+                   { icon: "fa-bathrobe", text: "Laundry facilities" },
+                   { icon: "fa-french-fries", text: "Breakfast included" },
+                   { icon: "fa-car", text: "Pickup and drop" }
+               ]
+           },
+           {
+               title: "Studios with terrace",
+               imageUrl: "https://via.placeholder.com/800x400",
+               price: "$70.00",
+               description: "Enjoy the luxury of space...",
+               bookingUrl: "demo-hotel-and-resort-contact.html",
+               features: [
+                   { icon: "fa-bathrobe", text: "Laundry facilities" },
+                   { icon: "fa-french-fries", text: "Breakfast included" },
+                   { icon: "fa-car", text: "Pickup and drop" }
+               ]
+           }
+       ]
+   } %}
+
+
+
+
+   {# {% AdvancedStatsSection {
+    title: "In providing corporate finance and business statistics advice.",
+    leftPercentage: 96,
+    rightPercentage: 98,
+    leftText: "Prefer cloud accounting",
+    rightText: "Most outsourced tasks",
+    description1: "Lorem ipsum simply dummy text printing type setting.",
+    description2: "Lorem ipsum simply dummy text printing type setting."
+   } %} #}
+
+
+
+
+
+
+   {# {% TabsContentShowcase {
+    tabs: [
+        {
+            id: "tab_eight1",
+            label: "Strategic planning",
+            imageUrl: "https://via.placeholder.com/500",
+            counter: "85",
+            description: "Organization's process of defining strategy.",
+            link: "demo-accounting-services.html"
+        },
+        {
+            id: "tab_eight2",
+            label: "Audit assurance",
+            imageUrl: "https://via.placeholder.com/500",
+            counter: "80",
+            description: "An excellent audit service for company.",
+            link: "demo-accounting-services.html"
+        },
+        {
+            id: "tab_eight3",
+            label: "Financial projections",
+            imageUrl: "https://via.placeholder.com/500",
+            counter: "85",
+            description: "We are leader in tax advisor and financial.",
+            link: "demo-accounting-services.html"
+        },
+        {
+            id: "tab_eight4",
+            label: "Business planning",
+            imageUrl: "https://via.placeholder.com/500",
+            counter: "80",
+            description: "We creating specific business strategies.",
+            link: "demo-accounting-services.html"
+        }
+    ]
+   } %} #}
+
+
+
+{% DynamicTestimonialsSection {
+    backgroundImg: "https://via.placeholder.com/1920x1080",
+    testimonials: [
+        {
+            imageUrl: "https://via.placeholder.com/400x400",
+            logoUrl: "https://via.placeholder.com/100x35",
+            text: "Their team are easy to work with and helped me make amazing websites in a short amount of time. Thanks guys for all your hard work. Trust us we looked for a very long time.",
+            author: "Herman miller, Monday"
+        },
+        {
+            imageUrl: "https://via.placeholder.com/400x400",
+            logoUrl: "https://via.placeholder.com/100x35",
+            text: "Their team are easy to work with and helped me make amazing websites in a short amount of time. Thanks guys for all your hard work. Trust us we looked for a very long time.",
+            author: "Leonel mooney, Logitech"
+        }
+    ],
+    stats: [
+        {
+            logoUrl: "https://via.placeholder.com/100x35",
+            description: "Project management - 275% Growth"
+        },
+        {
+            logoUrl: "https://via.placeholder.com/100x35",
+            description: "Team management - 195% Growth"
+        }
+    ]
+   } %}
+
+
+
+{% TrustedByClients %}
+
+
+
+
+   {% TeamShowcaseSection {
+    teamMembers: [
+        {
+            defaultImg: "https://via.placeholder.com/500x500",
+            hoverImg: "https://via.placeholder.com/500x500",
+            socialLink: "https://www.twitter.com/",
+            name: "Jeremy Dupont",
+            designation: "Designer"
+        },
+        {
+            defaultImg: "https://via.placeholder.com/500x500",
+            hoverImg: "https://via.placeholder.com/500x500",
+            socialLink: "https://www.facebook.com/",
+            name: "Matthew Taylor",
+            designation: "Writer"
+        }
+     
+    ]
+   } %}
+
+
+
+{% DynamicSection {
+    testimonials: [
+        { image: "https://via.placeholder.com/500x500", name: "Charlotte Smith", text: "Testimonial text here", role: "Role here", stars: [1,1,1,1,1], index: 0, label: "1 / 3" },
+        { image: "https://via.placeholder.com/500x500", name: "Herman Miller", text: "Another testimonial text", role: "Role here", stars: [1,1,1,1,1], index: 1, label: "2 / 3" }
+    ],
+    clients: [
+        { logo: "https://via.placeholder.com/200x50", link: "#" },
+        { logo: "https://via.placeholder.com/200x50", link: "#" }
+    ]
+} %}
+
+
+
+
+
+
+{% DynamicInstagramFeed {
+   images: [
+       "https://via.placeholder.com/200",
+       "https://via.placeholder.com/200",
+       "https://via.placeholder.com/200",
+       "https://via.placeholder.com/200",
+       "https://via.placeholder.com/200"
+   ],
+   username: "crafto"
+} %}
+
+
+
+
+
+
+
+   {% DynamicDataAnalyticsSection {
+    backgroundImgUrl: "https://via.placeholder.com/1920x1080",
+    analysisImgUrl: "https://via.placeholder.com/800x600",
+    pricing: [
+        {
+            planName: "Standard plan",
+            description: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod.",
+            price: "$29.99",
+            pricePeriod: "/ Monthly",
+            linkUrl: "link/to/standard/plan"
+        },
+        {
+            planName: "Premium plan",
+            description: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod.",
+            price: "$39.99",
+            pricePeriod: "/ Monthly",
+            linkUrl: "link/to/premium/plan"
+        }
+    ]
+   } %}
+
+
+
+
+
+      {% DynamicCreativeSolutionsSection {
+    backgroundImage: "https://via.placeholder.com/1920x1080",
+    buttonLink: "link/to/project"
+   } %}
 
 
 
