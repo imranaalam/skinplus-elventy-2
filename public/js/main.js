@@ -75,6 +75,7 @@
     setBottomOverLayerPosition(2000);
     setupSwiper();
 
+
     /* ===================================
      Header
      ====================================== */
@@ -2473,6 +2474,8 @@
 
     // Setup swiper slider
     function setupSwiper() {
+
+console.log("mySwiper");
 
         // Swiper slider using params
         var swipers = document.querySelectorAll('[data-slider-options]:not(.instafeed-wrapper)');

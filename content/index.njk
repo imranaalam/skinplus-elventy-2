@@ -656,6 +656,23 @@ numberOfLatestPostsToShow: 3
 
 
 
+{% TestimonialSection {
+    testimonials: [
+        {
+            name: "Emma Causer",
+            review: "A wonderfully professional salon, beautiful location and beautifully kept. Great products knowledge.",
+            rating: 5
+        },
+        {
+            name: "Lesley Simms",
+            review: "Perfection isn't just any other salon. It's a complete cut above the rest. Highly recommended!",
+            rating: 5
+        }
+      
+    ]
+} %}
+
+
 
 
 
@@ -673,6 +690,67 @@ numberOfLatestPostsToShow: 3
       small: "-2px"
     }
    } %} #}
+
+
+{% BeautyTipsSlider [{
+    title: "Avocado",
+    description: "The fruit is rich in antioxidants and contains anti-inflammatory properties."
+}, {
+    title: "Turmeric",
+    description: "Its healing properties can repair sun damage and reduce sunburns."
+}, {
+    title: "Honey",
+    description: "This golden potion is great for your health when taken externally."
+}] %}
+
+
+
+
+
+
+ {% SpecialistSection {
+    teamMembers: [
+        {
+            image: "https://via.placeholder.com/500x500",
+            name: "Jeremy Dupont",
+            role: "Director",
+            facebook: "https://www.facebook.com/",
+            instagram: "https://www.instagram.com/",
+            twitter: "https://www.twitter.com/",
+            dribbble: "http://www.dribbble.com"
+        },
+        {
+            image: "https://via.placeholder.com/500x500",
+            name: "Matthew Taylor",
+            role: "Makeup",
+            facebook: "https://www.facebook.com/",
+            instagram: "https://www.instagram.com/",
+            twitter: "https://www.twitter.com/",
+            dribbble: "http://www.dribbble.com"
+        },
+              {
+            image: "https://via.placeholder.com/500x500",
+            name: "Matthew Taylor",
+            role: "Makeup",
+            facebook: "https://www.facebook.com/",
+            instagram: "https://www.instagram.com/",
+            twitter: "https://www.twitter.com/",
+            dribbble: "http://www.dribbble.com"
+        },
+              {
+            image: "https://via.placeholder.com/500x500",
+            name: "Matthew Taylor",
+            role: "Makeup",
+            facebook: "https://www.facebook.com/",
+            instagram: "https://www.instagram.com/",
+            twitter: "https://www.twitter.com/",
+            dribbble: "http://www.dribbble.com"
+        }
+    ],
+    totalVisitors: "25,000+",
+    visitorsDescription: "Beauty lovers visited our beauty salon."
+   } %}
+
 
 
 
@@ -719,6 +797,78 @@ numberOfLatestPostsToShow: 3
 
 
 
+{% MenuPriceSection {
+    tabs: [
+      {
+        id: "tab_first1",
+        title: "Skin Treatments",
+        icon: "Chopsticks", 
+        items: [
+          {
+            image: "https://via.placeholder.com/150",
+            title: "Anti-Aging Facial",
+            description: "Target fine lines, wrinkles, and sun damage with this rejuvenating facial treatment.",
+            price: "$150"
+          },
+          {
+            image: "https://via.placeholder.com/150",
+            title: "Acne Clearance",
+            description: "Reduce the appearance of acne with specialized treatments tailored to your skin type.",
+            price: "$120"
+          }
+        ]
+      },
+      {
+        id: "tab_first2",
+        title: "Body Treatments",
+        icon: "Bike-Helmet", 
+        items: [
+          {
+            image: "https://via.placeholder.com/150",
+            title: "Body Contouring",
+            description: "Sculpt and tone your body with our advanced body contouring techniques.",
+            price: "$200"
+          },
+          {
+            image: "https://via.placeholder.com/150",
+            title: "Laser Hair Removal",
+            description: "Enjoy smooth skin with our effective laser hair removal services.",
+            price: "$90 per session"
+          }
+        ]
+      }
+    ]
+} %}
+
+
+
+
+{% CustomSalonSection {
+      backgroundImage: "/images/default-background.jpg.png",
+      image: "https://craftohtml.themezaa.com/images/demo-beauty-salon-home-10.png",
+      focusTitle: "Beauty salon focus on",
+      mainTitle: "The quest for quality and safety.",
+      sections: [
+        {
+          title: "Quality and safety as our absolute priority",
+          content: "For more than 110 years, we have devoted our energy and our competencies solely to one business: beauty.",
+          isOpen: true
+        },
+        {
+          title: "Helping hundreds of millions of women",
+          content: "For more than 110 years, we have devoted our energy and our competencies solely to one business: beauty.",
+          isOpen: false
+        }
+      ],
+      buttonText: "Book appointment",
+      buttonLink: "link-to-appointment.html"
+    } %}
+
+
+
+
+
+
 {% DynamicInstagramFeed {
    images: [
        "https://via.placeholder.com/200",
@@ -729,6 +879,41 @@ numberOfLatestPostsToShow: 3
    ],
    username: "crafto"
 } %}
+
+
+
+{% DynamicProjectShowcase {
+  projects: [
+    {
+      number: "01",
+      imageUrl: "https://via.placeholder.com/1920x1080",
+      title: "Latest projects",
+      category: "Branding and design",
+      projectName: "Whiteline face beauty",
+      description: "Creating products with a strong identity. Provide brilliant ideas and adding the world called success brand. We deliver customized marketing campaign to use your audience to make a positive move.",
+      link: "demo-branding-agency-single-project-slider.html"
+    },
+    {
+      number: "02",
+      imageUrl: "https://via.placeholder.com/1920x1080",
+      title: "Latest projects",
+      category: "Web development and design",
+      projectName: "Rebounce force riders",
+      description: "We specialize in developing products with a distinct and compelling identity. Our team excels generating brilliant ideas that propel brands to success. Through customized marketing campaigns.",
+      link: "demo-branding-agency-single-project-slider.html"
+    },
+    {
+      number: "03",
+      imageUrl: "https://via.placeholder.com/1920x1080",
+      title: "Latest projects",
+      category: "Branding and design",
+      projectName: "Decorator hard carpet",
+      description: "Creating products with a strong identity. Provide brilliant ideas and adding the world called success brand. We deliver customized marketing campaign to use your audience to make a positive move.",
+      link: "demo-branding-agency-single-project-slider.html"
+    }
+  ]
+} %}
+
 
 
 

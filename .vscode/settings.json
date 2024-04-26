@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "*.html": "html",
+        "**/_app/_includes/**": "jekyll"
+    },
+
+
+    "pasteImage.namePrefix": "${currentFileNameWithoutExt}_",
+    "pasteImage.path": "${projectRoot}/public/images",
+    "pasteImage.basePath": "${projectRoot}/public",
+    "pasteImage.forceUnixStyleSeparator": true,
+    "pasteImage.prefix": "/public/"
+}
