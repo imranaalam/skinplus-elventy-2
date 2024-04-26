@@ -3511,6 +3511,144 @@ eleventyConfig.addShortcode("PopularProductsSliderSection", function({ products 
 
 
 
+//////////////////
+// BoldTickerSection
+//////////////////
+
+/*
+   Usage:
+
+{% BoldTickerSection {
+  texts: [
+    {
+      content: "Cuisine",
+      style: "text-dark-gray"
+    },
+    {
+      content: "Delicious",
+      style: "text-outline text-outline-color-base-color"
+    },
+    {
+      content: "Awesome",
+      style: "text-dark-gray"
+    },
+    {
+      content: "Experience",
+      style: "text-outline text-outline-color-base-color"
+    }
+  ]
+} %}
+   
+*/
+
+eleventyConfig.addShortcode("BoldTickerSection", function({ texts }) {
+    return `
+    <section>
+        <div class="container-fluid overlap-section">
+            <div class="row position-relative mb-4" data-anime="{ &quot;translateY&quot;: [0, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 1200, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                <div class="col swiper swiper-width-auto text-center" data-slider-options="{ &quot;slidesPerView&quot;: &quot;auto&quot;, &quot;spaceBetween&quot;: 50, &quot;speed&quot;: 10000, &quot;loop&quot;: true, &quot;pagination&quot;: { &quot;el&quot;: &quot;.slider-four-slide-pagination-2&quot;, &quot;clickable&quot;: false }, &quot;allowTouchMove&quot;: false, &quot;autoplay&quot;: { &quot;delay&quot;: 0, &quot;disableOnInteraction&quot;: false }, &quot;navigation&quot;: { &quot;nextEl&quot;: &quot;.slider-four-slide-next-2&quot;, &quot;prevEl&quot;: &quot;.slider-four-slide-prev-2&quot; }, &quot;keyboard&quot;: { &quot;enabled&quot;: true, &quot;onlyInViewport&quot;: true }, &quot;effect&quot;: &quot;slide&quot; }">
+                    <div class="swiper-wrapper marquee-slide">
+                        ${texts.map(text => `
+                        <div class="swiper-slide">
+                            <div class="fs-150 ls-minus-2px alt-font ${text.style}">${text.content}</div>
+                        </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+    `;
+});
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////
+// FaqBoxSection
+//////////////////
+
+/*
+   Usage:
+
+{% FaqBoxSection {
+  questions: [
+    {
+      question: "What is the main role played by a business planning consultant?",
+      answer: "Business planning consultants analyze organizational processes, set objectives, and provide strategies to ensure the financial success and growth of the company."
+    },
+    {
+      question: "What are the main stages of business plan consulting?",
+      answer: "The stages typically include initial assessment, market analysis, financial structuring, strategic planning, and implementation support."
+    },
+    {
+      question: "What are the advantages of using business plan consulting services?",
+      answer: "These services can provide expert insights, save time and resources, and enhance business growth through tailored strategies."
+    }
+  ],
+  title: "Frequently asked questions",
+  subtitle: "Basic information",
+  imageUrl: "https://via.placeholder.com/250x150"
+} %}
+   
+*/
+
+eleventyConfig.addShortcode("FaqBoxSection", function({ questions, title, subtitle, imageUrl }) {
+    return `
+    <section>
+    <div class= "container">
+        <div class="row align-items-center mt-8 sm-mt-40px">
+            <div class="col-12">
+                <div class="bg-linen p-9 md-p-6 xs-p-9 border-radius-6px overflow-hidden position-relative">
+                    <div class="position-absolute right-70px lg-right-20px top-minus-20px w-250px sm-w-180px xs-w-150px opacity-1">
+                        <img src="${imageUrl}" alt="FAQ Image" data-no-retina="">
+                    </div>
+                    <div class="mb-10px">
+                        <span class="w-25px h-1px d-inline-block bg-base-color me-5px align-middle"></span>
+                        <span class="text-gradient-base-color fs-15 alt-font fw-700 ls-05px text-uppercase d-inline-block align-middle">${subtitle}</span>
+                    </div>
+                    <h3 class="alt-font fw-600 text-dark-gray ls-minus-1px">${title}</h3>
+                    <div class="accordion accordion-style-02" id="accordionFaq" data-active-icon="icon-feather-minus" data-inactive-icon="icon-feather-plus">
+                        ${questions.map((item, index) => `
+                        <div class="accordion-item ${index === 0 ? 'active-accordion' : ''}">
+                            <div class="accordion-header border-bottom border-color-transparent-dark-very-light">
+                                <a href="#" data-bs-toggle="collapse" data-bs-target="#accordionFaq-${index}" aria-expanded="${index === 0 ? 'true' : 'false'}" data-bs-parent="#accordionFaq">
+                                    <div class="accordion-title mb-0 position-relative text-dark-gray pe-30px">
+                                        <i class="feather icon-feather-${index === 0 ? 'minus' : 'plus'} fs-20"></i><span class="fw-500">${item.question}</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="accordionFaq-${index}" class="accordion-collapse collapse ${index === 0 ? 'show' : ''}" data-bs-parent="#accordionFaq">
+                                <div class="accordion-body last-paragraph-no-margin border-bottom border-color-transparent-dark-very-light">
+                                    <p class="w-90 sm-w-95 xs-w-100">${item.answer}</p>
+                                </div>
+                            </div>
+                        </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </section>
+    `;
+});
+
+
+
+
+
+
+
+
 
 
 	///////////////////
