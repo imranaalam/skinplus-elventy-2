@@ -3421,6 +3421,97 @@ eleventyConfig.addShortcode("DynamicProjectShowcase", function({ projects }) {
 
 
 
+//////////////////
+// PopularProductsSliderSection
+//////////////////
+
+/*
+   Usage:
+
+{% PopularProductsSliderSection {
+  products: [
+    {
+      imageUrl: "https://via.placeholder.com/1920x1080",
+      name: "Chicken breast burger",
+      price: "35.00",
+      ingredients: ["Capsicum", "Parmesan", "Paneer"],
+      title: "Popular dishes"
+    },
+    {
+      imageUrl: "https://via.placeholder.com/1920x1080",
+      name: "Medium spicy chips",
+      price: "35.00",
+      ingredients: ["Cheese", "Capsicum", "Basil"],
+      title: "Popular dishes"
+    }
+  ]
+} %}
+   
+
+*/
+
+eleventyConfig.addShortcode("PopularProductsSliderSection", function({ products }) {
+    return `
+        <section class="overflow-hidden overlap-height position-relative">
+            <div class="container-fluid overlap-gap-section">
+                <div class="row justify-content-center mb-2">
+                    ${products.map(product => `
+                    <div class="col-lg-7 text-center">
+                        <span class="fs-15 fw-600 text-red text-uppercase mb-10px d-block">
+                            <span class="w-5px h-2px bg-red d-inline-block align-middle me-5px"></span>
+                            ${product.title}
+                            <span class="w-5px h-2px bg-red d-inline-block align-middle ms-5px"></span>
+                        </span>
+                        <h2 class="alt-font text-dark-gray">${product.title}</h2>
+                    </div>
+                    `).slice(0, 1).join('')}
+                </div>
+                <div class="row">
+                    <div class="col-md-12 position-relative feather-shadow sm-feather-shadow-none">
+                        <div class="swiper swiper-dark-pagination swiper-line-pagination-style-01 magic-cursor" data-slider-options='{
+                            "slidesPerView": 1, "spaceBetween": 30, "loop": true,
+                            "autoplay": { "delay": 2500, "disableOnInteraction": false },
+                            "pagination": { "el": ".slider-four-slide-pagination-1", "clickable": true },
+                            "keyboard": { "enabled": true, "onlyInViewport": true },
+                            "breakpoints": { "1200": { "slidesPerView": 5 }, "992": { "slidesPerView": 3 },
+                            "768": { "slidesPerView": 3 }, "576": { "slidesPerView": 2 } },
+                            "effect": "slide"
+                        }'>
+                            <div class="swiper-wrapper">
+                                ${products.map(product => `
+                                <div class="swiper-slide">
+                                    <div class="services-box-style-01 hover-box last-paragraph-no-margin">
+                                        <div class="position-relative box-image border-radius-6px">
+                                            <img class="w-100" src="${product.imageUrl}" alt="${product.name}" data-no-retina="">
+                                            <div class="box-overlay bg-dark-gray"></div>
+                                            <span class="d-flex justify-content-center align-items-center mx-auto icon-box absolute-middle-center z-index-1 w-130px h-130px rounded-circle bg-white box-shadow-extra-large text-uppercase alt-font fs-30 lh-28 text-red ps-15px pe-15px text-center">
+                                                Just $${product.price}
+                                            </span>
+                                        </div>
+                                        <div class="pt-30px bg-white text-center">
+                                            <span class="d-inline-block text-dark-gray fs-19 fw-600">${product.name}</span>
+                                            <div class="w-100">
+                                                ${product.ingredients.map(ingredient => `
+                                                    <span class="d-inline-block align-middle">${ingredient}</span>
+                                                    <span class="d-inline-block align-middle ms-10px me-10px fs-12 opacity-5">◍</span>
+                                                `).join('')}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+});
+
+
+
+
 
 	///////////////////
 
