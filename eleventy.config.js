@@ -3334,11 +3334,11 @@ statsBox "4.98", "98", "200", "4.98 rating.",
 /*
    Usage
    /*
-   {% DynamicProjectShowcase projects=[
+  
 {% DynamicProjectShowcase {
   projects: [
     {
-      number: "01",
+
       imageUrl: "https://via.placeholder.com/1920x1080",
       title: "Latest projects",
       category: "Branding and design",
@@ -3347,7 +3347,7 @@ statsBox "4.98", "98", "200", "4.98 rating.",
       link: "demo-branding-agency-single-project-slider.html"
     },
     {
-      number: "02",
+
       imageUrl: "https://via.placeholder.com/1920x1080",
       title: "Latest projects",
       category: "Web development and design",
@@ -3356,7 +3356,7 @@ statsBox "4.98", "98", "200", "4.98 rating.",
       link: "demo-branding-agency-single-project-slider.html"
     },
     {
-      number: "03",
+     
       imageUrl: "https://via.placeholder.com/1920x1080",
       title: "Latest projects",
       category: "Branding and design",
@@ -3373,48 +3373,47 @@ eleventyConfig.addShortcode("DynamicProjectShowcase", function({ projects }) {
     return `
         <section class="stack-box py-0 z-index-99 forward">
             <div class="stack-box-contain">
-                ${projects.map(project => `
-                <div class="stack-item bg-white lg-pt-8 lg-pb-8 md-pb-0 active" style="height: inherit;">
-                    <div class="stack-item-wrapper">
-                        <div class="container-fluid">
-                            <div class="row align-items-center full-screen md-h-auto">
-                                <div class="col-lg-6 cover-background overflow-visible h-100 md-h-500px" style="background-image: url(${project.imageUrl})">
-                                    <div class="position-absolute right-minus-130px top-60px md-top-auto md-bottom-minus-50px fs-170 lg-fs-120 lg-right-minus-80px md-right-0px md-left-0px text-center text-lg-start alt-font z-index-9 fw-600 text-dark-gray opacity-3">${project.number}</div>
-                                    <div class="position-absolute right-0px bottom-minus-1px">
-                                        <div class="vertical-title-center">
-                                            <div class="title fw-700 fs-15 alt-font text-uppercase text-dark-gray bg-white pt-30px pb-30px ps-10px pe-10px">
-                                                <span class="d-inline-block">${project.title}</span>
+                ${projects.map((project, index) => {
+                    const projectNumber = (index + 1 < 10) ? '0' + (index + 1) : (index + 1).toString();
+                    return `
+                    <div class="stack-item bg-white lg-pt-8 lg-pb-8 md-pb-0 active" style="height: inherit;">
+                        <div class="stack-item-wrapper">
+                            <div class="container-fluid">
+                                <div class="row align-items-center full-screen md-h-auto">
+                                    <div class="col-lg-6 cover-background overflow-visible h-100 md-h-500px" style="background-image: url(${project.imageUrl})">
+                                        <div class="position-absolute right-minus-130px top-60px md-top-auto md-bottom-minus-50px fs-170 lg-fs-120 lg-right-minus-80px md-right-0px md-left-0px text-center text-lg-start alt-font z-index-9 fw-600 text-dark-gray opacity-3">${projectNumber}</div>
+                                        <div class="position-absolute right-0px bottom-minus-1px">
+                                            <div class="vertical-title-center">
+                                                <div class="title fw-700 fs-15 alt-font text-uppercase text-dark-gray bg-white pt-30px pb-30px ps-10px pe-10px">
+                                                    <span class="d-inline-block">${project.title}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-6 ps-12 pe-14 xxl-ps-10 xxl-pe-10 xl-pe-8 lg-ps-6 lg-pe-4 md-p-50px sm-ps-30px sm-pe-30px position-relative align-self-center text-md-start text-center">
-                                    <div class="mb-15px">
-                                        <span class="w-25px h-1px d-inline-block bg-base-color me-5px align-middle"></span>
-                                        <span class="text-gradient-base-color fs-15 alt-font fw-700 ls-05px text-uppercase d-inline-block align-middle">${project.category}</span>
+                                    <div class="col-lg-6 ps-12 pe-14 xxl-ps-10 xxl-pe-10 xl-pe-8 lg-ps-6 lg-pe-4 md-p-50px sm-ps-30px sm-pe-30px position-relative align-self-center text-md-start text-center">
+                                        <div class="mb-15px">
+                                            <span class="w-25px h-1px d-inline-block bg-base-color me-5px align-middle"></span>
+                                            <span class="text-gradient-base-color fs-15 alt-font fw-700 ls-05px text-uppercase d-inline-block align-middle">${project.category}</span>
+                                        </div>
+                                        <h1 class="text-dark-gray alt-font fw-600 ls-minus-4px mb-25px">${project.projectName}</h1>
+                                        <p class="w-95 md-w-100 mb-35px">${project.description}</p>
+                                        <a href="${project.link}" class="btn btn-large btn-dark-gray btn-switch-text btn-box-shadow fw-400">
+                                            <span>
+                                                <span class="btn-double-text" data-text="Explore project">Explore project</span>
+                                                <span><i class="feather icon-feather-arrow-right"></i></span>
+                                            </span>
+                                        </a>
                                     </div>
-                                    <h1 class="text-dark-gray alt-font fw-600 ls-minus-4px mb-25px">${project.projectName}</h1>
-                                    <p class="w-95 md-w-100 mb-35px">${project.description}</p>
-                                    <a href="${project.link}" class="btn btn-large btn-dark-gray btn-switch-text btn-box-shadow fw-400">
-                                        <span>
-                                            <span class="btn-double-text" data-text="Explore project">Explore project</span>
-                                            <span><i class="feather icon-feather-arrow-right"></i></span>
-                                        </span>
-                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                `).join('')}
+                    `;
+                }).join('')}
             </div>
         </section>
     `;
 });
-
-
-
-
 
 
 
