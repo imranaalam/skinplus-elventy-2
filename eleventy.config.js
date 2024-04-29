@@ -3323,15 +3323,11 @@ statsBox "4.98", "98", "200", "4.98 rating.",
     `;
 	});
 
+	///////////////////
+	// DynamicProjectShowcase
+	//////////////////
 
-
-
-
-    ///////////////////
-// DynamicProjectShowcase
-//////////////////
-
-/*
+	/*
    Usage
    /*
   
@@ -3369,13 +3365,19 @@ statsBox "4.98", "98", "200", "4.98 rating.",
 
 */
 
-eleventyConfig.addShortcode("DynamicProjectShowcase", function({ projects }) {
-    return `
+	eleventyConfig.addShortcode(
+		"DynamicProjectShowcase",
+		function ({ projects }) {
+			return `
         <section class="stack-box py-0 z-index-99 forward">
             <div class="stack-box-contain">
-                ${projects.map((project, index) => {
-                    const projectNumber = (index + 1 < 10) ? '0' + (index + 1) : (index + 1).toString();
-                    return `
+                ${projects
+									.map((project, index) => {
+										const projectNumber =
+											index + 1 < 10
+												? "0" + (index + 1)
+												: (index + 1).toString();
+										return `
                     <div class="stack-item bg-white lg-pt-8 lg-pb-8 md-pb-0 active" style="height: inherit;">
                         <div class="stack-item-wrapper">
                             <div class="container-fluid">
@@ -3409,23 +3411,19 @@ eleventyConfig.addShortcode("DynamicProjectShowcase", function({ projects }) {
                         </div>
                     </div>
                     `;
-                }).join('')}
+									})
+									.join("")}
             </div>
         </section>
     `;
-});
+		}
+	);
 
+	//////////////////
+	// PopularProductsSliderSection
+	//////////////////
 
-
-
-
-
-
-//////////////////
-// PopularProductsSliderSection
-//////////////////
-
-/*
+	/*
    Usage:
 
 {% PopularProductsSliderSection {
@@ -3450,12 +3448,16 @@ eleventyConfig.addShortcode("DynamicProjectShowcase", function({ projects }) {
 
 */
 
-eleventyConfig.addShortcode("PopularProductsSliderSection", function({ products }) {
-    return `
+	eleventyConfig.addShortcode(
+		"PopularProductsSliderSection",
+		function ({ products }) {
+			return `
         <section class="overflow-hidden overlap-height position-relative">
             <div class="container-fluid overlap-gap-section">
                 <div class="row justify-content-center mb-2">
-                    ${products.map(product => `
+                    ${products
+											.map(
+												(product) => `
                     <div class="col-lg-7 text-center">
                         <span class="fs-15 fw-600 text-red text-uppercase mb-10px d-block">
                             <span class="w-5px h-2px bg-red d-inline-block align-middle me-5px"></span>
@@ -3464,7 +3466,10 @@ eleventyConfig.addShortcode("PopularProductsSliderSection", function({ products 
                         </span>
                         <h2 class="alt-font text-dark-gray">${product.title}</h2>
                     </div>
-                    `).slice(0, 1).join('')}
+                    `
+											)
+											.slice(0, 1)
+											.join("")}
                 </div>
                 <div class="row">
                     <div class="col-md-12 position-relative feather-shadow sm-feather-shadow-none">
@@ -3478,28 +3483,42 @@ eleventyConfig.addShortcode("PopularProductsSliderSection", function({ products 
                             "effect": "slide"
                         }'>
                             <div class="swiper-wrapper">
-                                ${products.map(product => `
+                                ${products
+																	.map(
+																		(product) => `
                                 <div class="swiper-slide">
                                     <div class="services-box-style-01 hover-box last-paragraph-no-margin">
                                         <div class="position-relative box-image border-radius-6px">
-                                            <img class="w-100" src="${product.imageUrl}" alt="${product.name}" data-no-retina="">
+                                            <img class="w-100" src="${
+																							product.imageUrl
+																						}" alt="${
+																			product.name
+																		}" data-no-retina="">
                                             <div class="box-overlay bg-dark-gray"></div>
                                             <span class="d-flex justify-content-center align-items-center mx-auto icon-box absolute-middle-center z-index-1 w-130px h-130px rounded-circle bg-white box-shadow-extra-large text-uppercase alt-font fs-30 lh-28 text-red ps-15px pe-15px text-center">
                                                 Just $${product.price}
                                             </span>
                                         </div>
                                         <div class="pt-30px bg-white text-center">
-                                            <span class="d-inline-block text-dark-gray fs-19 fw-600">${product.name}</span>
+                                            <span class="d-inline-block text-dark-gray fs-19 fw-600">${
+																							product.name
+																						}</span>
                                             <div class="w-100">
-                                                ${product.ingredients.map(ingredient => `
+                                                ${product.ingredients
+																									.map(
+																										(ingredient) => `
                                                     <span class="d-inline-block align-middle">${ingredient}</span>
                                                     <span class="d-inline-block align-middle ms-10px me-10px fs-12 opacity-5">◍</span>
-                                                `).join('')}
+                                                `
+																									)
+																									.join("")}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                `).join('')}
+                                `
+																	)
+																	.join("")}
                             </div>
                         </div>
                     </div>
@@ -3507,15 +3526,14 @@ eleventyConfig.addShortcode("PopularProductsSliderSection", function({ products 
             </div>
         </section>
     `;
-});
+		}
+	);
 
+	//////////////////
+	// BoldTickerSection
+	//////////////////
 
-
-//////////////////
-// BoldTickerSection
-//////////////////
-
-/*
+	/*
    Usage:
 
 {% BoldTickerSection {
@@ -3541,42 +3559,35 @@ eleventyConfig.addShortcode("PopularProductsSliderSection", function({ products 
    
 */
 
-eleventyConfig.addShortcode("BoldTickerSection", function({ texts }) {
-    return `
+	eleventyConfig.addShortcode("BoldTickerSection", function ({ texts }) {
+		return `
     <section>
         <div class="container-fluid overlap-section">
             <div class="row position-relative mb-4" data-anime="{ &quot;translateY&quot;: [0, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 1200, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
                 <div class="col swiper swiper-width-auto text-center" data-slider-options="{ &quot;slidesPerView&quot;: &quot;auto&quot;, &quot;spaceBetween&quot;: 50, &quot;speed&quot;: 10000, &quot;loop&quot;: true, &quot;pagination&quot;: { &quot;el&quot;: &quot;.slider-four-slide-pagination-2&quot;, &quot;clickable&quot;: false }, &quot;allowTouchMove&quot;: false, &quot;autoplay&quot;: { &quot;delay&quot;: 0, &quot;disableOnInteraction&quot;: false }, &quot;navigation&quot;: { &quot;nextEl&quot;: &quot;.slider-four-slide-next-2&quot;, &quot;prevEl&quot;: &quot;.slider-four-slide-prev-2&quot; }, &quot;keyboard&quot;: { &quot;enabled&quot;: true, &quot;onlyInViewport&quot;: true }, &quot;effect&quot;: &quot;slide&quot; }">
                     <div class="swiper-wrapper marquee-slide">
-                        ${texts.map(text => `
+                        ${texts
+													.map(
+														(text) => `
                         <div class="swiper-slide">
                             <div class="fs-150 ls-minus-2px alt-font ${text.style}">${text.content}</div>
                         </div>
-                        `).join('')}
+                        `
+													)
+													.join("")}
                     </div>
                 </div>
             </div>
         </div>
         </section>
     `;
-});
+	});
 
+	//////////////////
+	// FaqBoxSection
+	//////////////////
 
-
-
-
-
-
-
-
-
-
-
-//////////////////
-// FaqBoxSection
-//////////////////
-
-/*
+	/*
    Usage:
 
 {% FaqBoxSection {
@@ -3601,8 +3612,10 @@ eleventyConfig.addShortcode("BoldTickerSection", function({ texts }) {
    
 */
 
-eleventyConfig.addShortcode("FaqBoxSection", function({ questions, title, subtitle, imageUrl }) {
-    return `
+	eleventyConfig.addShortcode(
+		"FaqBoxSection",
+		function ({ questions, title, subtitle, imageUrl }) {
+			return `
     <section>
     <div class= "container">
         <div class="row align-items-center mt-8 sm-mt-40px">
@@ -3617,22 +3630,38 @@ eleventyConfig.addShortcode("FaqBoxSection", function({ questions, title, subtit
                     </div>
                     <h3 class="alt-font fw-600 text-dark-gray ls-minus-1px">${title}</h3>
                     <div class="accordion accordion-style-02" id="accordionFaq" data-active-icon="icon-feather-minus" data-inactive-icon="icon-feather-plus">
-                        ${questions.map((item, index) => `
-                        <div class="accordion-item ${index === 0 ? 'active-accordion' : ''}">
+                        ${questions
+													.map(
+														(item, index) => `
+                        <div class="accordion-item ${
+													index === 0 ? "active-accordion" : ""
+												}">
                             <div class="accordion-header border-bottom border-color-transparent-dark-very-light">
-                                <a href="#" data-bs-toggle="collapse" data-bs-target="#accordionFaq-${index}" aria-expanded="${index === 0 ? 'true' : 'false'}" data-bs-parent="#accordionFaq">
+                                <a href="#" data-bs-toggle="collapse" data-bs-target="#accordionFaq-${index}" aria-expanded="${
+															index === 0 ? "true" : "false"
+														}" data-bs-parent="#accordionFaq">
                                     <div class="accordion-title mb-0 position-relative text-dark-gray pe-30px">
-                                        <i class="feather icon-feather-${index === 0 ? 'minus' : 'plus'} fs-20"></i><span class="fw-500">${item.question}</span>
+                                        <i class="feather icon-feather-${
+																					index === 0 ? "minus" : "plus"
+																				} fs-20"></i><span class="fw-500">${
+															item.question
+														}</span>
                                     </div>
                                 </a>
                             </div>
-                            <div id="accordionFaq-${index}" class="accordion-collapse collapse ${index === 0 ? 'show' : ''}" data-bs-parent="#accordionFaq">
+                            <div id="accordionFaq-${index}" class="accordion-collapse collapse ${
+															index === 0 ? "show" : ""
+														}" data-bs-parent="#accordionFaq">
                                 <div class="accordion-body last-paragraph-no-margin border-bottom border-color-transparent-dark-very-light">
-                                    <p class="w-90 sm-w-95 xs-w-100">${item.answer}</p>
+                                    <p class="w-90 sm-w-95 xs-w-100">${
+																			item.answer
+																		}</p>
                                 </div>
                             </div>
                         </div>
-                        `).join('')}
+                        `
+													)
+													.join("")}
                     </div>
                 </div>
             </div>
@@ -3640,7 +3669,1427 @@ eleventyConfig.addShortcode("FaqBoxSection", function({ questions, title, subtit
         </div>
         </section>
     `;
+		}
+	);
+
+	//////////////////
+	// MovingCounterStatSection
+	//////////////////
+
+	/*
+   Usage:
+
+{% MovingCounterStatSection {
+  title: "Brand experience",
+  stats: [
+    {
+      imageUrl: "https://via.placeholder.com/250x150",
+      secondaryImageUrl: "https://via.placeholder.com/250x150",
+      title: "agency",
+      description: "Creating products with a strong identity. We provide brilliant ideas and adding the world called success brand.",
+      counters: [
+        { number: 8500, text: "Users on marketplaces we've created in 2023." },
+        { number: 660, text: "Successfully finished projects with creativity." },
+        { number: 6834, text: "Monthly visitors on our e-Commerce platform." },
+        { number: 38, suffix: "%", text: "Onboarding conversions growth increased." }
+      ]
+    }
+  ]
+} %}
+   
+*/
+
+	eleventyConfig.addShortcode(
+		"MovingCounterStatSection",
+		function ({ title, stats }) {
+			function buildCounterHtml(number) {
+				let html = "";
+				number
+					.toString()
+					.split("")
+					.forEach((digit) => {
+						html +=
+							`<span class="vertical-counter-number" data-to="${digit}"><ul style="transform: translateY(-${
+								digit * 10
+							}%);">` +
+							Array.from({ length: 10 }, (_, i) => `<li>${i}</li>`).join("") +
+							`</ul></span>`;
+					});
+				return html;
+			}
+
+			return `
+        <section>
+            <div class="container">
+                <div class="row mb-6 sm-mb-50px">
+                    <div class="col-md-12 text-center text-md-start">
+                        <div class="fs-140 xxl-fs-100 sm-fs-60 fw-600 text-dark-gray alt-font ls-minus-8px sm-ls-minus-2px" data-bottom-top="transform: translate3d(-50px, 0px, 0px);" data-top-bottom="transform: translate3d(50px, 0px, 0px);">${title}</div>
+                    </div>
+                    ${stats
+											.map(
+												(stat) => `
+                    <div class="col-12">
+                        <div class="row align-items-center align-items-lg-end" data-bottom-top="transform: translate3d(-30px, 0px, 0px);" data-top-bottom="transform: translate3d(30px, 0px, 0px);">
+                            <div class="col-lg-3 col-md-4 text-md-end text-center md-mt-30px md-mb-20px">
+                                <div class="position-relative">
+                                    <img src="${stat.imageUrl}" class="animation-rotation position-relative z-index-2" alt="" data-no-retina="">
+                                    <div class="absolute-middle-center w-100 z-index-1"><img src="${stat.secondaryImageUrl}" alt="" data-no-retina=""></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-6 text-center text-md-start">
+                                <div class="fs-140 xxl-fs-100 sm-fs-60 fw-600 text-dark-gray alt-font ls-minus-8px sm-ls-minus-2px">${stat.title}</div>
+                            </div>
+                            <div class="col-lg-4 last-paragraph-no-margin md-mt-30px">
+                                <p class="w-95 md-w-80 mx-auto text-center text-lg-start sm-w-100">${stat.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                    `
+											)
+											.join("")}
+                </div>
+                <div class="row g-0 counter-style-04">
+                    ${stats[0].counters
+											.map(
+												(counter) => `
+                    <div class="col-lg-3 col-md-6 feature-box text-start hover-box border-start sm-border border-color-extra-medium-gray ps-35px pe-35px pt-25px pb-25px lg-ps-25px lg-pe-25px md-ps-35px md-pe-35px md-mb-50px sm-mb-30px">
+                        <div class="feature-box-content">
+                            <p class="text-dark-gray mb-20 sm-mb-10 fw-500 w-90 fs-17 lh-28">${
+															counter.text
+														}</p>
+                            <h2 class="vertical-counter d-inline-flex text-dark-gray fw-700 ls-minus-2px mt-25 alt-font mb-0 appear" data-text="${
+															counter.suffix || ""
+														}" data-to="${
+													counter.number
+												}" style="height: 41.25px;">
+                                <sup class="text-dark-gray top-0"><i class="feather icon-feather-arrow-up icon-small"></i></sup>
+                                ${buildCounterHtml(counter.number)}
+                            </h2>
+                        </div>
+                    </div>
+                    `
+											)
+											.join("")}
+                </div>
+            </div>
+        </section>
+    `;
+		}
+	);
+
+	eleventyConfig.addJavaScriptFunction("buildCounterHtml", function (number) {
+		let html = "";
+		number
+			.toString()
+			.split("")
+			.forEach((digit) => {
+				html +=
+					`<span class="vertical-counter-number" data-to="${digit}"><ul style="transform: translateY(-${digit}0%);">` +
+					Array.from({ length: 10 }, (_, i) => `<li>${i}</li>`).join("") +
+					`</ul></span>`;
+			});
+		return html;
+	});
+
+	//////////////////
+	// SpecialPriceSection
+	//////////////////
+
+	/*
+   Usage:
+
+{% SpecialPriceSection {
+  backgroundUrl: "https://via.placeholder.com/1920x1080.svg",
+  items: [
+    {
+      name: "Chicken breast burger",
+      price: "95.00",
+      description: "Mint parsley with apple cider vinegar, salt, spices.",
+      specialLabel: ""
+    },
+    {
+      name: "Medium cut spicy chips",
+      price: "80.00",
+      description: "Marinated tomatoes, fragrant curry, tamarillo.",
+      specialLabel: "Chef's Special"
+    },
+    {
+      name: "Baked potato pizza",
+      price: "80.00",
+      description: "Hollandaise sauce, green beans and potato galette.",
+      specialLabel: "Today's Special"
+    },
+    {
+      name: "Chicken breast burger",
+      price: "80.00",
+      description: "Hollandaise sauce, potato and green beans.",
+      specialLabel: ""
+    }
+  ],
+  images: [
+    "https://via.placeholder.com/1920x1080.png",
+    "https://via.placeholder.com/1024x768.jpg"
+  ]
+} %}
+   
+*/
+
+	eleventyConfig.addShortcode(
+		"SpecialPriceSection",
+		function ({ backgroundUrl, items, images }) {
+			return `
+        <section class="background-position-center background-repeat" style="background-image: url('${backgroundUrl}')">
+            <div class="container">
+                <div class="row overlap-section mb-50px" style="margin-top: inherit;">
+                    <div class="col-12 text-center">
+                        <img src="${
+													images[0]
+												}" alt="Special Price Image" data-bottom-top="transform: translate3d(75px, 0px, 0px);" data-top-bottom="transform: translate3d(-75px, 0px, 0px);" data-no-retina="">
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-lg-5 offset-lg-1 order-lg-2 md-mb-50px xs-mb-30px">
+                        <img src="${
+													images[1]
+												}" class="border-radius-6px w-100" data-bottom-top="transform: translateY(-50px)" data-top-bottom="transform: translateY(50px)" alt="Special Price Detail Image" data-no-retina="">
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <h4 class="alt-font text-dark-gray ls-minus-1px ps-30px pe-30px mb-30px xs-ps-20px xs-pe-20px">Premium menus</h4>
+                        <div class="h-2px bg-dark-gray mb-20px"></div>
+                        <ul class="pricing-table-style-13">
+                            ${items
+															.map(
+																(item) => `
+                            <li class="flex-column last-paragraph-no-margin overflow-hidden p-0 ${
+															item.specialLabel
+																? "border border-color-transparent-base-color border-radius-4px"
+																: ""
+														}">
+                                ${
+																	item.specialLabel
+																		? `<div class="w-100 bg-white text-dark-gray fs-13 text-uppercase fw-700 ps-30px pe-30px xs-ps-20px xs-pe-20px">${item.specialLabel}</div>`
+																		: ""
+																}
+                                <div class="w-100 ps-30px pe-30px pt-10px pb-10px xs-ps-20px xs-pe-20px">
+                                    <div class="d-flex align-items-baseline w-100">
+                                        <span class="fw-600 text-dark-gray">${
+																					item.name
+																				}</span>
+                                        <div class="ms-auto fw-600 text-dark-gray">$${
+																					item.price
+																				}</div>
+                                    </div>
+                                    <p class="fs-16">${item.description}</p>
+                                </div>
+                            </li>
+                            `
+															)
+															.join("")}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+		}
+	);
+
+	//////////////////
+	// ProductBuyCardSection
+	//////////////////
+
+	/*
+   Usage:
+
+{% ProductBuyCardSection {
+  products: [
+    {
+      id: "superior",
+      tagline: "Phenomenal view",
+      name: "Superior room",
+      description: "Discover a private home in the orchard with three bedrooms and baths, featuring a private plunge pool and a three-sided view from the king-size bed.",
+      price: "199",
+      bookUrl: "demo-hotel-and-resort-room-details.html",
+      detailUrl: "demo-hotel-and-resort-room-details.html",
+      autoplayDelay: 3000,
+      images: [
+        "https://via.placeholder.com/510x300",
+        "https://via.placeholder.com/510x300",
+        "https://via.placeholder.com/510x300"
+      ]
+    },
+    {
+      id: "deluxe",
+      tagline: "Luxury comfort",
+      name: "Deluxe room",
+      description: "Spacious room with ocean views, featuring a private balcony and luxurious amenities to enhance your stay.",
+      price: "299",
+      bookUrl: "demo-hotel-and-resort-room-details.html",
+      detailUrl: "demo-hotel-and-resort-room-details.html",
+      autoplayDelay: 4000,
+      images: [
+        "https://via.placeholder.com/510x300",
+        "https://via.placeholder.com/510x300",
+        "https://via.placeholder.com/510x300"
+      ]
+    }
+  ]
+} %}
+*/
+
+	eleventyConfig.addShortcode("ProductBuyCardSection", function ({ products }) {
+		return `
+<section class="background-position-center background-repeat" style="background-image: url('https://via.placeholder.com/1920x1080/cccccc/969696?text=Background+Pattern')">
+<div class="container">
+    ${products
+			.map((product, index) => {
+				const isEven = index % 2 === 1;
+				return `
+    <div class="row g-0 justify-content-center border-radius-6px overflow-hidden mb-8 appear anime-complete" id="${
+			product.id
+		}" data-anime="{ &quot;translateY&quot;: [30, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }" style="">
+        ${
+					isEven
+						? `<div class="col-lg-5 bg-very-light-gray">
+            <div class="pt-13 pb-12 ps-15 pe-15 lg-p-8 last-paragraph-no-margin">
+                <span class="text-base-color fw-500 d-block">${product.tagline}</span>
+                <a href="${product.detailUrl}"><h4 class="alt-font text-dark-gray mb-20px ls-minus-1px d-inline-block">${product.name}</h4></a>
+                <p class="fs-17">${product.description}</p>
+            </div>
+            <div class="ps-15 pe-15 pt-5 pb-5 lg-ps-8 lg-pe-8 border-top border-color-transparent-dark-very-light align-items-center d-flex">
+                <h4 class="mb-0 fw-700 text-dark-gray">$${product.price}<span class="fs-16 fw-500 align-middle ms-10px">Per night</span></h4>
+                <a href="${product.bookUrl}" class="btn btn-medium btn-switch-text btn-base-color btn-box-shadow btn-round-edge d-inline-block align-middle ms-30px xl-ms-25px xs-ms-auto">
+                    <span>
+                        <span class="btn-double-text" data-text="Book your stay">Book your stay</span>
+                    </span>
+                </a>
+            </div>
+        </div>`
+						: ""
+				}
+        <div class="col-lg-7 md-h-400px sm-h-300px text-center">
+            <div class="swiper h-100 swiper-pagination-style-3 swiper-initialized swiper-horizontal swiper-backface-hidden" data-slider-options='{
+                "slidesPerView": 1, "spaceBetween": 10, "loop": true, 
+                "pagination": { "el": ".slider-four-slide-pagination-${
+									product.id
+								}", "clickable": true }, 
+                "autoplay": { "delay": ${
+									product.autoplayDelay
+								}, "disableOnInteraction": false }, 
+                "navigation": { "nextEl": ".slider-one-slide-next-${
+									product.id
+								}", "prevEl": ".slider-one-slide-prev-${product.id}" }, 
+                "keyboard": { "enabled": true, "onlyInViewport": true }, 
+                "breakpoints": { "1400": { "slidesPerView": 1 }, "1200": { "slidesPerView": 1 }, "992": { "slidesPerView": 1 }, "768": { "slidesPerView": 1 } }, 
+                "effect": "slide" 
+            }'>
+                <div class="swiper-wrapper">
+                    ${product.images
+											.map(
+												(image) => `
+                    <div class="swiper-slide cover-background" style="background-image: url('${image}'); width: 510px; margin-right: 10px;"></div>
+                    `
+											)
+											.join("")}
+                </div>
+                <div class="slider-one-slide-prev-${
+									product.id
+								} bg-dark-gray-transparent-medium h-50px w-50px swiper-button-prev slider-navigation-style-01" tabindex="0" role="button" aria-label="Previous slide"><i class="fa-solid fa-angle-left text-white"></i></div>
+                <div class="slider-one-slide-next-${
+									product.id
+								} bg-dark-gray-transparent-medium h-50px w-50px swiper-button-next slider-navigation-style-01" tabindex="0" role="button" aria-label="Next slide"><i class="fa-solid fa-angle-right text-white"></i></div>
+            </div>
+        </div>
+        ${
+					!isEven
+						? `<div class="col-lg-5 bg-very-light-gray">
+            <div class="pt-13 pb-12 ps-15 pe-15 lg-p-8 last-paragraph-no-margin">
+                <span class="text-base-color fw-500 d-block">${product.tagline}</span>
+                <a href="${product.detailUrl}"><h4 class="alt-font text-dark-gray mb-20px ls-minus-1px d-inline-block">${product.name}</h4></a>
+                <p class="fs-17">${product.description}</p>
+            </div>
+            <div class="ps-15 pe-15 pt-5 pb-5 lg-ps-8 lg-pe-8 border-top border-color-transparent-dark-very-light align-items-center d-flex">
+                <h4 class="mb-0 fw-700 text-dark-gray">$${product.price}<span class="fs-16 fw-500 align-middle ms-10px">Per night</span></h4>
+                <a href="${product.bookUrl}" class="btn btn-medium btn-switch-text btn-base-color btn-box-shadow btn-round-edge d-inline-block align-middle ms-30px xl-ms-25px xs-ms-auto">
+                    <span>
+                        <span class="btn-double-text" data-text="Book your stay">Book your stay</span>
+                    </span>
+                </a>
+            </div>
+        </div>`
+						: ""
+				}
+    </div>
+    `;
+			})
+			.join("")}
+</div>
+</section>
+    `;
+	});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//     //////////////////
+// // ServiceDetailSection
+// //////////////////
+
+// /*
+//    Usage:
+
+// {% ServiceDetailSection {
+//   heading: "Superior room",
+//   description: "Enjoy your most glorious moments",
+//   rating: 4.8,
+//   reviewer: "Review by Google",
+//   rate: "Per night $199",
+//   overviewHeading: "Room overview",
+//   overviewDetail: "The superior rooms pay tribute to fashion and craftsmanship. The rooms are approximately with views of rue alger and jardin des uileries. The selection and pairing of materials has been carefully chosen to give you a cool experience.",
+//   featuresHeading: "Amenities and comforts",
+//   features: [
+//     "40 inch sony TV",
+//     "Wireless internet",
+//     "Bluetooth player",
+//     "Use of smartphone",
+//     "Luggage storage",
+//     "Beautiful nature"
+//   ],
+//   images: [
+//     "https://via.placeholder.com/510x300",
+//     "https://via.placeholder.com/510x300",
+//     "https://via.placeholder.com/510x300"
+//   ]
+// } %}
+// */
+
+// eleventyConfig.addShortcode("ServiceDetailSection", function({ heading, description, rating, reviewer, rate, overviewHeading, overviewDetail, featuresHeading, features, images }) {
+//     return `
+// <section class="background-position-center background-repeat position-relative pb-0 overflow-hidden">
+// <div class="container">
+// <div class="row align-items-center mb-50px">
+// <div class="col-lg-5 last-paragraph-no-margin md-mb-20px">
+// <h3 class="text-dark-gray alt-font ls-minus-1px mb-0">${heading}</h3>
+// <p class="ls-05px">${description}</p>
+// </div>
+// <div class="col-lg-3 col-sm-6 xs-mb-30px">
+// <div class="d-flex align-items-center">
+// <div class="col-auto text-center"><h2 class="text-dark-gray mb-0 fw-700">${rating.toFixed(1)}</h2></div>
+// <div class="col ps-20px">
+// <div class="review-star-icon lh-20 fs-18">
+// ${Array(Math.floor(rating)).fill('<i class="bi bi-star-fill"></i>').join('')}${Array(5 - Math.floor(rating)).fill('<i class="bi bi-star"></i>').join('')}
+// </div>
+// <span class="d-block text-dark-gray fw-500">${reviewer}</span>
+// </div>
+// </div>
+// </div>
+// <div class="col text-start text-sm-end">
+// <h3 class="text-dark-gray fw-700 d-inline-block align-middle mb-5px mt-5px"><span class="fs-20 fw-500 align-middle">${rate}</span></h3>
+// <a href="demo-hotel-and-resort-contact.html" class="btn btn-large btn-switch-text btn-base-color btn-box-shadow btn-round-edge ms-25px xs-ms-15px">
+// <span>
+// <span class="btn-double-text" data-text="Book your stay">Book your stay</span>
+// </span>
+// </a>
+// </div>
+// </div>
+// <div class="h-2px bg-dark-gray mb-50px"></div>
+// <div class="row row-cols-1 row-cols-lg-2 align-items-center mb-8 xs-mb-14">
+// <div class="col last-paragraph-no-margin">
+// <span class="text-dark-gray fs-26 alt-font d-block mb-10px">${overviewHeading}</span>
+// <p class="w-90 md-w-100 md-mb-30px">${overviewDetail}</p>
+// </div>
+// <div class="col">
+// <span class="text-dark-gray fs-26 alt-font d-block mb-15px">${featuresHeading}</span>
+// <div class="row row-cols-1 row-cols-md-2">
+// <div class="col">
+// <div class="row row-cols-1 justify-content-center">
+// ${features.slice(0, Math.ceil(features.length / 2)).map(feature => `
+// <div class="col icon-with-text-style-08 mb-10px">
+// <div class="feature-box feature-box-left-icon-middle overflow-hidden">
+// <div class="feature-box-icon feature-box-icon-rounded bg-very-light-gray w-35px h-35px rounded-circle me-15px">
+// <i class="fa-solid fa-check fs-15 text-base-color"></i>
+// </div>
+// <div class="feature-box-content last-paragraph-no-margin">
+// <p>${feature}</p>
+// </div>
+// </div>
+// </div>
+// `).join('')}
+// </div>
+// </div>
+// <div class="col">
+// <div class="row row-cols-1 justify-content-center">
+// ${features.slice(Math.ceil(features.length / 2)).map(feature => `
+// <div class="col icon-with-text-style-08 mb-10px">
+// <div the="feature-box-icon feature-box-icon-rounded bg-very-light-gray w-35px h-35px rounded-circle me-15px">
+// <i class="fa-solid fa-check fs-15 text-base-color"></i>
+// </div>
+// <div class="feature-box-content last-paragraph-no-margin">
+// <p>${feature}</p>
+// </div>
+// </div>
+// </div>
+// `).join('')}
+// </div>
+// </div>
+// </div>
+// </div>
+// <div class="row align-items-center">
+// <div class="col-12">
+// <div class="outside-box-right-40 sm-outside-box-right-0">
+
+
+// <div class="swiper magic-cursor swiper-initialized swiper-horizontal swiper-backface-hidden" data-slider-options="{ 'slidesPerView': 1, 'spaceBetween': 30, 'loop': true, 'pagination': { 'el': '.slider-three-slide-pagination', 'clickable': true, 'dynamicBullets': true }, 'autoplay': { 'delay': 3000, 'disableOnInteraction': false }, 'navigation': { 'nextEl': '.slider-three-slide-next', 'prevEl': '.slider-three-slide-prev' }, 'keyboard': { 'enabled': true, 'onlyInViewport': true }, 'breakpoints': { '992': { 'slidesPerView': 3 }, '768': { 'slidesPerView': 2 }, '320': { 'slidesPerView': 1 } }, 'effect': 'slide' }">
+// <div class="swiper-wrapper">
+// ${images.map(image => `
+// <div class="swiper-slide" style="width: 510px; margin-right: 30px;">
+// <img src="${image}" class="w-100 border-radius-6px" alt="" data-no-retina>
+// </div>
+// `).join('')}
+// </div>
+// <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+// </div>
+// </div>
+// </div>
+// </div>
+// </section>
+//     `;
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////
+// ServiceSliderNoControlSection
+//////////////////
+
+/*
+   Usage:
+
+{% ServiceSliderNoControlSection {
+  images: [
+    "https://via.placeholder.com/510x300",
+    "https://via.placeholder.com/510x300",
+    "https://via.placeholder.com/510x300",
+    "https://via.placeholder.com/510x300",
+    "https://via.placeholder.com/510x300",
+    "https://via.placeholder.com/510x300"
+  ]
+} %}
+*/
+
+eleventyConfig.addShortcode("ServiceSliderNoControlSection", function({ images }) {
+    return `
+<section>
+    <div class="row align-items-center">
+        <div class="col-12">
+            <div class="outside-box-right-40 sm-outside-box-right-0">
+                <div class="swiper magic-cursor swiper-initialized swiper-horizontal swiper-backface-hidden" data-slider-options="{ &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 30, &quot;loop&quot;: true, &quot;pagination&quot;: { &quot;el&quot;: &quot;.slider-three-slide-pagination&quot;, &quot;clickable&quot;: true, &quot;dynamicBullets&quot;: true }, &quot;autoplay&quot;: { &quot;delay&quot;: 3000, &quot;disableOnInteraction&quot;: false }, &quot;navigation&quot;: { &quot;nextEl&quot;: &quot;.slider-three-slide-next&quot;, &quot;prevEl&quot;: &quot;.slider-three-slide-prev&quot; }, &quot;keyboard&quot;: { &quot;enabled&quot;: true, &quot;onlyInViewport&quot;: true }, &quot;breakpoints&quot;: { &quot;992&quot;: { &quot;slidesPerView&quot;: 3 }, &quot;768&quot;: { &quot;slidesPerView&quot;: 2 }, &quot;320&quot;: { &quot;slidesPerView&quot;: 1 } }, &quot;effect&quot;: &quot;slide&quot; }">
+                    <div class="swiper-wrapper" id="swiper-wrapper-109e17fb8cf6d1116" aria-live="off" style="transition-duration: 0ms; transform: translate3d(-2700px, 0px, 0px); transition-delay: 0ms;">
+                        ${images.map(image => `
+                        <div class="swiper-slide" style="width: 510px; margin-right: 30px;" role="group" aria-label="1 / 6" data-swiper-slide-index="0">
+                            <img src="${image}" class="w-100 border-radius-6px" alt="" data-no-retina="">
+                        </div>
+                        `).join('')}
+                    </div>
+                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    `;
 });
+
+
+
+
+
+
+
+//////////////////
+// ProductFolioSection
+//////////////////
+
+/*
+   Usage:
+
+{% ProductFolioSection {
+  items: [
+    {
+      imageUrl: "https://via.placeholder.com/510x300",
+      pageUrl: "demo-scattered-portfolio-single-project-creative.html",
+      title: "Tailoring",
+      category: "Branding"
+    },
+    {
+      imageUrl: "https://via.placeholder.com/510x300",
+      pageUrl: "demo-scattered-portfolio-single-project-creative.html",
+      title: "Designblast",
+      category: "Photography"
+    },
+    {
+      imageUrl: "https://via.placeholder.com/510x300",
+      pageUrl: "demo-scattered-portfolio-single-project-creative.html",
+      title: "Outward",
+      category: "Identity"
+    },
+    {
+      imageUrl: "https://via.placeholder.com/510x300",
+      pageUrl: "demo-scattered-portfolio-single-project-creative.html",
+      title: "Violator",
+      category: "Marketing"
+    },
+    {
+      imageUrl: "https://via.placeholder.com/510x300",
+      pageUrl: "demo-scattered-portfolio-single-project-creative.html",
+      title: "Potato",
+      category: "Branding"
+    },
+    {
+      imageUrl: "https://via.placeholder.com/510x300",
+      pageUrl: "demo-scattered-portfolio-single-project-creative.html",
+      title: "Treato",
+      category: "Web"
+    }
+  ]
+} %}
+*/
+
+eleventyConfig.addShortcode("ProductFolioSection", function({ items }) {
+    return `
+<section class="py-0">
+<div class="container">
+<div class="row">
+${items.map((item, index) => {
+    let colClass = index % 2 === 0 ? 'col-xl-4 col-lg-5' : 'col-xl-7 col-lg-7';
+    let offsetClass = index % 2 === 0 ? '' : 'offset-xl-1';
+    return `
+    <div class="${colClass} ${offsetClass} filter-content">
+    <ul class="portfolio-simple portfolio-wrapper grid grid-4col xxl-grid-4col xl-grid-4col lg-grid-4col md-grid-2col sm-grid-2col xs-grid-1col text-center">
+    <li class="grid-sizer"></li>
+    <li class="grid-item grid-item-single transition-inner-all">
+    <div class="portfolio-box">
+    <div class="portfolio-image bg-base-color">
+    <a href="${item.pageUrl}">
+    <img src="${item.imageUrl}" alt="" data-no-retina="">
+    </a>
+    </div>
+    <div class="portfolio-caption pt-35px pb-35px sm-pt-20px sm-pb-20px">
+    <a href="${item.pageUrl}" class="text-black text-black-hover fw-600 fs-24 alt-font font-style-italic">${item.title}</a>
+    <span class="d-inline-block align-middle w-10px separator-line-1px bg-light-gray ms-5px me-5px"></span>
+    <div class="d-inline-block">${item.category}</div>
+    </div>
+    </div>
+    </li>
+    </ul>
+    </div>
+    `;
+}).join('')}
+</div>
+</div>
+</section>
+    `;
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////
+// CategoryCirclesSliderSection
+//////////////////
+
+/*
+   Usage:
+
+{% CategoryCirclesSliderSection {
+  headline: "A radically original composition.",
+  items: [
+    { imageUrl: "https://via.placeholder.com/265x265", title: "Aluminium", subtitle: "Cups" },
+    { imageUrl: "https://via.placeholder.com/265x265", title: "Stainless", subtitle: "Frame" },
+    { imageUrl: "https://via.placeholder.com/265x265", title: "Digital", subtitle: "Control" },
+    { imageUrl: "https://via.placeholder.com/265x265", title: "Canopy", subtitle: "Spanning" }
+  ]
+} %}
+*/
+
+eleventyConfig.addShortcode("CategoryCirclesSliderSection", function({ headline, items }) {
+    return `
+        <section id="design" class="overflow-hidden bg-black background-position-center-top background-no-repeat pt-15 sm-pt-50px position-relative" style="background-image: url('https://via.placeholder.com/1920x1080')">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-xl-8 text-center position-relative sm-mb-40px" data-top-bottom="transform: scale(1); filter: opacity(1)" data-bottom-top="transform: scale(1.3); filter: opacity(0)">
+                        <span class="fs-110 md-fs-90 xs-fs-80 text-white fw-700 ls-minus-5px">${headline}</span>
+                    </div>
+                </div>
+                <div class="mt-13">
+                    <div class="row row-cols-1 justify-content-center">
+                        <div class="col appear anime-complete" data-anime="{ &quot;translateY&quot;: [0, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 1200, &quot;delay&quot;: 50, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                            <div class="swiper magic-cursor drag-cursor light swiper-initialized swiper-horizontal" data-slider-options="{ &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 70, &quot;loopedSlides&quot;: true, &quot;autoplay&quot;: { &quot;delay&quot;: 3000, &quot;disableOnInteraction&quot;: false }, &quot;keyboard&quot;: { &quot;enabled&quot;: true, &quot;onlyInViewport&quot;: true }, &quot;breakpoints&quot;: { &quot;1400&quot;: { &quot;slidesPerView&quot;:7 }, &quot;992&quot;: { &quot;slidesPerView&quot;: 4, &quot;spaceBetween&quot;: 80  }, &quot;768&quot;: { &quot;slidesPerView&quot;: 3, &quot;spaceBetween&quot;: 60 }, &quot;576&quot;: { &quot;slidesPerView&quot;: 2, &quot;spaceBetween&quot;: 45 } }, &quot;effect&quot;: &quot;slide&quot; }">
+                                <div class="swiper-wrapper text-center" id="swiper-wrapper-07f8421344862c8c" aria-live="off">
+                                    ${items.map(item => `
+                                        <div class="swiper-slide" style="width: 265px; margin-right: 60px;">
+                                            <div class="overflow-hidden position-relative">
+                                                <img class="border-radius-100" src="${item.imageUrl}" alt="${item.title}" data-no-retina="">
+                                            </div>
+                                            <div class="mt-25px">
+                                                <span class="text-white fs-20 lh-24 fw-600 d-block">${item.title}</span>
+                                                <span>${item.subtitle}</span>
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+});
+
+
+//////////////////
+// PurchaseProductSection
+//////////////////
+
+/*
+   Usage:
+
+
+
+{% PurchaseProductSection {
+    headline: "Choose the perfect product for you",
+    products: [
+      {
+        mainImage: "https://via.placeholder.com/450x300",
+        thumbImage: "https://via.placeholder.com/150x150",
+        color: "Silver"
+      },
+      {
+        mainImage: "https://via.placeholder.com/450x300",
+        thumbImage: "https://via.placeholder.com/150x150",
+        color: "Grey"
+      },
+      {
+        mainImage: "https://via.placeholder.com/450x300",
+        thumbImage: "https://via.placeholder.com/150x150",
+        color: "Pink"
+      },
+      {
+        mainImage: "https://via.placeholder.com/450x300",
+        thumbImage: "https://via.placeholder.com/150x150",
+        color: "Blue"
+      }
+    ],
+    price: "999",
+    purchaseUrl: "https://www.amazon.com/",
+    features: ["Secure", "Free", "Contactless delivery"]
+  } %}
+  
+
+  */
+
+
+eleventyConfig.addShortcode("PurchaseProductSection", function({ headline, products, price, purchaseUrl, features }) {
+    return `
+        <section id="pricing" class="bg-gradient-very-light-gray">
+            <div class="container">
+                <div class="row justify-content-center mb-4">
+                    <div class="col-xl-7 col-lg-9 text-center">
+                        <h2 class="h1 fw-800 text-dark-gray ls-minus-3px">${headline}</h2>
+                    </div>
+                </div>
+                <div class="row row-cols-1 row-cols-lg-4 row-cols-sm-2 position-relative justify-content-center">
+                    ${products.map(product => `
+                    <div class="col text-center">
+                        <img class="w-70" src="${product.mainImage}" alt="" data-no-retina="">
+                        <div class="mt-30px">
+                            <img src="${product.thumbImage}" alt="" data-no-retina="">
+                            <span class="fs-18 fw-700 text-dark-gray mt-10px d-block">${product.color}</span>
+                        </div>
+                    </div>
+                    `).join('')}
+                </div>
+                <div class="row justify-content-center mt-6 sm-mt-11">
+                    <div class="col-md-4 p-0">
+                        <span class="bg-dark-gray w-100 fs-30 p-7 sm-p-5 fw-700 text-white text-center d-inline-block">Just $${price}</span>
+                    </div>
+                    <div class="col-md-4 p-0">
+                        <a href="${purchaseUrl}" target="_blank" class="btn btn-gradient-purple-pink w-100 fs-30 border-0 p-7 sm-p-5 fw-700 text-uppercase-inherit">Purchase now</a>
+                    </div>
+                    <div class="col-12 mt-30px">
+                        <ul class="list-style-05 text-center text-uppercase ls-1px fs-16 fw-500">
+                            ${features.map(feature => `<li>${feature}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+});
+
+
+
+
+
+
+
+
+
+//////////////////
+// ProductCVPPercentSection
+//////////////////
+
+/*
+   Usage:
+
+
+
+{% ProductCVPPercentSection {
+  heading: "We create highly unique digital media experiences.",
+  description: {
+    intro: "Our team is committed to delivering measurable results and achieving tangible success.",
+    detail: "With a client base exceeding 10,000 our agency has established itself as a trusted and reliable partner in delivering exceptional services."
+  },
+  mainImage: "https://via.placeholder.com/1920x1080",
+  stats: [
+    { label: "Business growth", value: 98, color: "orange" },
+    { label: "New technology", value: 85, color: "blue" }
+  ],
+  clientTrust: "10k+ people trusting the agency."
+} %}
+
+  */
+
+
+  eleventyConfig.addShortcode("ProductCVPPercentSection", function({ heading, description, mainImage, stats, clientTrust }) {
+    return `
+        <section class="py-0">
+            <div class="container">
+                <div class="row align-items-center position-relative">
+                    <div class="col-lg-6">
+                        <div class="outside-box-left-20 md-outside-box-left-0 overflow-hidden position-relative" data-parallax-liquid="true" data-parallax-transition="2" data-parallax-position="top" style="transform: translateY(128.855px) scale(1);">
+                            <div class="liquid-parallax" data-parallax-liquid="true" data-parallax-position="bottom" data-parallax-scale="1.1" data-parallax-scale-fraction="0.0001" style="transform: translateY(-266.413px) scale(1.1);">
+                                <img class="w-100" src="${mainImage}" alt="" data-no-retina="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-6 offset-xl-1 z-index-9 md-mt-50px appear anime-child anime-complete" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateX&quot;: [30, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 300, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 100, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                        <h1 class="text-dark-gray alt-font mb-50px fw-600 ls-minus-2px md-mb-25px outside-box-left-15 md-outside-box-left-0 word-break-normal md-w-80 sm-w-100">${heading}</h1>
+                        <p class="fs-20 fw-500 ls-minus-05px text-dark-gray mb-15px">${description.intro}</p>
+                        <p class="w-90 md-w-100 mb-35px">${description.detail}</p>
+                        <div class="progress-bar-style-02 mb-40px">
+                            <div class="progress mb-15px border-radius-50px fw-600 fs-11 lh-12 text-white bg-white">
+                                <div class="progress-bar bg-gradient-orange-transparent m-0 appear" role="progressbar" aria-valuenow="${stats[0].value}" aria-valuemin="0" aria-valuemax="100" style="width: ${stats[0].value}%;">
+                                    <span class="progress-bar-percent text-orange fw-600">${stats[0].value}%</span>
+                                </div>
+                                <div class="progress-bar-title text-uppercase">${stats[0].label}</div>
+                            </div>
+                            <div class="progress mb-15px border-radius-50px fw-600 fs-11 lh-12 text-white bg-white">
+                                <div class="progress-bar bg-gradient-blue-transparent m-0 appear" role="progressbar" aria-valuenow="${stats[1].value}" aria-valuemin="0" aria-valuemax="100" style="width: ${stats[1].value}%;">
+                                    <span class="progress-bar-percent text-tropical-blue fw-600">${stats[1].value}%</span>
+                                </div>
+                                <div class="progress-bar-title text-uppercase">${stats[1].label}</div>
+                            </div>
+                        </div>
+                        <div class="pt-20px pb-20px ps-30px pe-30px xs-p-15px border border-color-extra-medium-gray border-radius-6px mb-15px icon-with-text-style-08 w-90 lg-w-100">
+                            <div class="feature-box feature-box-left-icon-middle d-inline-flex align-middle">
+                                <div class="feature-box-icon me-10px">
+                                    <i class="bi bi-people icon-very-medium text-dark-gray"></i>
+                                </div>
+                                <div class="feature-box-content">
+                                    <span class="alt-font fs-19 ls-minus-05px fw-600 text-dark-gray d-block lh-26">${clientTrust}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="fs-13 mb-0">We are excited for our work and how it <span class="text-dark-gray text-decoration-line-bottom">positively</span> impacts clients.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+});
+
+
+
+
+
+
+//////////////////
+// BrandValuesSection
+//////////////////
+
+/*
+   Usage:
+
+{% BrandValuesSection {
+  heading: "We work with brands and businesses to ensure they shine.",
+  contentBlocks: [
+    {
+      heading: "Successfully finished projects with creativity.",
+      text: "We value each and every human life placed our hands constantly work towards meeting the expectations of our customers."
+    },
+    {
+      heading: "Work together for better branding solutions.",
+      text: "We value each and every human life placed our hands constantly work towards meeting the expectations of our customers."
+    },
+    {
+      heading: "Committed to deliver unique digital media.",
+      text: "We value each and every human life placed our hands constantly work towards meeting the expectations of our customers."
+    }
+  ]
+} %}
+
+*/
+
+eleventyConfig.addShortcode("BrandValuesSection", function({ heading, contentBlocks }) {
+    return `
+        <section class="pb-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 md-mb-20px sm-mb-0 appear anime-child anime-complete" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [15, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                        <h3 class="text-dark-gray fw-600 ls-minus-2px alt-font">${heading}</h3>
+                    </div>
+                    <div class="col-lg-7 appear anime-child anime-complete" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [15, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                        ${contentBlocks.map(block => `
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="fs-19 fw-600 text-dark-gray w-90 xl-w-100 sm-mb-10px">${block.heading}</div>
+                                </div>
+                                <div class="col-md-7 last-paragraph-no-margin">
+                                    <p>${block.text}</p>
+                                </div>
+                            </div>
+                            <div class="separator-line-1px border-bottom border-color-extra-medium-gray mt-35px mb-35px"></div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+});
+
+
+
+
+
+//////////////////
+// AboutSection
+//////////////////
+
+/*
+   Usage:
+
+{% AboutSection {
+  mainTitle: "about agency",
+  subTitle: "We are work on delivering unique visual solutions.",
+  imageUrl: "https://via.placeholder.com/1920x1080"
+} %}
+
+*/
+
+eleventyConfig.addShortcode("AboutSection", function({ mainTitle, subTitle, imageUrl }) {
+    return `
+    <section class="p-0 top-space-margin position-relative overflow-hidden" style="margin-top: 2em;">
+<div class="container-fluid p-0 h-100 position-relative">
+    <div class="row g-0">
+        <div class="col-xl-4 col-lg-5 d-flex justify-content-center align-items-center ps-10 xxl-ps-6 xl-ps-4 md-ps-4 sm-ps-0 position-relative order-2 order-lg-1 appear anime-child anime-complete" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [30, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+            <div class="vertical-title-center align-items-center justify-content-center flex-shrink-0 w-75px sm-w-50px">
+                <h1 class="title fs-15 alt-font text-dark-gray fw-700 text-uppercase ls-1px text-uppercase d-flex w-auto align-items-center m-0 appear" data-fancy-text="{ &quot;opacity&quot;: [0, 1], &quot;translateY&quot;: [50, 0], &quot;filter&quot;: [&quot;blur(20px)&quot;, &quot;blur(0px)&quot;], &quot;string&quot;: [&quot;${mainTitle}&quot;], &quot;duration&quot;: 400, &quot;delay&quot;: 0, &quot;speed&quot;: 50, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                
+
+                    <span class="splitting anime-text" data-splitting="chars">
+                    ${mainTitle}
+            </span>
+                </h1>
+            </div>
+            <div class="border-start border-color-extra-medium-gray ps-40px sm-ps-20px position-relative z-index-9">
+                <h2 class="text-dark-gray fw-600 alt-font outside-box-right-10 xl-outside-box-right-15 lg-outside-box-right-20 md-me-0 sm-mb-0 ls-minus-3px">${subTitle}</h2>
+            </div>
+        </div>
+        <div class="col-xl-8 col-lg-7 position-relative order-1 order-lg-2 md-mb-50px">
+            <div class="overflow-hidden position-relative">
+                <div class="w-100 appear" data-anime="{ &quot;effect&quot;: &quot;slide&quot;, &quot;direction&quot;: &quot;lr&quot;, &quot;color&quot;: &quot;#f7f7f7&quot;, &quot;duration&quot;: 1000, &quot;delay&quot;: 0 }" style="position: relative;">
+                    <img src="${imageUrl}" alt="" class="w-100 liquid-parallax" data-parallax-liquid="true" data-parallax-position="top" data-parallax-scale="1.05" style="transform: translateY(-13.0677px) scale(1.048); opacity: 1;" data-no-retina="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+    `;
+});
+
+
+
+
+
+
+//////////////////
+// NumberedServiceSection
+//////////////////
+
+/*
+   Usage:
+
+{% NumberedServiceSection {
+  sections: [
+    {
+      number: "01",
+      title: "Branding solutions",
+      description: "We are excited for our work and how it positively impacts clients. With over 12 years of experience, we have been constantly providing excellent web solutions which is a best in-class experience for our clients.",
+      points: [
+        { text: "Brand strategy" },
+        { text: "Video production" },
+        { text: "Research and testing" },
+        { text: "Usability consulting" },
+        { text: "Art direction" },
+        { text: "Graphic design" },
+        { text: "Content creation" },
+        { text: "Web development" }
+      ],
+      imageUrls: [
+        "https://via.placeholder.com/600x400",
+        "https://via.placeholder.com/600x400"
+      ]
+    },
+    {
+      number: "02",
+      title: "Digital Marketing",
+      description: "Leveraging digital channels to enhance your business presence with measurable results.",
+      points: [
+        { text: "SEO Optimization" },
+        { text: "Pay Per Click" },
+        { text: "Email Marketing" },
+        { text: "Social Media Marketing" },
+        { text: "Content Marketing" },
+        { text: "Affiliate Marketing" },
+        { text: "Online PR" },
+        { text: "Inbound Marketing" }
+      ],
+      imageUrls: [
+        "https://via.placeholder.com/600x400",
+        "https://via.placeholder.com/600x400"
+      ]
+    }
+  ]
+} %}
+
+*/
+
+eleventyConfig.addShortcode("NumberedServiceSection", function({ sections }) {
+    return `
+<section class="pt-0">
+    <div class="container">
+        ${sections.map((section, index) => `
+        <div class="row mb-8">
+            <div class="col-lg-2 col-md-2 text-md-end">
+                <span class="fs-130 xl-fs-100 md-fs-80 lh-100 md-lh-80 alt-font fw-700 text-sliding-line bg-extra-medium-gray">${section.number}</span>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-8 md-mt-15px appear anime-child anime-complete" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [30, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                <h3 class="alt-font fw-600 mb-0 text-dark-gray ls-minus-2px">${section.title}</h3>
+            </div>
+            <div class="col-lg-6 offset-xl-1 md-mt-20px appear anime-child anime-complete" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [30, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                <p>${section.description}</p>
+                <div class="row">
+                    <div class="col-xl-5 col-md-6">
+                        <ul class="p-0 m-0 list-style-02 text-dark-gray fw-500 appear anime-child anime-complete" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [30, 0], &quot;rotateY&quot;:[100, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 800, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                            ${section.points.slice(0, 4).map(point => `<li><i class="fa-solid fa-plus fs-12 me-10px"></i>${point.text}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="col-xl-5 col-md-6">
+                        <ul class="p-0 m-0 list-style-02 text-dark-gray fw-500 appear anime-child anime-complete" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [30, 0], &quot;rotateY&quot;:[100, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 800, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                            ${section.points.slice(4).map(point => `<li><i class="fa-solid fa-plus fs-12 me-10px"></i>${point.text}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 sm-mb-30px skrollable skrollable-between" data-bottom-top="transform: translate3d(0, -30px, 0px);" data-top-bottom="transform: translate3d(0, 30px, 0px);">
+                <div class="position-relative appear" data-anime="{ &quot;effect&quot;: &quot;slide&quot;, &quot;direction&quot;: &quot;lr&quot;, &quot;color&quot;: &quot;#f7f7f7&quot;, &quot;duration&quot;: 1000, &quot;delay&quot;: 0 }" style="position: relative;">
+                    <img src="${section.imageUrls[0]}" alt="" data-no-retina="" style="opacity: 1;">
+                </div>
+            </div>
+            <div class="col-md-4  skrollable skrollable-between" data-bottom-top="transform: translate3d(0, 30px, 0px);" data-top-bottom="transform: translate3d(0, -30px, 0px);">
+                <div class="position-relative appear" data-anime="{ &quot;effect&quot;: &quot;slide&quot;, &quot;direction&quot;: &quot;rl&quot;, &quot;color&quot;: &quot;#f7f7f7&quot;, &quot;duration&quot;: 1000, &quot;delay&quot;: 0 }" style="position: relative;">
+                    <img src="${section.imageUrls[1]}" alt="" data-no-retina="" style="opacity: 1;">
+                </div>
+            </div>
+        </div>
+        `).join('')}
+    </div>
+</section>
+    `;
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////
+// ChoosePriceSaaSSection
+//////////////////
+
+/*
+   Usage:
+
+{% ChoosePriceSaaSSection {
+  plans: [
+    {
+      title: "Starter",
+      description: "Individual",
+      price: "29",
+      features: ["Marketing strategy", "Competitive work analysis", "Social media share audit", "Monthly management"],
+      featureIcons: ["check", "check", "x", "x"],
+      link: "#",
+      planType: "standard"
+    },
+    {
+      title: "Professional",
+      description: "Business",
+      price: "39",
+      features: ["Marketing strategy", "Competitive work analysis", "Social media share audit", "Monthly management"],
+      featureIcons: ["check", "check", "check", "x"],
+      link: "#",
+      planType: "popular"
+    },
+    {
+      title: "Enterprise",
+      description: "Corporate",
+      price: "59",
+      features: ["Marketing strategy", "Competitive work analysis", "Social media share audit", "Monthly management"],
+      featureIcons: ["check", "check", "check", "check"],
+      link: "#",
+      planType: "standard"
+    }
+  ]
+} %}
+
+*/
+
+eleventyConfig.addShortcode("ChoosePriceSaaSSection", function({ plans }) {
+    return `
+<section class="pt-4">
+    <div class="container">
+        <div class="row align-items-end pricing-table-style-05 g-0 mb-6 justify-content-center">
+            ${plans.map(plan => `
+            <div class="col-lg-4 col-md-8 md-mb-30px appear anime-complete" data-anime="{ &quot;translateX&quot;: [${plan.planType === 'popular' ? '0' : '50'}, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 1200, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }" style="">
+                <div class="${plan.planType === 'popular' ? 'bg-dark-gray' : 'border-radius-6px'} position-relative overflow-hidden">
+                    ${plan.planType === 'popular' ? '<div class="p-10px fw-700 fs-14 text-white bg-dark-gray text-uppercase text-center">Popular</div>' : ''}
+                    <div class="pricing-header pt-45px pb-10px ${plan.planType === 'popular' ? 'bg-white' : ''} border-radius-6px text-center position-relative top-minus-3px">
+                        <span class="ps-25px pe-25px mb-15px text-uppercase text-dark-gray fs-14 lh-34 fw-600 border-radius-100px bg-white border border-color-extra-medium-gray box-shadow-medium-bottom d-inline-block">${plan.title}</span>
+                        <h5 class="fw-700 mb-0 text-dark-gray alt-font">${plan.description}</h5>
+                        <div class="pricing-body pt-35px">
+                            <ul class="p-0 m-0 list-style-02 text-center text-md-start">
+                                ${plan.features.map((feature, index) => `
+                                <li class="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
+                                    <span class="d-flex align-self-center justify-content-center bg-${plan.featureIcons[index] === 'check' ? 'green' : 'red'} h-20px w-20px border-radius-100 me-10px">
+                                        <i class="bi bi-${plan.featureIcons[index]} align-self-center text-white fs-14"></i>
+                                    </span>${feature}
+                                </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row align-items-center pt-25px pb-25px">
+                        <div class="col text-center last-paragraph-no-margin d-flex align-items-center justify-content-center">
+                            <h3 class="alt-font text-${plan.planType === 'popular' ? 'white' : 'dark-gray'} mb-0 me-15px fw-700 ls-minus-2px">$${plan.price}</h3>
+                            <p class="w-120px ${plan.planType === 'popular' ? 'text-white opacity-5' : 'fs-15 lh-22 text-start'}">Per user/month billed annually*</p>
+                        </div>
+                    </div>
+                    <div class="pricing-footer ps-12 pe-12 pb-8 text-center">
+                        <a href="${plan.link}" class="btn btn-large btn-${plan.planType === 'popular' ? 'white' : 'dark-gray'} btn-box-shadow btn-hover-animation-switch btn-round-edge w-100 text-transform-none mb-15px fw-700">
+                            <span>
+                                <span class="btn-text">Join this plan </span>
+                                <span class="btn-icon"><i class="feather icon-feather-arrow-right"></i></span>
+                                <span class="btn-icon"><i the="feather icon-feather-arrow-right"></i></span>
+                            </span>
+                        </a>
+                        <span class="fs-16 ${plan.planType === 'popular' ? 'text-white opacity-5 fw-300' : ''}">Cancel anytime</span>
+                    </div>
+                </div>
+            </div>
+            `).join('')}
+        </div>
+    </div>
+</section>
+    `;
+});
+
+
+
+
+
+//////////////////
+// CustomerLoveSection
+//////////////////
+
+/*
+   Usage:
+
+{% CustomerLoveSection {
+  backgroundUrl: "https://via.placeholder.com/1920x1080/vertical-line-bg-medium-gray.svg",
+  title: "Loved by most valuable customers",
+  testimonials: [
+    {
+      image: "https://via.placeholder.com/150",
+      content: "Every element is designed beautifully and perfect!",
+      detail: "These are great headphones for music and movies for the price. I have never owned a big-money pair of headphones. It's a good pair of headphones.",
+      author: "Shoko Mugikura",
+      position: "Google Design"
+    },
+    {
+      image: "https://via.placeholder.com/150",
+      content: "Simple and easy to integrate and build the website!",
+      detail: "I was surprised at the sound quality from these phones right out of the box. I'm a fan of the sound and normally use with my home equipment.",
+      author: "Herman Miller",
+      position: "Apple Design"
+    }
+  ],
+  reviewCount: "3,583",
+  reviewSourceLogo: "https://via.placeholder.com/50",
+  reviewSourceUrl: "https://www.amazon.com/"
+} %}
+
+*/
+
+eleventyConfig.addShortcode("CustomerLoveSection", function({ backgroundUrl, title, testimonials, reviewCount, reviewSourceLogo, reviewSourceUrl }) {
+    return `
+<section id="review" class="background-position-center-top" style="background-image: url('${backgroundUrl}')">
+    <div class="container">
+        <div class="row justify-content-center mb-1">
+            <div class="col-xl-7 col-lg-9 col-md-10 text-center appear anime-child anime-complete" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [50, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 1200, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                <h2 class="h1 fw-800 text-dark-gray ls-minus-3px" style="">${title}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center appear anime-complete" data-anime="{ &quot;rotateX&quot;: [-40, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 1200, &quot;delay&quot;: 100, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }" style="">
+                <div class="swiper swiper-horizontal-3d pt-8 pb-5 lg-pt-10 lg-pb-10 md-pt-12 sm-pt-21 sm-pb-11 swiper-pagination-bottom testimonials-style-04 swiper-coverflow swiper-3d swiper-initialized swiper-horizontal swiper-watch-progress" data-slider-options="{ &quot;loop&quot;: true, &quot;slidesPerView&quot;: 1,&quot;centeredSlides&quot;:true,&quot;effect&quot;:&quot;coverflow&quot;,&quot;coverflowEffect&quot;:{&quot;rotate&quot;:0,&quot;stretch&quot;:100,&quot;depth&quot;:150,&quot;modifier&quot;:1.5,&quot;slideShadows&quot;:true}, &quot;navigation&quot;: { &quot;nextEl&quot;: &quot;.swiper-button-next-nav.slider-navigation-style-04&quot;, &quot;prevEl&quot;: &quot;.swiper-button-previous-nav.slider-navigation-style-04&quot; }, &quot;autoplay&quot;: { &quot;delay&quot;: 5000, &quot;disableOnInteraction&quot;: false }, &quot;pagination&quot;: { &quot;el&quot;: &quot;.swiper-pagination-04&quot;, &quot;clickable&quot;: true, &quot;dynamicBullets&quot;: true }, &quot;breakpoints&quot;: { &quot;768&quot;: { &quot;slidesPerView&quot;: 2 } } }">
+                    <div class="swiper-wrapper" id="swiper-wrapper-581d28197277a7e8" aria-live="off">
+                        ${testimonials.map(testimonial => `
+                        <div class="swiper-slide bg-white border-radius-4px" role="group" aria-label="slide" style="width: 465px;">
+                            <div class="position-relative ps-13 pe-13 md-ps-10 md-pe-10 sm-ps-7 sm-pe-7 pt-20 pb-10 lg-pt-22 md-pt-30 sm-pt-20">
+                                <img alt="" src="${testimonial.image}" class="absolute-middle-center top-0px rounded-circle w-150px xs-w-100px border border-color-white box-shadow-extra-large border-8" data-no-retina="">
+                                <div class="testimonials-content">
+                                    <span class="text-dark-gray fs-18 lh-30 fw-600 mb-5px d-block">${testimonial.content}</span>
+                                    <p class="mb-25px">${testimonial.detail}</p>
+                                </div>
+                                <div class="testimonials-author fs-19 mb-5px text-gradient-dark-purple-watermelon fw-700 d-inline-block">${testimonial.author}</div>
+                                <div class="testimonials-position fs-15 lh-20">${testimonial.position}</div>
+                            </div>
+                        </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center appear anime-complete" data-anime="{ &quot;translateY&quot;: [50, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 1200, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }" style="">
+                <div class="text-center bg-dark-gray text-white fs-16 lh-36 border-radius-30px d-inline-block ps-20px pe-20px align-middle me-10px mt-10px mb-10px"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i the bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                <h6 class="text-dark-gray fw-400 mb-0 d-inline-block align-middle ls-minus-1px">Check all <span class="fw-700">${reviewCount}</span> readers reviews on <a href="${reviewSourceUrl}" target="_blank"><img src="${reviewSourceLogo}" alt="" data-no-retina=""></a></h6>
+            </div>
+        </div>
+    </div>
+</section>
+    `;
+});
+
+
+
+
+//////////////////
+// NumberedLetteredBigMenu
+//////////////////
+
+/*
+   Usage:
+
+{% NumberedLetteredBigMenu {
+  items: [
+    {
+      number: "01",
+      name: "cropo",
+      link: "demo-design-agency-single-project-simple.html",
+      imageUrl: "https://via.placeholder.com/1920x1080"
+    },
+    {
+      number: "02",
+      name: "grino",
+      link: "demo-design-agency-single-project-simple.html",
+      imageUrl: "https://via.placeholder.com/1920x1080"
+    },
+    {
+      number: "03",
+      name: "adidas",
+      link: "demo-design-agency-single-project-simple.html",
+      imageUrl: "https://via.placeholder.com/1920x1080"
+    },
+    
+  ]
+} %}
+
+*/
+
+
+
+eleventyConfig.addShortcode("NumberedLetteredBigMenu", function({ items }) {
+    return `
+<section class="big-section threeD-letter-menu d-flex align-items-center">
+    <div class="container">
+        <div class="row align-items-center position-relative z-index-9">
+            ${items.map(item => `
+            <div class="col-auto menu-item pe-50px position-relative">
+                <div class="fs-14 fw-500 opacity-6 text-dark-gray position-absolute top-15px left-minus-5px">${item.number}</div>
+                <a href="${item.link}" class="menu-item-text fs-150 md-fs-120 lh-100 text-dark-gray alt-font ls-minus-3px">
+                <span data-splitting="chars"> ${item.name}</span>
+                </a>
+                <div class="hover-reveal d-none d-xl-block">
+                    <div class="hover-reveal__inner">
+                        <div class="hover-reveal__img" style="background-image: url(${item.imageUrl});">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `).join('')}
+        </div>
+    </div>
+</section>
+    `;
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3693,3 +5142,8 @@ eleventyConfig.addShortcode("FaqBoxSection", function({ questions, title, subtit
 		pathPrefix: "/",
 	};
 };
+
+
+
+
+

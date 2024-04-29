@@ -15,10 +15,7 @@
         rel="apple-touch-icon" sizes="114x114" href="/public/images/apple-touch-icon-114x114.png"> <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
         <link
-        rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-		
-		<!-- style sheets and font icons  -->
-		
+        rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- style sheets and font icons  -->
         {%- css %}{% include "public/css/vendors.min.css" %}{% endcss %}
         {%- css %}{% include "public/css/icon.min.css" %}{% endcss %}
         {%- css %}{% include "public/css/style.css" %}{% endcss %}
@@ -47,11 +44,14 @@
         </main>
         <footer></footer>
         <!-- Scripts -->
+        {# <script src="/public/js/jquery.js"></script>
+        <script src="/public/js/vendors.min.js"></script>
+        <script src="/public/js/main.js"></script> #}
         {%- js %}{% include "public/js/jquery.js" %}{% endjs %}
-        {%- js %}{% include "public/js/vendors.min.js" %}{% endjs %}
-        {%- js %}{% include "public/js/main.js" %}{% endjs %}
-        <script>{% getBundle "js" %}</script>
-        <!-- Google Maps API for templates that need maps -->
+                {%- js %}{% include "public/js/vendors.js" %}{% endjs %}
+                {%- js %}{% include "public/js/main.js" %}{% endjs %}
+                <script >{% getBundle "js"  %}</script>
+    <!-- Google Maps API for templates that need maps -->
         {# <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script> #}
     </body>
 </html>

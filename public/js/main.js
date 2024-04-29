@@ -609,79 +609,162 @@
     }
 
     // Horizontal portfolio 
+
+
+
     const ThreeDLetterMenuEffect = () => {
         $(".threeD-letter-menu .menu-item").each(function () {
             let _self = this,
-                    MenuLink = _self.querySelector(".menu-item-text"),
-                    MenuText = MenuLink.querySelector("span"),
-                    imgHeight = _self.querySelector(".hover-reveal").clientHeight,
-                    imgWidth = _self.querySelector(".hover-reveal").clientWidth,
-                    windowHeight = window.innerHeight,
-                    windowWidth = window.innerWidth;
-
-            MenuLink.innerHTML = `<span>${MenuText.innerHTML}</span><span class="clone">${MenuText.innerHTML}</span>`
-
+                MenuLink = _self.querySelector(".menu-item-text"),
+                MenuText = MenuLink.querySelector("span"),
+                imgHeight = _self.querySelector(".hover-reveal").clientHeight,
+                imgWidth = _self.querySelector(".hover-reveal").clientWidth,
+                windowHeight = window.innerHeight,
+                windowWidth = window.innerWidth;
+    
+            // Ensure that splitting is applied to the span correctly
+            MenuLink.innerHTML = `<span>${MenuText.textContent}</span><span class="clone">${MenuText.textContent}</span>`;
+          
             MenuLink.querySelectorAll("span").forEach(function (item) {
-                item.setAttribute("data-splitting", true);
+                item.setAttribute("data-splitting", 'chars');
                 Splitting();
             });
-
+        
+    
             _self.addEventListener("mouseenter", function () {
                 anime({
                     targets: _self.querySelector(".hover-reveal"),
                     opacity: [0, 1],
                     duration: 1000,
                     easing: "easeOutQuad"
-                })
-
+                });
+    
                 anime({
                     targets: _self.querySelector(".hover-reveal__inner"),
                     scale: [0.5, 1],
                     easing: "easeOutQuad"
-                })
-
+                });
+    
                 anime({
                     targets: _self.querySelector(".hover-reveal__img"),
                     scale: [2, 1],
                     easing: "easeOutQuad"
-                })
-            })
-
+                });
+            });
+    
             _self.addEventListener("mouseleave", function () {
                 anime({
                     targets: _self.querySelector(".hover-reveal"),
                     opacity: 0,
                     duration: 1000,
                     easing: "easeOutQuad"
-                })
-
+                });
+    
                 anime({
                     targets: _self.querySelector(".hover-reveal__inner"),
                     scale: [1, 0.5],
                     easing: "easeOutQuad"
-                })
-
+                });
+    
                 anime({
                     targets: _self.querySelector(".hover-reveal__img"),
                     scale: [1, 2],
                     easing: "easeOutQuad"
-                })
-            })
-
+                });
+            });
+    
             if (typeof TweenLite !== "undefined") {
                 document.addEventListener("mousemove", function (e) {
                     let posX = e.clientX + 20,
-                            posY = e.clientY + 20;
-
-                    TweenLite.to(_self.querySelector(".hover-reveal"), .6, {
+                        posY = e.clientY + 20;
+    
+                    TweenLite.to(_self.querySelector(".hover-reveal"), 0.6, {
                         x: posX + imgWidth > windowWidth ? e.clientX - imgWidth : posX,
                         y: posY + imgHeight > windowHeight ? e.clientY - imgHeight : posY,
-                    })
-                })
+                    });
+                });
             }
         });
-    }
+    };
     ThreeDLetterMenuEffect();
+
+    
+
+
+    
+    // const ThreeDLetterMenuEffect = () => {
+    //     $(".threeD-letter-menu .menu-item").each(function () {
+    //         let _self = this,
+    //                 MenuLink = _self.querySelector(".menu-item-text"),
+    //                 MenuText = MenuLink.querySelector("span"),
+    //                 imgHeight = _self.querySelector(".hover-reveal").clientHeight,
+    //                 imgWidth = _self.querySelector(".hover-reveal").clientWidth,
+    //                 windowHeight = window.innerHeight,
+    //                 windowWidth = window.innerWidth;
+
+    //         MenuLink.innerHTML = `<span>${MenuText.innerHTML}</span><span class="clone">${MenuText.innerHTML}</span>`
+
+    //         MenuLink.querySelectorAll("span").forEach(function (item) {
+    //             item.setAttribute("data-splitting", true);
+    //             Splitting();
+    //         });
+
+    //         _self.addEventListener("mouseenter", function () {
+    //             anime({
+    //                 targets: _self.querySelector(".hover-reveal"),
+    //                 opacity: [0, 1],
+    //                 duration: 1000,
+    //                 easing: "easeOutQuad"
+    //             })
+
+    //             anime({
+    //                 targets: _self.querySelector(".hover-reveal__inner"),
+    //                 scale: [0.5, 1],
+    //                 easing: "easeOutQuad"
+    //             })
+
+    //             anime({
+    //                 targets: _self.querySelector(".hover-reveal__img"),
+    //                 scale: [2, 1],
+    //                 easing: "easeOutQuad"
+    //             })
+    //         })
+
+    //         _self.addEventListener("mouseleave", function () {
+    //             anime({
+    //                 targets: _self.querySelector(".hover-reveal"),
+    //                 opacity: 0,
+    //                 duration: 1000,
+    //                 easing: "easeOutQuad"
+    //             })
+
+    //             anime({
+    //                 targets: _self.querySelector(".hover-reveal__inner"),
+    //                 scale: [1, 0.5],
+    //                 easing: "easeOutQuad"
+    //             })
+
+    //             anime({
+    //                 targets: _self.querySelector(".hover-reveal__img"),
+    //                 scale: [1, 2],
+    //                 easing: "easeOutQuad"
+    //             })
+    //         })
+
+    //         if (typeof TweenLite !== "undefined") {
+    //             document.addEventListener("mousemove", function (e) {
+    //                 let posX = e.clientX + 20,
+    //                         posY = e.clientY + 20;
+
+    //                 TweenLite.to(_self.querySelector(".hover-reveal"), .6, {
+    //                     x: posX + imgWidth > windowWidth ? e.clientX - imgWidth : posX,
+    //                     y: posY + imgHeight > windowHeight ? e.clientY - imgHeight : posY,
+    //                 })
+    //             })
+    //         }
+    //     });
+    // }
+    // ThreeDLetterMenuEffect();
 
     // Minimal portfolio 
     const sticky_container = document.querySelector(".sticky-image-distortion-wrapper");
@@ -979,6 +1062,7 @@
 
     // Vertical counter
     $('.vertical-counter').each(function () {
+        console.log("counter")
         var _this = $(this),
                 counterValue = _this.attr('data-to'),
                 individualValue = counterValue.toString().split(''),
