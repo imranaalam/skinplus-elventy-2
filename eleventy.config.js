@@ -248,10 +248,10 @@ module.exports = function (eleventyConfig) {
         <section class="p-0">
             <div class="container-fluid p-0"> 
                 <div class="row align-items-center g-0">
-                    <div class="col-xl-6 col-lg-6 position-relative top-minus-2px md-mb-30px" data-anime='{ "effect": "slide", "color": "#f2e0dc", "direction":"lr", "easing": "easeOutQuad", "duration": 600, "delay":500}'> 
+                    <div class="col-xl-6 col-lg-6 position-relative top-minus-2px md-mb-30p appear " data-anime='{ "effect": "slide", "color": "#f2e0dc", "direction":"lr", "easing": "easeOutQuad", "duration": 600, "delay":500}'> 
                         <img src="${mainImageUrl}" class="border-radius-rb-50px" alt="">
                     </div>
-                    <div class="col-xl-4 col-lg-6 offset-xl-1 lg-ps-15px lg-pe-15px text-center text-lg-start" data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 300, "staggervalue": 300, "easing": "easeOutQuad" }'> 
+                    <div class="col-xl-4 col-lg-6 offset-xl-1 lg-ps-15px lg-pe-15px text-center text-lg-start appear anime-child anime-complete" data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 300, "staggervalue": 300, "easing": "easeOutQuad" }'> 
                         <span class="fs-16 text-uppercase text-gradient-san-blue-new-york-red fw-700 mb-10px ls-1px d-inline-block">${title}</span>
                         <h2 class="alt-font fw-400 text-dark-gray w-75 xl-w-90 lg-w-100 ls-minus-1px">${title}</h2>
                         <p class="mb-30px w-60 xl-w-90 lg-w-100 lg-mb-25px">${description}</p>
@@ -1019,7 +1019,7 @@ statsBox "4.98", "98", "200", "4.98 rating.",
                             </a>
                         </div>
                         <div class="col-xl-8 ps-5 col-lg-7">
-                            <div class="outside-box-right-25 sm-outside-box-right-0 appear anime-complete" data-anime="{ &quot;translateY&quot;: [0, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 1200, &quot;delay&quot;: 100, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot;}">
+                            <div class="outside-box-right-25 sm-outside-box-right-0" data-anime="{ &quot;translateY&quot;: [0, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 1200, &quot;delay&quot;: 100, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot;}">
                                 <div class="swiper magic-cursor ps-15px md-ps-0 swiper-initialized swiper-horizontal swiper-backface-hidden" data-slider-options="{ &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 30, &quot;loop&quot;: true, &quot;autoplay&quot;: { &quot;delay&quot;: 4000, &quot;disableOnInteraction&quot;: false },  &quot;pagination&quot;: { &quot;el&quot;: &quot;.slider-four-slide-pagination-1&quot;, &quot;clickable&quot;: true, &quot;dynamicBullets&quot;: false }, &quot;keyboard&quot;: { &quot;enabled&quot;: true, &quot;onlyInViewport&quot;: true }, &quot;breakpoints&quot;: { &quot;1200&quot;: { &quot;slidesPerView&quot;: 3 }, &quot;768&quot;: { &quot;slidesPerView&quot;: 2 }, &quot;320&quot;: { &quot;slidesPerView&quot;: 1 } }, &quot;effect&quot;: &quot;slide&quot;}">
                                     <div class="swiper-wrapper pt-30px pb-20px" aria-live="off">
                                         ${slideItems}
@@ -1442,14 +1442,20 @@ statsBox "4.98", "98", "200", "4.98 rating.",
 		}
 	);
 
-	///////////////////
-	// DynamicCreativeSolutionsSection
-	//////////////////
 
-	/*
-   Usage
-   /*
-   {% DynamicCreativeSolutionsSection {
+
+
+
+
+
+    ///////////////////
+// RevolvingSolutionsSection
+///////////////////
+
+/*
+   Usage:
+
+   {% RevolvingSolutionsSection {
     backgroundImageUrl: "url('https://via.placeholder.com/1920x1080')",
     videoUrl: "https://www.youtube.com/watch?v=cfXHhfNy7tU",
     rotationWords: ["business!", "problems!", "brands!"],
@@ -1457,19 +1463,14 @@ statsBox "4.98", "98", "200", "4.98 rating.",
    } %}
 */
 
-	eleventyConfig.addShortcode(
-		"DynamicCreativeSolutionsSection",
-		function ({ backgroundImageUrl, videoUrl, rotationWords, contactUrl }) {
-			const rotationWordsMarkup = rotationWords
-				.map(
-					(word) =>
-						`<span class="char">${word
-							.split("")
-							.join('</span><span class="char">')}</span>`
-				)
-				.join("");
+eleventyConfig.addShortcode(
+    "RevolvingSolutionsSection",
+    function ({ backgroundImageUrl, videoUrl, rotationWords, contactUrl }) {
+        const rotationWordsMarkup = rotationWords.map(word =>
+            `<span class="word">${word.split('').map(char => `<span class="char">${char}</span>`).join('')}</span>`
+        ).join('');
 
-			return `
+        return `
         <section class="p-0">
             <div class="container">
                 <div class="row justify-content-center">
@@ -1478,11 +1479,12 @@ statsBox "4.98", "98", "200", "4.98 rating.",
                             <div class="opacity-full-dark bg-gradient-regal-blue-transparent"></div>
                             <div class="row justify-content-center m-0">
                                 <div class="col-lg-7 col-md-8 z-index-1 text-center text-md-start sm-mb-20px">
-                                    <h3 class="text-white mb-0 fw-400 fancy-text-style-4">We make the creative solutions for <span class="fw-600 appear" data-fancy-text='{ "effect": "rotate", "strings": ${JSON.stringify(
-																			rotationWords
-																		)} }'>
-                                        <span class="anime-text words chars splitting" data-splitting="true">${rotationWordsMarkup}</span>
+                                    <h3 class="text-white mb-0 fw-400 fancy-text-style-4">We make the creative solutions for <span class="fw-600 " data-splitting>
+                                        ${rotationWordsMarkup}
                                     </span></h3>
+                                    <script>
+                                    Splitting();
+                                    </script>
                                 </div>
                                 <div class="col-md-2 position-relative z-index-1 text-center sm-mb-20px">
                                     <a href="${videoUrl}" class="position-relative d-inline-block text-center border border-2 border-color-white rounded-circle video-icon-box video-icon-large popup-youtube">
@@ -1499,8 +1501,16 @@ statsBox "4.98", "98", "200", "4.98 rating.",
             </div>
         </section>
     `;
-		}
-	);
+    }
+);
+
+
+
+
+
+
+
+
 
 	///////////////////
 	// AdvancedStatsSection
@@ -2199,7 +2209,7 @@ statsBox "4.98", "98", "200", "4.98 rating.",
         <section>
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-6 md-mb-50px appear" data-anime="{ "effect": "slide", "color": "#005153", "direction":"rl", "easing": "easeOutQuad", "delay":50}" style="position: relative;">
+                    <div class="col-lg-6 md-mb-50px" data-anime="{ "effect": "slide", "color": "#005153", "direction":"rl", "easing": "easeOutQuad", "delay":50}" style="position: relative;">
                         <figure class="position-relative m-0 md-w-90" style="opacity: 1;">
                             <img src="${leftImage}" class="w-90 border-radius-6px" alt="" data-no-retina="">
                             <figcaption class="position-absolute bg-dark-gray border-radius-8px box-shadow-quadruple-large bottom-100px xs-bottom-minus-20px right-minus-30px w-230px xs-w-210px text-center last-paragraph-no-margin">
@@ -5055,6 +5065,1224 @@ eleventyConfig.addShortcode("NumberedLetteredBigMenu", function({ items }) {
 
 
 
+///////////////////
+// WorkImagesSection
+///////////////////
+
+/*
+   Usage:
+
+   {% WorkImagesSection {
+    items: [
+      {
+        link: "demo-design-agency-single-project-simple.html",
+        imageUrl: "https://via.placeholder.com/1920x1080",
+        title: "Pixflow",
+        category: ["digital", "selected"] 
+      },
+      {
+        link: "demo-design-agency-single-project-simple.html",
+        imageUrl: "https://via.placeholder.com/1920x1080",
+        title: "Skoda",
+        category: ["web", "digital"]
+      },
+      {
+        link: "demo-design-agency-single-project-simple.html",
+        imageUrl: "https://via.placeholder.com/1920x1080",
+        title: "Tailoring",
+        category: ["branding", "selected"]
+      }
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("WorkImagesSection", function({ items }) {
+    return `
+<section class="pt-0 md-pb-0">
+    <div class="container-fluid">
+        <div class="row g-0">
+            <div class="col-12 filter-content appear anime-complete" data-anime="{ &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }" style="">
+                <ul class="portfolio-clean portfolio-wrapper grid grid-4col xxl-grid-4col xl-grid-4col lg-grid-4col md-grid-2col sm-grid-2col xs-grid-1col gutter-large" style="position: relative; height: 1602.05px;">
+                    <li class="grid-sizer"></li>
+                    ${items.map(item => `
+                    <li class="grid-item ${item.category.join(' ')} transition-inner-all" style="position: absolute;">
+                        <a href="${item.link}">
+                            <div class="portfolio-box">
+                                <div class="portfolio-image">
+                                    <img src="${item.imageUrl}" alt="" data-no-retina="">
+                                </div>
+                                <div class="portfolio-hover d-flex justify-content-end align-items-end flex-column ps-35px pe-35px pt-5px pb-5px lg-ps-15px lg-pe-15px">
+                                    <div class="d-flex align-items-center justify-content-start flex-wrap text-left w-100">
+                                        <div class="fs-20 fw-600 text-dark-gray portfolio-title ls-minus-05px">${item.title}</div>
+                                        <i class="line-icon-Arrow-OutRight icon-large align-middle text-dark-gray"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    `).join('')}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+    `;
+});
+
+
+
+
+
+///////////////////
+// HistorySection
+///////////////////
+
+/*
+   Usage:
+
+   {% HistorySection {
+    backgroundImageUrl: "url('https://via.placeholder.com/1920x1080')",
+    aboutTitle: "About resorts",
+    mainTitle: "Relax at the luxury resorts around the entire world.",
+    description: "A design-led approach guides the team, implementing practices, products and services that are thoughtful and environmentally sound. Family of professionals that creates intelligent designs that help the face of hospitality.",
+    aboutUrl: "demo-hotel-and-resort-about-us.html",
+    phoneLink: "tel:1800222000",
+    phoneText: "1 800 222 000",
+    historyStartYear: "1995",
+    images: [
+      { imageUrl: "https://via.placeholder.com/600x400" },
+      { imageUrl: "https://via.placeholder.com/600x400" }
+    ],
+    marqueeTexts: [
+      "Our hotel has been present for over 20 years",
+      "We make the best for all our customers",
+      "The resort is built in and around an 18 acres",
+      "Sustainable and meaningful ecosystem of hospitality"
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("HistorySection", function({ backgroundImageUrl, aboutTitle, mainTitle, description, aboutUrl, phoneLink, phoneText, historyStartYear, images, marqueeTexts }) {
+    return `
+    <section class="background-position-center background-repeat" style="background-image: ${backgroundImageUrl}">
+    <div class="container">
+        <div class="row align-items-center mb-12 md-mb-17 xs-mb-25">
+          <div class="col-lg-5 md-mb-50px " data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;opacity&quot;: [0, 1], &quot;rotateY&quot;: [-90, 0], &quot;rotateZ&quot;: [-10, 0], &quot;translateY&quot;: [80, 0], &quot;translateZ&quot;: [50, 0], &quot;staggervalue&quot;: 200, &quot;duration&quot;: 800, &quot;delay&quot;: 200, &quot;easing&quot;: &quot;easeOutCirc&quot; }">
+            <span class="mb-10px text-base-color fw-500 d-block">${aboutTitle}</span>
+                <h2 class="alt-font text-dark-gray ls-minus-2px">${mainTitle}</h2>
+                <p class="w-80 xl-w-100 mb-35px xs-mb-10px">${description}</p>
+                <div class="d-inline-block w-100">
+                    <a href="${aboutUrl}" class="btn btn-extra-large btn-switch-text btn-dark-gray btn-box-shadow btn-round-edge d-inline-block align-middle me-30px xs-me-10px xs-mt-20px">
+                        <span>
+                            <span class="btn-double-text" data-text="About resort">About resort</span>
+                        </span>
+                    </a>
+                    <div class="fs-20 fw-600 d-inline-block align-middle text-dark-gray xs-mt-20px"><a href="${phoneLink}"><i class="bi bi-telephone-outbound text-medium-gray icon-small me-10px"></i>${phoneText}</a></div>
+                </div>
+            </div>
+            <div class="col-lg-6 position-relative offset-lg-1">
+              <span
+              class="fs-90 position-absolute left-60px md-left-100px sm-left-70px xs-left-10px top-90px xs-top-50px text-dark-gray fw-700 z-index-1 skrollable skrollable-between "
+              data-bottom-top="transform: translateY(50px) scale(1,1)"
+              data-top-bottom="transform: translateY(-50px) scale(1,1)"
+              data-anime='{ "opacity": [0,1], "duration": 600, "delay": 1500, "staggervalue": 300, "easing": "easeOutQuad" }'
+              style="transform: translateY(-13.1661px) scale(1, 1)"
+              >
+              <span class="fs-15 fw-600 d-table lh-16 text-uppercase text-medium-gray">Started in</span>${historyStartYear}</span>
+                <div class="w-75 overflow-hidden position-relative xs-w-80 border-radius-4px float-end "   data-anime='{ "effect": "slide", "color": "#A0875B", "direction":"rl", "easing": "easeOutQuad", "duration": 600, "delay":400}'           style="position: relative">
+                    <img class="w-100" src="${images[0].imageUrl}" alt="" data-no-retina=""   style="opacity: 1">
+                </div>
+                <div class="position-absolute left-minus-70px md-left-15px bottom-minus-50px w-55 overflow-hidden skrollable skrollable-between " 
+                data-bottom-top="transform: translateY(50px)"
+                 data-top-bottom="transform: translateY(-50px)"
+                 data-anime='{ "effect": "slide", "color": "#ffffff", "direction":"lr", "easing": "easeOutQuad", "duration": 600, "delay":500}'
+                 style="transform: translateY(-4.54444px); position: relative"
+             >
+                    <img class="w-100 border-radius-4px" src="${images[1].imageUrl}" alt="" data-no-retina=""           style="opacity: 1">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row position-relative">
+            <div class="col swiper swiper-width-auto feather-shadow text-center swiper-initialized swiper-horizontal swiper-backface-hidden" data-slider-options='{
+                "slidesPerView": "auto", "spaceBetween": 0, "centeredSlides": true, "speed": 10000, "loop": true, "pagination": { "el": ".slider-four-slide-pagination-2", "clickable": false }, "allowTouchMove": false, "autoplay": { "delay": 1, "disableOnInteraction": false }, "navigation": { "nextEl": ".slider-four-slide-next-2", "prevEl": ".slider-four-slide-prev-2" }, "keyboard": { "enabled": true, "onlyInViewport": true }, "effect": "slide" }'>
+                <div class="swiper-wrapper marquee-slide" style="transition-duration: 10000ms; transform: translate3d(-1471.22px, 0px, 0px);" id="swiper-wrapper-e9e779eb9e66aae4" aria-live="off">
+                    ${marqueeTexts.map(text => `<div class="swiper-slide" role="group" aria-label="1 / ${marqueeTexts.length}">
+                        <div class="fs-28 sm-fs-22 alt-font ls-minus-05px text-dark-gray"><span class="w-10px h-10px border border-radius-100 border-color-base-color d-inline-block ms-50px me-50px md-ms-30px md-me-30px"></span>${text}</div>
+                    </div>`).join('')}
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+    `;
+  });
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////
+// StepsTimelineSection
+///////////////////
+
+/*
+   Usage:
+
+   {% StepsTimelineSection {
+    processTitle: "Process cycle",
+    mainTitle: "Business <span class='text-highlight'>timeline<span class='bg-base-color opacity-3 h-10px bottom-10px'></span></span>",
+    steps: [
+      {
+        number: "01",
+        title: "Business founded",
+        description: "Lorem ipsum is simply text the printing typesetting standard dummy."
+      },
+      {
+        number: "02",
+        title: "Build new office",
+        description: "Lorem ipsum is simply text the printing typesetting standard dummy."
+      },
+      {
+        number: "03",
+        title: "Relocates headquarter",
+        description: "Lorem ipsum is simply text the printing typesetting standard dummy."
+      },
+      {
+        number: "04",
+        title: "Revenues of millions",
+        description: "Lorem ipsum is simply text the printing typesetting standard dummy."
+      }
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("StepsTimelineSection", function({ processTitle, mainTitle, steps }) {
+    return `
+<section class="position-relative half-section pt-0">
+    <div class="container">
+        <div class="row justify-content-center mb-1">
+            <div class="col-lg-6 text-center appear " data-anime="{ 'el': 'childs', 'translateY': [30, 0], 'opacity': [0,1], 'duration': 600, 'delay': 0, 'staggervalue': 300, 'easing': 'easeOutQuad' }">
+                <div class="bg-base-color fw-600 text-white text-uppercase ps-20px pe-20px fs-12 border-radius-100px d-inline-block mb-15px">${processTitle}</div>
+                <h2 class="fw-700 alt-font text-dark-gray ls-minus-1px">${mainTitle}</h2>
+            </div>
+        </div>
+        <div class="row row-cols-auto row-cols-xl-4 row-cols-sm-2 position-relative appear anime-child anime-complete" data-anime="{ 'el': 'childs', 'translateX': [50, 0], 'opacity': [0,1], 'duration': 600, 'delay':100, 'staggervalue': 150, 'easing': 'easeOutQuad' }">
+            ${steps.map((step, index) => `
+            <div class="col ${index % 2 === 0 ? 'align-self-start' : 'align-self-end mt-40px lg-mt-0'} xs-mb-40px" style="">
+                <div class="feature-box text-start ps-30px pe-30px sm-ps-20px sm-pe-20px">
+                    <div class="feature-box-icon position-absolute left-0px top-0px">
+                        <h1 class="alt-font fs-110 text-outline text-outline-width-1px text-outline-color-dark-gray fw-800 ls-minus-1px opacity-2 mb-0">${step.number}</h1>
+                    </div>
+                    <div class="feature-box-content last-paragraph-no-margin pt-30 lg-pt-60px sm-pt-40px">
+                        <span class="alt-font text-dark-gray fs-20 d-inline-block fw-600 mb-10px">${step.title}</span>
+                        <p>${step.description}</p>
+                        <span class="w-60px h-2px bg-dark-gray d-inline-block"></span>
+                    </div>
+                </div>
+            </div>
+            `).join('')}
+        </div>
+    </div>
+</section>
+    `;
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////
+// MissionVisionSection
+///////////////////
+
+/*
+   Usage:
+
+   {% MissionVisionSection {
+    imageUrl: "images/demo-medical-about-02.jpg",
+    videoUrl: "https://www.youtube.com/watch?v=cfXHhfNy7tU",
+    missionTitle: "Our mission and vision",
+    sections: [
+      {
+        number: "01",
+        title: "Our hospital mission",
+        content: "Velit officia consequat duis enim velit mollit amet minim mollit non."
+      },
+      {
+        number: "02",
+        title: "Our hospital vision",
+        content: "Velit officia consequat duis enim velit mollit amet minim mollit non.",
+        expanded: true
+      }
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("MissionVisionSection", function({ imageUrl, videoUrl, missionTitle, sections }) {
+    return `
+<section>
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-6 md-mb-50px position-relative appear anime-complete" data-anime="{ &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }" style="">
+                <div class="atropos atropos-rotate-touch" data-atropos="" data-atropos-perspective="2450">
+                    <div class="atropos-scale">
+                        <div class="atropos-rotate">
+                            <div class="atropos-inner">
+                                <img src="${imageUrl}" alt="" class="border-radius-6px w-100" data-no-retina="">
+                                <span class="atropos-highlight" style="transform: translate3d(0px, 0px, 0px);"></span>
+                            </div>
+                            <span class="atropos-shadow" style="transform: translate3d(0px, 0px, -50px) scale(1);"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute-middle-center text-white-space-nowrap z-index-9">
+                    <a href="${videoUrl}" class="btn btn-extra-large btn-white left-icon btn-box-shadow btn-rounded popup-youtube"><i class="fa-brands fa-youtube"></i>See our virtual tour</a>
+                </div>
+            </div>
+            <div class="col-xl-5 offset-xl-1 col-lg-6 appear anime-child anime-complete" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [30, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                <span class="fs-18 fw-600 text-dark-gray mb-20px d-flex align-items-center" style=""><span class="text-center w-60px h-60px d-flex justify-content-center align-items-center rounded-circle bg-light-sea-green-transparent-light align-middle me-15px"><i class="bi bi-trophy text-base-color fs-20"></i></span>${missionTitle}</span>
+                <h2 class="fw-800 text-dark-gray ls-minus-2px mb-40px md-mb-35px" style="">Latest medicine, exceptional care.</h2>
+                <div class="accordion accordion-style-05" id="accordion-style-05" style="">
+                    ${sections.map(section => `
+                    <div class="accordion-item bg-white ${section.expanded ? 'active-accordion' : ''}">
+                        <h2 class="number alt-font mb-0 text-base-color fw-600 text-outline text-outline-color-base-color">${section.number}</h2>
+                        <div class="accordion-header">
+                            <a href="#" data-bs-toggle="collapse" data-bs-target="#accordion-style-05-${section.number}" aria-expanded="${section.expanded ? 'true' : 'false'}" data-bs-parent="#accordion-style-05" class="${section.expanded ? '' : 'collapsed'}">
+                                <div class="accordion-title fs-18 position-relative pe-20px text-dark-gray fw-600 mb-0">${section.title}</div>
+                            </a>
+                        </div>
+                        <div id="accordion-style-05-${section.number}" class="accordion-collapse collapse ${section.expanded ? 'show' : ''}" data-bs-parent="#accordion-style-05" style="">
+                            <div class="accordion-body last-paragraph-no-margin">
+                                <p>${section.content}</p>
+                            </div>
+                        </div>
+                    </div>
+                    `).join('')}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    `;
+});
+
+
+
+
+
+
+
+
+  
+
+
+  eleventyConfig.addShortcode("ProductCardSliderWithPricesSection", function({ title, subtitle, items }) {
+    const sliderItems = items.map((item, index) => `
+      <div class="swiper-slide ${index === 0 ? 'swiper-slide-active' : ''}" style="width: 438px; margin-right: 30px;">
+        <div class="box-shadow-extra-large services-box-style-01 hover-box last-paragraph-no-margin border-radius-4px overflow-hidden">
+          <div class="position-relative box-image">
+            <img src="${item.imageUrl}" alt="" data-no-retina="">
+          </div>
+          <div class="bg-white">
+            <div class="ps-50px pe-50px pt-35px sm-p-35px sm-pb-0">
+              <a href="${item.link}" class="d-inline-block fs-19 primary-font fw-500 text-dark-gray mb-5px">${item.name}</a>
+              <p>${item.description}</p>
+            </div>
+            <div class="border-top border-color-extra-medium-gray pt-20px pb-20px ps-50px pe-50px mt-30px sm-ps-35px sm-pe-35px position-relative">
+              <div class="fs-17"><span class="text-dark-gray fs-26 alt-font me-5px">$${item.price}</span> Per month</div>
+              <a href="${item.link}" class="d-flex justify-content-center align-items-center w-55px h-55px lh-55 rounded-circle bg-dark-gray position-absolute right-40px top-minus-30px"><i class="bi bi-arrow-right-short text-white icon-very-medium"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  
+    return `
+      <section class="pt-3 bg-very-light-gray overflow-hidden sm-pt-50px">
+        <div class="container">
+          <div class="row justify-content-center mb-1">
+            <div class="col-lg-7 text-center appear anime-child anime-complete">
+              <span class="fs-15 alt-font fw-600 text-base-color text-uppercase ls-3px">${subtitle}</span>
+              <h3 class="alt-font text-dark-gray ls-minus-1px">${title}</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 position-relative">
+              <div class="swiper magic-cursor swiper-initialized swiper-horizontal swiper-backface-hidden">
+                <div class="swiper-wrapper pt-20px pb-20px">${sliderItems}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    `;
+  });
+  
+
+
+
+
+
+  //////////////////
+// AchievementsSection
+//////////////////
+
+/*
+   Usage:
+
+   {% AchievementsSection {
+    title: "Powerful achievement",
+    images: [
+      "https://via.placeholder.com/150",
+      "https://via.placeholder.com/150",
+      "https://via.placeholder.com/150",
+      "https://via.placeholder.com/150"
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("AchievementsSection", function({ title, images }) {
+    const imageElements = images.map(imageUrl => `
+        <div class="col-6 col-lg-2 col-md-3 col-sm-6 sm-mb-30px text-center" style="">
+            <img src="${imageUrl}" alt="" data-no-retina="">
+        </div>
+    `).join('');
+
+    return `
+        <div class="row justify-content-center align-items-center appear anime-child anime-complete" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateX&quot;: [50, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 1200, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+            <div class="col-xl-3 col-lg-4 md-mb-40px text-center text-lg-start" style="">
+                <h4 class="alt-font text-dark-gray mb-0 fw-500">${title} <span class="fw-700 font-style-italic text-decoration-line-bottom-medium">achievement</span></h4>
+            </div>
+            ${imageElements}
+        </div>
+    `;
+});
+
+
+
+////////////////////
+// CategoriesRectanglesSections
+//////////////////
+
+/*
+   Usage Example:
+
+   {% CategoriesRectanglesSections {
+    categories: [
+      {
+        image: "images/demo-jewellery-store-06.jpg",
+        title: "Bangles",
+        link: "demo-jewellery-store-shop.html"
+      },
+      {
+        image: "images/demo-jewellery-store-07.jpg",
+        title: "Pendants",
+        link: "demo-jewellery-store-shop.html"
+      },
+      {
+        image: "images/demo-jewellery-store-08.jpg",
+        title: "Chain",
+        link: "demo-jewellery-store-shop.html"
+      },
+      {
+        image: "images/demo-jewellery-store-01.jpg",
+        title: "Earrings",
+        link: "demo-jewellery-store-shop.html",
+        large: true
+      },
+      {
+        image: "images/demo-jewellery-store-02.jpg",
+        title: "Rings",
+        link: "demo-jewellery-store-shop.html"
+      },
+      {
+        image: "images/demo-jewellery-store-04.jpg",
+        title: "Necklace",
+        link: "demo-jewellery-store-shop.html",
+        large: true
+      },
+      {
+        image: "images/demo-jewellery-store-03.jpg",
+        title: "Bracelet",
+        link: "demo-jewellery-store-shop.html"
+      }
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("CategoriesRectanglesSections", function(data) {
+    const { categories } = data;
+    return `
+  <section>
+  <div class="container">
+  <div class="row">
+  <div class="col-12">
+  <ul class="portfolio-wrapper shop-category-02 shop-grid grid grid-3col xxl-grid-3col md-grid-2col sm-grid-1col xs-grid-1col gutter-extra-large text-center appear anime-child anime-complete" data-anime="{&quot;el&quot;: &quot;childs&quot;, &quot;translateY&quot;: [0, 0], &quot;perspective&quot;: [1200,1200], &quot;scale&quot;: [1.1, 1], &quot;rotateX&quot;: [30, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 800, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }" style="position: relative; height: 900.729px;">
+  <li class="grid-sizer"></li>
+  ${categories.map((category, index) => `
+  <li class="grid-item ${category.large ? 'large-size' : ''}" style="position: absolute; left: ${33.3286 * (index % 3)}%; top: ${300.243 * Math.floor(index / 3)}px; transition-behavior: normal; transition-timing-function: ease;">
+  <div class="category-box bg-dark-gray">
+  <div class="category-image">
+  <img src="${category.image}" alt="" data-no-retina="">
+  </div>
+  <div class="category-title absolute-middle-left">
+  <h3 class="text-white alt-font fw-600 mb-0 text-shadow-large">${category.title}</h3>
+  </div>
+  <div class="category-hover-content d-flex flex-column align-items-center justify-content-center bg-base-color p-40px lg-p-25px">
+  <h3 class="title text-dark-gray alt-font fw-600 position-relative z-index-1 ls-minus-1px">${category.title}<span class="absolute-middle-center text-light-orange z-index-minus-1 fs-150 opacity-6">${category.title.charAt(0)}</span></h3>
+  <a class="fs-14 fw-500 text-dark-gray text-uppercase position-absolute z-index-1 bottom-25px ls-05px" href="${category.link}">View collection</a>
+  </div>
+  </div>
+  </li>
+  `).join('')}
+  </ul>
+  </div>
+  </div>
+  </div>
+  </section>
+  `;
+  });
+  
+
+
+
+
+//////////////////
+// SectionWiseFaqSection
+//////////////////
+
+/*
+   Usage:
+
+   {% SectionWiseFaqSection {
+    categories: [
+      {
+        id: "tab_seven1",
+        title: "General",
+        faqs: [
+          { question: "Can I order over the phone?", answer: "Lorem ipsum is simply dummy text of the printing and typesetting industry." }
+        ]
+      },
+      {
+        id: "tab_seven2",
+        title: "Shopping information",
+        faqs: [
+          { question: "I am having difficulty placing an order?", answer: "Lorem ipsum is simply dummy text of the printing and typesetting industry." }
+        ]
+      }
+    ]
+   } %}
+
+
+*/
+
+eleventyConfig.addShortcode("SectionWiseFaqSection", function({ categories }) {
+    const tabs = categories.map((cat, index) => `
+        <li class="nav-item" role="presentation">
+            <a class="nav-link ${index === 0 ? 'active' : ''}" data-bs-toggle="tab" href="#${cat.id}" aria-selected="${index === 0 ? 'true' : 'false'}" role="tab">
+                <span>${cat.title}</span>
+                <span class="bg-hover bg-base-color"></span>
+            </a>
+        </li>
+    `).join('');
+
+    const tabContents = categories.map((cat, index) => `
+        <div class="tab-pane fade ${index === 0 ? 'show active' : ''}" id="${cat.id}" role="tabpanel">
+            <div class="accordion accordion-style-02" id="accordion-${cat.id}" data-active-icon="icon-feather-minus" data-inactive-icon="icon-feather-plus">
+                ${cat.faqs.map((faq, idx) => `
+                    <div class="accordion-item ${idx === 0 ? 'active-accordion' : ''}">
+                        <div class="accordion-header border-bottom border-color-extra-medium-gray">
+                            <a href="#" data-bs-toggle="collapse" data-bs-target="#accordion-${cat.id}-${idx}" aria-expanded="${idx === 0 ? 'true' : 'false'}" data-bs-parent="#accordion-${cat.id}">
+                                <div class="accordion-title mb-0 position-relative text-dark-gray">
+                                    <i class="feather icon-feather-${idx === 0 ? 'minus' : 'plus'}"></i><span class="fw-500 fs-18">${faq.question}</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div id="accordion-${cat.id}-${idx}" class="accordion-collapse collapse ${idx === 0 ? 'show' : ''}" data-bs-parent="#accordion-${cat.id}">
+                            <div class="accordion-body last-paragraph-no-margin border-bottom border-color-extra-medium-gray">
+                                <p>${faq.answer}</p>
+                            </div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `).join('');
+
+    return `
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 tab-style-07 md-mb-20px">
+                        <ul class="nav nav-tabs justify-content-center border-0 text-left alt-font fw-500" role="tablist">
+                            ${tabs}
+                        </ul>
+                    </div>
+                    <div class="col-lg-8 offset-xl-1 lg-ps-50px md-ps-15px">
+                        <div class="tab-content h-100">
+                            ${tabContents}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////
+// TopTabBarHeaderSection
+//////////////////
+
+/*
+   Usage:
+
+   {% TopTabBarHeaderSection {
+    freeDeliveryText: "Free Delivery on orders over £120. Don't miss discount.",
+    shopNowLink: "demo-decor-store-shop.html",
+    customerServiceLink: "demo-decor-store-contact.html",
+    findStoreLink: "demo-decor-store-contact.html",
+    languageOptions: [
+      { name: "English", flag: "usa.png" },
+      { name: "France", flag: "france.png" },
+      { name: "Russian", flag: "russian.png" },
+      { name: "Spain", flag: "spain.png" }
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("TopTabBarHeaderSection", function({
+    freeDeliveryText, shopNowLink, customerServiceLink, findStoreLink, languageOptions
+}) {
+    const languageDropdownItems = languageOptions.map(option => `
+        <li>
+            <a href="javascript:void(0);" title="${option.name}">
+                <span class="icon-country">
+                    <img src="images/country-flag-16X16/${option.flag}" alt="" data-no-retina>
+                </span>
+                ${option.name}
+            </a>
+        </li>
+    `).join('');
+
+    return `
+
+        <div class="header-top-bar top-bar-light bg-white disable-fixed border-bottom border-color-transparent-dark-very-light" style="top: 0px;">
+            <div class="container-fluid">
+                <div class="row h-45px align-items-center m-0">
+                    <div class="col-lg-7 col-md-8 text-center text-md-start">
+                        <div class="fs-13 text-dark-gray alt-font fw-600">
+                            ${freeDeliveryText} <a href="${shopNowLink}" class="text-dark-gray fw-700 text-decoration-line-bottom">Shop now</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-4 text-end d-none d-md-flex">
+                        <a href="${customerServiceLink}" class="widget fs-13 text-dark-gray fw-600 me-25px md-me-15px text-dark-gray">
+                            <i class="feather icon-feather-phone-call"></i>Customer service
+                        </a>
+                        <a href="${findStoreLink}" class="widget fs-13 text-dark-gray alt-font me-25px fw-600 d-none d-lg-inline-block">
+                            <i class="feather icon-feather-map-pin"></i>Find our store
+                        </a>
+                        <div class="header-language-icon widget fs-13 alt-font fw-600">
+                            <div class="header-language dropdown">
+                                <a href="javascript:void(0);" class="text-dark-gray">
+                                    <i class="feather icon-feather-globe"></i>English
+                                </a>
+                                <ul class="language-dropdown alt-font">
+                                    ${languageDropdownItems}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+});
+
+
+  
+
+
+
+
+
+
+
+
+
+////////////////////
+// numberedTimelineSection
+//////////////////
+
+/*
+   Usage Example:
+
+   {% numberedTimelineSection {
+    timelineEvents: [
+      {
+        title: "First time we met",
+        description: "Lorem ipsum consectetur adipiscing elit eiusmod.",
+        year: "2018"
+      },
+      {
+        title: "Our first date",
+        description: "Lorem ipsum consectetur adipiscing elit eiusmod.",
+        year: "2019"
+      },
+      {
+        title: "Our marriage proposal",
+        description: "Lorem ipsum consectetur adipiscing elit eiusmod.",
+        year: "2020"
+      },
+      {
+        title: "Our engagement",
+        description: "Lorem ipsum consectetur adipiscing elit eiusmod.",
+        year: "2023"
+      }
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("numberedTimelineSection", function(data) {
+    const { timelineEvents } = data;
+    return `
+  <section class="py-0 border-top lg-border-top-0 border-color-medium-gray bg-very-light-gray position-relative">
+  <div class="container">
+  <div class="row row-cols-1 row-cols-lg-4 row-cols-sm-2 g-0 appear anime-child anime-complete" data-anime="{&quot;el&quot;: &quot;childs&quot;, &quot;translateX&quot;: [40, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 300, &quot;delay&quot;: 300, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+  
+  ${timelineEvents.map(event => `
+  <div class="col process-step-style-06 hover-box md-mb-50px" style="">
+  <div class="process-step-icon-box position-relative top-minus-14px">
+  <span class="progress-step-separator bg-medium-gray w-100 separator-line-1px"></span>
+  <div class="step-box d-flex align-items-center justify-content-center bg-base-color border-radius-100 w-25px h-25px">
+  <span class="w-9px h-9px bg-white border-radius-100"></span>
+  </div>
+  </div>
+  <span class="d-block fs-19 text-dark-gray fw-600 mt-20px mb-5px">${event.title}</span>
+  <p class="w-80 xl-w-90 md-w-80 xs-w-100 mb-20px">${event.description}</p>
+  <div class="fs-80 alt-font text-outline text-outline-color-westar-grey">${event.year}</div>
+  </div>
+  `).join('')}
+  
+  </div>
+  </div>
+  </section>
+  `;
+  });
+  
+
+
+
+
+  ////////////////////
+// FeaturedCategoriesSection
+//////////////////
+
+/*
+   Usage Example:
+
+   {% FeaturedCategoriesSection {
+    categories: [
+      {
+        image: "https://via.placeholder.com/150",
+        link: "demo-decor-store-shop.html",
+        count: "02",
+        title: "Lamp"
+      },
+      {
+        image: "https://via.placeholder.com/150",
+        link: "demo-decor-store-shop.html",
+        count: "03",
+        title: "Stool"
+      },
+      {
+        image: "https://via.placeholder.com/150",
+        link: "demo-decor-store-shop.html",
+        count: "05",
+        title: "Chair"
+      },
+      {
+        image: "https://via.placeholder.com/150",
+        link: "demo-decor-store-shop.html",
+        count: "03",
+        title: "Cabinet"
+      },
+      {
+        image: "https://via.placeholder.com/150",
+        link: "demo-decor-store-shop.html",
+        count: "08",
+        title: "Light"
+      },
+      {
+        image: "https://via.placeholder.com/150",
+        link: "demo-decor-store-shop.html",
+        count: "04",
+        title: "Sofa"
+      }
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("FeaturedCategoriesSection", function(data) {
+    const { categories } = data;
+    return `
+    <section>
+    <div class="container container position-relative z-index-9">
+  <div class="row align-items-center mb-6 mt-7 xs-mb-30px xs-mt-35px">
+  <div class="col-xl-2 col-lg-3 md-mb-40px">
+  <div class="feature-box feature-box-left-icon-middle mb-5px">
+  <div class="feature-box-icon me-5px">
+  <i class="bi bi-heart-fill text-red fs-13"></i>
+  </div>
+  <div class="feature-box-content">
+  <span class="d-inline-block fs-16 fw-500 alt-font text-dark-gray">On demand</span>
+  </div>
+  </div>
+  <h6 class="mb-0 fw-700 alt-font text-dark-gray">Featured categories</h6>
+  </div>
+  <div class="col-xl-10 col-lg-9">
+  <div class="row row-cols-2 row-cols-md-6 row-cols-sm-3 justify-content-center align-items-center">
+  ${categories.map(category => `
+  <div class="col categories-style-01 text-center sm-mb-30px">
+  <div class="categories-box">
+  <div class="icon-box position-relative mb-10px">
+  <a href="${category.link}"><img src="${category.image}" alt="" data-no-retina=""></a>
+  <div class="count-circle d-flex align-items-center justify-content-center w-35px h-35px bg-base-color text-white rounded-circle alt-font fw-600 fs-12">${category.count}</div>
+  </div>
+  <a href="${category.link}" class="alt-font fw-600 fs-17 text-dark-gray text-dark-gray-hover">${category.title}</a>
+  </div>
+  </div>
+  `).join('')}
+  </div>
+  </div>
+  </div>
+  </div>
+  </section>
+  `;
+  });
+
+  
+
+
+
+
+
+
+
+
+
+////////////////////
+// ExploreCategoriesSquareRectangleMixSection
+//////////////////
+
+/*
+   Usage Example:
+
+   {% ExploreCategoriesSquareRectangleMixSection {
+    categories: [
+      { image: "https://via.placeholder.com/500x500", title: "Wooden classic table", link: "demo-decor-store-shop.html", large: true },
+      { image: "https://via.placeholder.com/500x250", title: "Pottery products", link: "demo-decor-store-shop.html", large: false },
+      { image: "https://via.placeholder.com/500x250", title: "Florence compact", link: "demo-decor-store-shop.html", large: false }
+
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("ExploreCategoriesSquareRectangleMixSection", function(data) {
+    const { categories } = data;
+    let positionTop = 0;
+    let rowIndex = 0;
+  
+
+    return `
+    <section class="position-relative pt-0 overflow-hidden">
+    <div class="container container position-relative z-index-9">
+  <div class="row g-0">
+      <div class="col-12 filter-content">
+      <ul class="shop-wrapper shop-grid grid grid-2col xxl-grid-2col xl-grid-2col lg-grid-2col md-grid-1col sm-grid-1col xs-grid-1col gutter-large text-center" style="position: relative; height: 519.652px;">
+      <li class="grid-sizer"></li>
+      ${categories.map((category, index) => {
+        const leftPosition = (index % 2) * 50;
+        if (index % 2 === 0 && index > 0) {
+          rowIndex++;
+        }
+        const topPosition = rowIndex * (category.large ? 519.652 : 259.826);
+  
+        return `
+        <li class="grid-item" style="position: absolute; left: ${leftPosition}%; top: ${topPosition}px;">
+          <div class="shop-box position-relative overflow-hidden">
+            <div class="shop-image">
+              <img src="${category.image}" alt="" data-no-retina="">
+            </div>
+            <div class="position-absolute top-0 left-0 w-100 h-100 d-flex align-items-${category.large ? 'end' : 'center'} justify-content-start text-start">
+              <div class="${category.large ? 'p-14 sm-p-10 w-80 lg-w-90 md-w-65 xs-w-300px' : 'p-11 xs-p-8 w-60 md-w-50 xs-w-230px'}">
+                <h${category.large ? '3' : '5'} class="alt-font text-dark-gray ls-minus-1px mb-${category.large ? '30px xs-mb-25px' : '25px xs-mb-20px'}">${category.title} <span class="fw-700">${category.title.split(' ')[1]}</span></h${category.large ? '3' : '5'}>
+                <a href="${category.link}" class="btn btn-dark-gray btn-${category.large ? 'large' : 'small'} btn-switch-text btn-round-edge btn-box-shadow">
+                  <span>
+                    <span class="btn-double-text" data-text="Explore category">Explore category</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </li>
+        `;
+      }).join('')}
+      </ul>
+      </div>
+  </div>
+  </div>
+  </section>
+  `;
+  });
+  
+
+
+
+
+
+
+  ////////////////////
+// ScrollProgressVerticalsSection
+//////////////////
+
+/*
+   Usage Example:
+
+   {% ScrollProgressVerticalsSection %}
+*/
+
+eleventyConfig.addShortcode("ScrollProgressVerticalsSection", function() {
+    return `
+  <div class="scroll-progress d-none d-xxl-block">
+  <a href="#" class="scroll-top" aria-label="scroll">
+  <span class="scroll-text">Scroll</span><span class="scroll-line"><span class="scroll-point" style="height: 0%;"></span></span>
+  </a>
+  </div>
+  `;
+  });
+
+  
+
+
+
+  ////////////////////
+// LeftToRightScrollerLightSection
+//////////////////
+
+/*
+   Usage Example:
+
+   {% LeftToRightScrollerLightSection {
+    direction: "left", // "left" or "right"
+    items: [
+      { text: "graphic.", index: "1" },
+      { text: "print.", index: "2" },
+      { text: "illustration.", index: "3" },
+      { text: "packaging.", index: "4" },
+      { text: "web.", index: "5" },
+      { text: "development.", index: "6" },
+      { text: "branding.", index: "7" },
+      { text: "branding.", index: "0" } 
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("LeftToRightScrollerLightSection", function(data) {
+    const { items, direction } = data;
+    const translateDirection = direction === "right" ? "2325.38px" : "-2325.38px"; // Adjust the translate3d value based on direction
+    return `
+  <section class="overflow-hidden position-relative half-section overlap-height pb-0" style="height: 295px;">
+  <div class="container-fluid overlap-gap-section">
+  <div class="row position-relative">
+  <div class="col swiper swiper-width-auto text-center pb-30px sm-pb-0px swiper-initialized swiper-horizontal swiper-backface-hidden" data-slider-options="{ &quot;slidesPerView&quot;: &quot;auto&quot;, &quot;spaceBetween&quot;:60, &quot;speed&quot;: 8000, &quot;loop&quot;: true, &quot;autoplay&quot;: { &quot;delay&quot;:0, &quot;disableOnInteraction&quot;: false }, &quot;allowTouchMove&quot;: false, &quot;effect&quot;: &quot;slide&quot; }">
+  <div class="swiper-wrapper marquee-slide" id="swiper-wrapper-c180843c81994f46" aria-live="off" style="transition-duration: 8000ms; transform: translate3d(${translateDirection}, 0px, 0px);">
+  ${items.map(item => `
+  <div class="swiper-slide" role="group" aria-label="${item.index + 1} / ${items.length}" style="margin-right: 60px;" data-swiper-slide-index="${item.index}">
+  <div class="fs-180 xl-fs-120 sm-fs-80 text-extra-medium-gray fw-600 ls-minus-8px sm-ls-minus-4px word-break-normal">${item.text}</div>
+  </div>
+  `).join('')}
+  </div>
+  <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+  </div>
+  </div>
+  </div>
+  </section>
+  `;
+  });
+  
+
+
+
+
+
+
+  ////////////////////
+// RightToLeftScrollerDarkSection
+//////////////////
+
+/*
+   Usage Example:
+
+   {% RightToLeftScrollerDarkSection {
+    direction: "right", // "right" or "left" to control the scroll direction
+    items: [
+      { text: "theme.", index: "5" },
+      { text: "agency.", index: "6" },
+      { text: "digital.", index: "7" },
+      { text: "photography.", index: "0" },
+      { text: "packaging.", index: "1" },
+      { text: "digital.", index: "2" },
+      { text: "interface.", index: "3" },
+      { text: "development.", index: "4" }
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("RightToLeftScrollerDarkSection", function(data) {
+    const { items, direction } = data;
+    const reverseDirection = direction === "left" ? false : true;
+    return `
+  <section class="bg-base-color bg-sliding-line position-relative pb-0">
+  <div class="container-fluid overlap-section" style="margin-top: -165px;">
+  <div class="row position-relative">
+  <div class="col swiper swiper-width-auto text-center pb-30px sm-pb-0px swiper-initialized swiper-horizontal swiper-backface-hidden" data-slider-options='{ "slidesPerView": "auto", "spaceBetween": 50, "speed": 8000, "loop": true, "autoplay": { "delay":0, "disableOnInteraction": false, "reverseDirection": ${reverseDirection} }, "allowTouchMove": false, "effect": "slide" }'>
+  <div class="swiper-wrapper marquee-slide" id="swiper-wrapper-881091584c61028db6" aria-live="off" style="transition-duration: 8000ms; transform: translate3d(0px, 0px, 0px);">
+  ${items.map(item => `
+  <div class="swiper-slide" role="group" aria-label="${item.index + 1} / ${items.length}" style="margin-right: 50px;" data-swiper-slide-index="${item.index}">
+  <div class="fs-150 xl-fs-120 sm-fs-80 text-black fw-600 ls-minus-5px sm-ls-minus-4px word-break-normal">${item.text}</div>
+  </div>
+  `).join('')}
+  </div>
+  <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+  </div>
+  </div>
+  </section>
+  `;
+  });
+
+
+
+
+  
+  
+
+
+
+  ////////////////////
+// CategoryAndProductSliderSection
+//////////////////
+
+/*
+   Usage Example:
+
+   {% CategoryAndProductSliderSection {
+    promo: {
+      image: "https://via.placeholder.com/800x400",
+      title: "Lounge collection",
+      subtitle: "Save up to 50% off",
+      link: "demo-decor-store-shop.html"
+    },
+    products: [
+      {
+        image: "https://via.placeholder.com/200x200",
+        link: "demo-decor-store-single-product.html",
+        title: "Wooden cabinet",
+        originalPrice: "$50.00",
+        salePrice: "$23.00"
+      },
+      {
+        image: "https://via.placeholder.com/200x200",
+        link: "demo-decor-store-single-product.html",
+        title: "Modern chair",
+        originalPrice: "$40.00",
+        salePrice: "$18.00"
+      },
+      {
+        image: "https://via.placeholder.com/200x200",
+        link: "demo-decor-store-single-product.html",
+        title: "Classic stools",
+        originalPrice: "$56.00",
+        salePrice: "$24.00"
+      }
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("CategoryAndProductSliderSection", function(data) {
+    const { promo, products } = data;
+    return `
+  <section class="py-0 overflow-hidden">
+  <div class="container-fluid p-0">
+  <div class="row g-0">
+  <div class="col-md-8 cover-background" style="background-image:url('${promo.image}')">
+  <div class="pt-13 pb-13 pe-5 w-40 xl-w-45 lg-w-55 md-w-65 sm-w-50 xs-w-270px float-end">
+  <span class="fs-15 fw-700 text-dark-gray text-uppercase mb-20px xs-mb-15px d-inline-block text-decoration-line-bottom-medium">${promo.subtitle}</span>
+  <h1 class="alt-font fw-400 text-dark-gray mb-40px lg-mb-35px xs-mb-25px ls-minus-1px">${promo.title} <span class="fw-700">collection</span></h1>
+  <a href="${promo.link}" class="btn btn-dark-gray btn-extra-large btn-switch-text btn-round-edge btn-box-shadow">
+  <span>
+  <span class="btn-double-text" data-text="Explore category">Explore category</span>
+  </span>
+  </a>
+  </div>
+  </div>
+  <div class="col-md-4">
+  <div class="swiper position-relative h-100 swiper-fade swiper-initialized swiper-horizontal swiper-watch-progress swiper-backface-hidden" data-slider-options="{ &quot;slidesPerView&quot;: 1, &quot;loop&quot;: true, &quot;allowTouchMove&quot;: true, &quot;autoplay&quot;: { &quot;delay&quot;: 3000, &quot;disableOnInteraction&quot;: false }, &quot;navigation&quot;: { &quot;nextEl&quot;: &quot;.slider-one-slide-next-1&quot;, &quot;prevEl&quot;: &quot;.slider-one-slide-prev-1&quot; }, &quot;effect&quot;: &quot;fade&quot; }">
+  <div class="swiper-wrapper">
+  ${products.map(product => `
+  <div class="swiper-slide cover-background h-100 text-center" style="background-image: url('https://via.placeholder.com/200x200');">
+  <a href="${product.link}">
+  <img src="${product.image}" alt="" data-no-retina="">
+  </a>
+  <div class="position-absolute bottom-70px xs-bottom-25px w-100 left-0 text-center ls-minus-05px">
+  <a href="${product.link}" class="text-dark-gray alt-font fs-20 fw-600">${product.title}</a>
+  <div class="d-block">
+  <div class="d-inline-block align-middle fs-18 fw-600 text-dark-gray"><del class="me-10px">${product.originalPrice}</del>${product.salePrice}</div>
+  </div>
+  </div>
+  </div>
+  `).join('')}
+  </div>
+  <div class="slider-one-slide-prev-1 swiper-button-prev slider-navigation-style-06" tabindex="0" role="button" aria-label="Previous slide"><i class="bi bi-arrow-left icon-extra-medium text-dark-gray"></i></div>
+  <div class="slider-one-slide-next-1 swiper-button-next slider-navigation-style-06" tabindex="0" role="button" aria-label="Next slide"><i class="bi bi-arrow-right icon-extra-medium text-dark-gray"></i></div>
+  <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+  </div>
+  </div>
+  </div>
+  </div>
+  </section>
+  `;
+  });
+
+  
+
+
+  
+
+
+
+  
+
+  ////////////////////
+// CleanPricingTableSection
+//////////////////
+
+/*
+   Usage Example:
+
+   {% CleanPricingTableSection {
+    plans: [
+      {
+        name: "Standard",
+        price: "20",
+        features: [
+          { name: "Marketing strategy", included: true },
+          { name: "Competitive work analysis", included: false },
+          { name: "Social media share audit", included: false }
+        ],
+        link: "#"
+      },
+      {
+        name: "Business",
+        price: "24",
+        features: [
+          { name: "Marketing strategy", included: true },
+          { name: "Competitive work analysis", included: true },
+          { name: "Social media share audit", included: false }
+        ],
+        link: "#"
+      },
+      {
+        name: "Ultimate",
+        price: "30",
+        features: [
+          { name: "Marketing strategy", included: true },
+          { name: "Competitive work analysis", included: true },
+          { name: "Social media share audit", included: true }
+        ],
+        link: "#"
+      }
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("CleanPricingTableSection", function(data) {
+    const { plans } = data;
+    return `
+    <section>
+  <div class="row align-items-center justify-content-center pricing-table-style-06 mt-8 mb-8 " data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateX&quot;: [30, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 300, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+  ${plans.map(plan => `
+  <div class="col-lg-4 col-md-8 md-mb-30px" style="">
+  <div class="bg-white box-shadow-quadruple-large border border-radius-6px p-15 ps-18 pe-18 xl-p-13 text-center">
+  <span class="fs-26 lh-30 ls-minus-05px d-block text-dark-gray fw-600">${plan.name}</span>
+  <span class="fs-18 mb-25px d-inline-block">Unlimited users</span>
+  <div class="row align-items-center">
+  <div class="col-sm-5 pe-sm-0">
+  <h2 class="text-dark-gray mb-0 fw-700 ls-minus-2px text-center text-sm-end"><sup class="fs-30">$</sup>${plan.price}</h2>
+  </div>
+  <div class="col-lg-7 col-sm-5 text-center text-sm-start last-paragraph-no-margin fs-15 lh-24">
+  <p>per user/month billed annually</p>
+  </div>
+  </div>
+  <ul class="p-0 mt-20px mb-30px list-style-01 text-start lh-normal">
+  ${plan.features.map(feature => `
+  <li class="border-color-extra-medium-gray pt-20px pb-20px text-dark-gray fw-500 d-flex">
+  <i class="feather icon-feather-${feature.included ? 'check' : 'x'} fs-20 text-${feature.included ? 'green' : 'red'} me-10px"></i>${feature.name}
+  </li>`).join('')}
+  </ul>
+  <div class="pricing-footer w-100">
+  <a href="${plan.link}" class="btn btn-small btn-dark-gray btn-box-shadow btn-round-edge border-1 w-100">Choose package</a>
+  </div>
+  </div>
+  </div>
+  `).join('')}
+  </div>
+  </section>
+  `;
+  });
+  
+  
 
 
 
@@ -5078,6 +6306,329 @@ eleventyConfig.addShortcode("NumberedLetteredBigMenu", function({ items }) {
 
 
 
+  ////////////////////
+// InstagramZeroMarginCenterSection
+//////////////////
+
+/*
+   Usage Example:
+
+   {% InstagramZeroMarginCenterSection {
+    images: [
+      "https://via.placeholder.com/300x300", 
+      "https://via.placeholder.com/300x300",
+      "https://via.placeholder.com/300x300",
+      "https://via.placeholder.com/300x300",
+      "https://via.placeholder.com/300x300",
+      "https://via.placeholder.com/300x300"
+    ],
+    instagramLink: "https://www.instagram.com"
+   } %}
+*/
+
+eleventyConfig.addShortcode("InstagramZeroMarginCenterSection", function(data) {
+    const { images, instagramLink } = data;
+    return `
+  <div class="row align-items-center justify-content-center mb-40px g-0 row-cols-3 row-cols-md-6 row-cols-sm-3 instagram-follow-api position-relative">
+  ${images.map(image => `
+  <div class="col instafeed-grid">
+  <figure class="border-radius-0px"><a href="${instagramLink}" target="_blank"><img src="${image}" class="insta-image" alt="" data-no-retina=""><span class="insta-icon"><i class="fa-brands fa-instagram"></i></span></a></figure>
+  </div>
+  `).join('')}
+  <div class="absolute-middle-center z-index-1 w-auto">
+  <a href="${instagramLink}" target="_blank" class="btn btn-medium btn-switch-text btn-white btn-round-edge fw-600 ls-0px left-icon btn-box-shadow instagram-button">
+  <span>
+  <span><i class="fa-brands fa-instagram text-base-color fs-20"></i></span>
+  <span class="btn-double-text" data-text="crafto instagram">crafto instagram</span>
+  </span>
+  </a>
+  </div>
+  </div>
+  `;
+  });
+
+  
+
+
+
+////////////////////
+// TickerWithBackgroundImageSection
+//////////////////
+
+/*
+   Usage Example:
+
+   {% TickerWithBackgroundImageSection {
+    backgroundImage: "https://via.placeholder.com/1920x1080",
+    messages: [
+      "Transformation of body and mind",
+      "Devotion and love to warm our hearts",
+      "More than the 30000+ people trusting crafto yoga",
+      "Choose the most comfortable way to train"
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("TickerWithBackgroundImageSection", function(data) {
+    const { backgroundImage, messages } = data;
+    return `
+  <section class="pt-40px pb-40px cover-background position-relative" style="background-image: url('${backgroundImage}')">
+  <div class="container-fluid">
+  <div class="row position-relative">
+  <div class="col swiper text-center swiper-initialized swiper-horizontal swiper-backface-hidden" data-slider-options="{ &quot;slidesPerView&quot;: &quot;auto&quot;, &quot;spaceBetween&quot;:0, &quot;centeredSlides&quot;: true, &quot;speed&quot;: 15000, &quot;loop&quot;: true, &quot;autoplay&quot;: { &quot;delay&quot;:1, &quot;disableOnInteraction&quot;: false }, &quot;navigation&quot;: { &quot;nextEl&quot;: &quot;.slider-four-slide-next-2&quot;, &quot;prevEl&quot;: &quot;.slider-four-slide-prev-2&quot; }, &quot;keyboard&quot;: { &quot;enabled&quot;: true, &quot;onlyInViewport&quot;: true }, &quot;effect&quot;: &quot;slide&quot; }">
+  <div class="swiper-wrapper swiper-width-auto marquee-slide" style="transition-duration: 15000ms; transform: translate3d(-4555.23px, 0px, 0px);" id="swiper-wrapper-1036930e90cf2ea83" aria-live="off">
+  ${messages.map((message, index) => `
+  <div class="swiper-slide" role="group" aria-label="${index + 1} / ${messages.length}" data-swiper-slide-index="${index}">
+  <div class="fs-26 alt-font text-white"><span class="w-10px h-10px border border-2 border-radius-100 border-color-white d-inline-block align-middle ms-50px me-50px sm-ms-30px sm-me-30px"></span>${message}</div>
+  </div>
+  `).join('')}
+  </div>
+  <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+  </div>
+  </div>
+  </div>
+  </section>
+  `;
+  });
+  
+
+
+
+////////////////////
+// SubscribeNewsletterSection
+//////////////////
+
+/*
+   Usage Example:
+
+   {% SubscribeNewsletterSection {
+    backgroundImageUrl: "https://via.placeholder.com/1920x1080",
+    formActionUrl: "email-templates/subscribe-newsletter.php",
+    redirectUrl: "thank-you.html"
+   } %}
+*/
+
+eleventyConfig.addShortcode("SubscribeNewsletterSection", function(data) {
+    const { backgroundImageUrl, formActionUrl, redirectUrl } = data;
+    return `
+    <section>
+  <div class="container position-relative pt-3 pb-3 overlap-section md-mb-15px" style="margin-top: inherit;">
+  <div class="position-absolute left-0px top-0px background-no-repeat background-size-100 h-100 w-100 animation-float" style="background-image: url('${backgroundImageUrl}')"></div>
+  
+  <div class="row row-cols-1 row-cols-lg-2 justify-content-center align-items-center bg-base-color pt-4 pb-4 ps-6 pe-6 lg-p-5 border-radius-6px g-0">
+  <div class="col-xl-6 col-lg-7 md-mb-25px sm-mb-15px position-relative text-center text-lg-start">
+  <h3 class="alt-font fw-500 text-white ls-minus-1px mb-10px shadow-none shadow-in" data-shadow-animation="true" data-animation-delay="700">Subscribe to <span class="fw-700 text-highlight d-inline-block">newsletter<span class="bg-white h-10px bottom-1px opacity-3 separator-animation"></span></span></h3>
+  <span class="fs-20 text-white">Social media its ways of our excellence.</span>
+  </div>
+  <div class="col-lg-5 offset-xl-1 position-relative">
+  <div class="d-inline-block w-100 newsletter-style-03 position-relative">
+  <form action="${formActionUrl}" method="post" class="position-relative w-100">
+  <input class="input-large bg-white border-color-white w-100 box-shadow-extra-large form-control required" type="email" name="email" placeholder="Enter your email...">
+  <input type="hidden" name="redirect" value="${redirectUrl}">
+  <button class="btn btn-large text-dark-gray ls-0px left-icon submit fw-700" aria-label="submit"><i class="icon feather icon-feather-mail icon-small text-base-color"></i><span>Subscribe</span></button>
+  <div class="form-results border-radius-4px pt-10px pb-10px ps-15px pe-15px fs-16 lh-22 mt-10px w-100 text-center position-absolute d-none"></div>
+  </form>
+  </div>
+  </div>
+  </div>
+  
+  </div>
+  </section>
+  `;
+  });
+
+  
+
+
+
+
+  ////////////////////
+// AnimatedBoxVideoPlayerWithPlayButton
+//////////////////
+
+/*
+   Usage Example:
+
+   {% AnimatedBoxVideoPlayerWithPlayButton {
+    videoUrl: "https://www.youtube.com/watch?v=cfXHhfNy7tU",
+    backgroundImageUrl: "https://via.placeholder.com/1920x1080",
+    altText: "Play Video"
+   } %}
+*/
+
+eleventyConfig.addShortcode("AnimatedBoxVideoPlayerWithPlayButton", function(data) {
+    const { videoUrl, backgroundImageUrl, altText } = data;
+    return `
+    <section class="bg-nero-grey background-position-center-top pb-0" style="background-image: url('images/demo-architecture-dotted-pattern.svg')">
+    <div class="container">
+  <div class="row overlap-section" style="margin-top: inherit;">
+  <div class="col-12">
+  <div class="position-absolute top-0px left-0px w-100 h-100" data-atropos-offset="5">
+  <a href="${videoUrl}" class="absolute-middle-center text-center bg-base-color rounded-circle video-icon-box video-icon-extra-large popup-youtube">
+  <span>
+  <span class="video-icon text-dark-gray fw-800 text-uppercase ls-1px">${altText}</span>
+  </span>
+  </a>
+  </div>
+  <div data-atropos="" data-0-top="filter: grayscale(1);" data-15-bottom="filter: grayscale(0);" class="" style="">
+  <div class="atropos-scale" style="transform: translate3d(0px, 0px, 0px); transition-duration: 300ms;">
+  <div class="atropos-rotate" style="transition-duration: 300ms; transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg);">
+  <div class="atropos-inner overflow-visible">
+  <div class="border-radius-6px h-650px md-h-450px sm-h-350px d-flex align-items-end justify-content-center overflow-hidden cover-background" style="background-image: url('${backgroundImageUrl}'); transition-duration: 300ms; transform: translate3d(0px, 0px, 0px);" data-atropos-offset="-5">
+  <div class="opacity-very-light bg-dark-gray"></div>
+  </div>
+  <span class="atropos-highlight" style="transform: translate3d(0px, 0px, 0px); transition-duration: 300ms; opacity: 0;"></span></div>
+  <span class="atropos-shadow" style="transform: translate3d(0px, 0px, -50px) scale(1); transition-duration: 300ms;"></span></div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </section>
+  `;
+  });
+  
+  
+
+
+
+////////////////////
+// BeautifulSliderSection
+//////////////////
+
+/*
+   Usage Example:
+
+   {% BeautifulSliderSection [
+      {
+        src: "https://via.placeholder.com/510x300",
+        title: "Interior design",
+        description: "Lorem ipsum consectetur elit do eiusmod tempor incididunt."
+      },
+      {
+        src: "https://via.placeholder.com/510x300",
+        title: "Modern Architecture",
+        description: "Duis aute irure dolor in reprehenderit in voluptate velit esse."
+      },
+      {
+        src: "https://via.placeholder.com/510x300",
+        title: "Creative Spaces",
+        description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco."
+      }
+    ] %}
+*/
+
+eleventyConfig.addShortcode("BeautifulSliderSection", function(images) {
+    const sliderOptions = {
+      slidesPerView: 1,
+      spaceBetween: 35,
+      loop: true,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false
+      },
+      pagination: {
+        el: ".slider-four-slide-pagination-1",
+        clickable: true,
+        dynamicBullets: false
+      },
+      keyboard: {
+        enabled: true,
+        onlyInViewport: true
+      },
+      breakpoints: {
+        1200: { slidesPerView: 4 },
+        992: { slidesPerView: 3 },
+        768: { slidesPerView: 3 },
+        320: { slidesPerView: 1 }
+      },
+      effect: "slide",
+      slideChangeOnClick: "1", 
+      thumbSliderMdDirection: "horizontal" 
+    };
+  
+    return `
+    <section>
+  <div class="row align-items-center">
+      <div class="col-md-12 position-relative">
+      <div class="outside-box-right-30 sm-outside-box-right-0">
+      <div class="swiper slider-three-slide magic-cursor base-color swiper-initialized swiper-horizontal swiper-backface-hidden" data-slider-options='${JSON.stringify(sliderOptions)}'>
+      <div class="swiper-wrapper" id="swiper-wrapper-56d7867fbc42e8d8" aria-live="off" style="transition-duration: 0ms; transform: translate3d(-3815px, 0px, 0px);">
+      ${images.map(image => `
+      <div class="swiper-slide" style="width: 510px; margin-right: 35px;" role="group" data-swiper-slide-index="2">
+      <div class="interactive-banner-style-06">
+      <div class="interactive-banners-image">
+      <img src="${image.src}" alt="" data-no-retina="">
+      <div class="overlay-bg bg-gradient-dark-transparent opacity-light"></div>
+      <a href="#" class="banners-icon icon-hover-base-color text-white position-absolute top-60px left-60px md-top-30px md-left-30px">
+      <i class="line-icon-Full-View icon-large"></i>
+      </a>
+      </div>
+      <div class="interactive-banners-content p-60px md-p-30px">
+      <div class="h-100 w-100 last-paragraph-no-margin">
+      <a href="#" class="fs-22 d-block text-white mb-10px fw-500">${image.title}</a>
+      <p class="interactive-banners-content-text w-95 lg-w-100">${image.description}</p>
+      </div>
+      </div>
+      <div class="box-overlay bg-gradient-dark-transparent"></div>
+      </div>
+      </div>
+      `).join('')}
+      </div>
+      <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+      </div>
+      </div>
+      </div>
+      </div>
+      </section>
+  `;
+  });
+  
+
+  
+
+////////////////////
+// ProductDetailTopBarSection
+//////////////////
+
+/*
+   Usage Example:
+
+   {% ProductDetailTopBarSection {
+     title: "Discover depth of beach",
+     location: "Maldives, South Asia",
+     price: "$1599",
+     reviewCount: 16,
+     starCount: 5
+   } %}
+*/
+
+eleventyConfig.addShortcode("ProductDetailTopBarSection", function(data) {
+    const { title, location, price, reviewCount, starCount } = data;
+    return `
+  <div class="row align-items-center mb-25px">
+  <div class="col-sm-9">
+  <h3 class="alt-font text-dark-gray fw-600 mb-10px ls-minus-1px">${title}</h3>
+  <ul class="p-0 m-0 list-style-02 d-block d-sm-flex">
+  <li class="text-dark-gray fw-500"><i class="bi bi-geo-alt icon-small me-5px"></i>${location}</li>
+  <li class="ms-20px xs-ms-0">
+  <div class="review-star-icon fs-18 me-5px">
+  ${'&#9733;'.repeat(starCount)}${'&#9734;'.repeat(5 - starCount)}
+  </div>
+  <a href="#reviews" class="text-dark-gray text-dark-gray-hover fw-500 d-inline-block section-link">${reviewCount} Reviews</a>
+  </li>
+  </ul>
+  </div>
+  <div class="col-sm-3 text-sm-end xs-mt-10px">
+  <h4 class="text-dark-gray fw-600 mb-0">${price}</h4>
+  <span class="d-block lh-22">Per person</span>
+  </div>
+  </div>
+  `;
+  });
+  
+
+  
 
 
 
@@ -5086,11 +6637,166 @@ eleventyConfig.addShortcode("NumberedLetteredBigMenu", function({ items }) {
 
 
 
+  ////////////////////
+// AlternateProductUpDownSection
+//////////////////
+
+/*
+   Usage Example:
+
+   {% AlternateProductUpDownSection {
+    products: [
+      {
+        link: "demo-web-agency-single-project-creative.html",
+        image: "https://via.placeholder.com/600x400",
+        title: "Tailoring inteo",
+        category: "Branding",
+        animationDirection: "up"
+      },
+      {
+        link: "demo-web-agency-single-project-creative.html",
+        image: "https://via.placeholder.com/600x400",
+        title: "Design blast",
+        category: "Photography",
+        animationDirection: "down"
+      },
+      {
+        link: "demo-web-agency-single-project-creative.html",
+        image: "https://via.placeholder.com/600x400",
+        title: "Herbal beauty",
+        category: "Application",
+        animationDirection: "up"
+      }
+    ]
+   } %}
+*/
+
+eleventyConfig.addShortcode("AlternateProductUpDownSection", function(data) {
+    const { products } = data;
+    return `
+    <section class="pb-0 pt-0 ps-2 pe-2 lg-pt-3 md-pt-7 sm-p-0">
+    <div class="container">
+  <div class="container-fluid">
+  <div class="row justify-content-center m-md-0">
+  <div class="col-12 filter-content">
+  <ul class="portfolio-simple portfolio-wrapper grid grid-4col xxl-grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-extra-large text-center" style="position: relative; height: 681.494px;">
+  <li class="grid-sizer"></li>
+  ${products.map((product, index) => `
+  <li class="grid-item selected ${product.category.toLowerCase()} transition-inner-all" style="position: absolute; left: ${25 * index}%; top: 0px;">
+  <div class="portfolio-box skrollable skrollable-between" data-bottom-top="transform: translateY(${product.animationDirection === 'up' ? '40px' : '-40px'})" data-top-bottom="transform: translateY(${product.animationDirection === 'up' ? '-40px' : '40px'})" style="transform: translateY(${product.animationDirection === 'up' ? '-14.8925px' : '16.7742px'});">
+  <div class="portfolio-image bg-medium-gray border-radius-6px">
+  <a href="${product.link}"><img src="${product.image}" alt="" data-no-retina=""></a>
+  </div>
+  <div class="portfolio-caption pt-35px pb-35px md-pt-25px md-pb-25px">
+  <a href="${product.link}" class="text-dark-gray text-dark-gray-hover fw-600">${product.title}</a>
+  <span class="d-inline-block align-middle w-10px separator-line-1px bg-light-gray ms-10px me-10px"></span>
+  <div class="d-inline-block">${product.category}</div>
+  </div>
+  </div>
+  </li>
+  `).join('')}
+  </ul>
+  </div>
+  </div>
+  </div>
+  </container>
+  </seection>
+  `;
+  });
+  
 
 
 
 
+  ////////////////////
+// ContactInfoAndFormSection
+//////////////////
 
+/*
+   Usage Example:
+
+   {% ContactInfoAndFormSection %}
+*/
+
+eleventyConfig.addShortcode("ContactInfoAndFormSection", function() {
+    return `
+  <section class="p-0 sm-pt-50px">
+  <div class="container overlap-section" style="margin-top: -353.224px;">
+  <div class="row justify-content-center box-shadow-quadruple-large border-radius-6px overflow-hidden g-0">
+  <div class="col-lg-6">
+  <div class="p-15 lg-p-13 md-p-10 bg-white h-100 background-position-right-bottom background-no-repeat xs-background-image-none" style="background-image: url('https://via.placeholder.com/600x400')">
+  <span class="ps-25px pe-25px mb-25px text-uppercase text-dark-gray fs-13 lh-42 ls-1px alt-font fw-700 border-radius-4px bg-gradient-chablis-red-quartz-white d-inline-block">Keep in touch</span>
+  <h3 class="alt-font text-dark-gray fw-600">Looking for help? Ready to help!</h3>
+  <div class="mt-11">
+  <div class="col icon-with-text-style-08 mb-25px">
+  <div class="feature-box feature-box-left-icon-middle border-bottom pb-25px border-color-extra-medium-gray">
+  <div class="feature-box-icon me-25px xs-me-15px lh-0px">
+  <i class="bi bi-telephone-outbound icon-medium text-dark-gray"></i>
+  </div>
+  <div class="feature-box-content">
+  <span class="alt-font fs-18 fw-500">Feel free to get in touch?</span>
+  <span class="d-block fw-600 alt-font fs-20"><a href="tel:1234567890" class="text-dark-gray">123 456 7890</a></span>
+  </div>
+  </div>
+  </div>
+  <div class="col icon-with-text-style-08 mb-25px">
+  <div class="feature-box feature-box-left-icon-middle border-bottom pb-25px border-color-extra-medium-gray">
+  <div class="feature-box-icon me-25px xs-me-15px lh-0px">
+  <i class="bi bi-envelope icon-medium text-dark-gray"></i>
+  </div>
+  <div class="feature-box-content">
+  <span class="alt-font fs-18 fw-500">How can we help you?</span>
+  <span class="d-block fw-600 alt-font fs-20"><a href="mailto:help@yourdomain.com" class="text-dark-gray">help@yourdomain.com</a></span>
+  </div>
+  </div>
+  </div>
+  <div class="col icon-with-text-style-08">
+  <div class="feature-box feature-box-left-icon-middle">
+  <div class="feature-box-icon me-25px xs-me-15px lh-0px">
+  <i class="bi bi-chat-text icon-medium text-dark-gray"></i>
+  </div>
+  <div class="feature-box-content">
+  <span class="alt-font fs-18 fw-500">Are you ready for coffee?</span>
+  <span class="text-dark-gray d-block alt-font fw-600 fs-20">401 Broadway, London</span>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  
+  <div class="col-lg-6 contact-form-style-03">
+  <div class="p-15 lg-p-13 md-p-10 bg-dark-gray h-100">
+  <h1 class="fw-600 alt-font text-white fancy-text-style-4 ls-minus-1px">Say
+  <span data-fancy-text="{ &quot;effect&quot;: &quot;rotate&quot;, &quot;string&quot;: [&quot;hello!&quot;, &quot;hallå!&quot;, &quot;salve!&quot;] }" class="appear"><span class="anime-text words chars splitting" data-splitting="true" style="--word-total: 1; --char-total: 6;"><span class="word" data-word="hello!" style="--word-index: 0;"><span class="char" data-char="h" style="--char-index: 0; opacity: 1; transform: rotateX(0deg);">h</span><span class="char" data-char="e" style="--char-index: 1; opacity: 1; transform: rotateX(0deg);">e</span><span class="char" data-char="l" style="--char-index: 2; opacity: 1; transform: rotateX(0deg);">l</span><span class="char" data-char="l" style="--char-index: 3; opacity: 1; transform: rotateX(0deg);">l</span><span class="char" data-char="o" style="--char-index: 4; opacity: 1; transform: rotateX(0deg);">o</span><span class="char" data-char="!" style="--char-index: 5; opacity: 1; transform: rotateX(0deg);">!</span></span></span></span>
+  </h1>
+  
+  <form action="email-templates/contact-form.php" method="post">
+  <div class="position-relative form-group mb-20px">
+  <span class="form-icon"><i class="bi bi-person icon-extra-medium"></i></span>
+  <input class="ps-0 border-radius-0px fs-17 bg-transparent border-color-transparent-white-light placeholder-medium-gray form-control required" type="text" name="name" placeholder="Enter your name*">
+  </div>
+  <div class="position-relative form-group mb-20px">
+  <span class="form-icon"><i class="bi bi-envelope icon-extra-medium"></i></span>
+  <input class="ps-0 border-radius-0px fs-17 bg-transparent border-color-transparent-white-light placeholder-medium-gray form-control required" type="email" name="email" placeholder="Enter your email address*">
+  </div>
+  <div class="position-relative form-group form-textarea mt-15px mb-25px">
+  <textarea class="ps-0 border-radius-0px fs-17 bg-transparent border-color-transparent-white-light placeholder-medium-gray form-control" name="comment" placeholder="Enter your message" rows="4"></textarea>
+  <span class="form-icon"><i class="bi bi-chat-square-dots icon-extra-medium"></i></span>
+  <input type="hidden" name="redirect" value="">
+  <button class="btn btn-small btn-gradient-orange-sky-blue ls-1px mt-30px submit w-100 btn-round-edge-small" type="submit">Send message</button>
+  <div class="form-results mt-20px d-none"></div>
+  </div>
+  <span class="text-white opacity-3 fs-14 lh-22 d-block">I accept the terms & conditions and i understand that my data will be hold securely in accordance with the privacy policy.</span>
+  </form>
+  
+  </div>
+  </div>
+  </div>
+  </div>
+  </section>
+  `;
+  });
+  
 
 
 

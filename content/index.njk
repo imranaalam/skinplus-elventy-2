@@ -45,7 +45,31 @@ numberOfLatestPostsToShow: 3
 
 
 
+
+
+ {% ScrollProgressVerticalsSection %}
+
+
+
 	{% bannerSlider {} %}
+
+
+
+
+
+     {# {% TopTabBarHeaderSection {
+    freeDeliveryText: "Free Delivery on orders over £120. Don't miss discount.",
+    shopNowLink: "demo-decor-store-shop.html",
+    customerServiceLink: "demo-decor-store-contact.html",
+    findStoreLink: "demo-decor-store-contact.html",
+    languageOptions: [
+      { name: "English", flag: "usa.png" },
+      { name: "France", flag: "france.png" },
+      { name: "Russian", flag: "russian.png" },
+      { name: "Spain", flag: "spain.png" }
+    ]
+   } %} #}
+
 
 
 
@@ -82,6 +106,341 @@ numberOfLatestPostsToShow: 3
 } %}
 
 
+
+   {% CategoriesRectanglesSections {
+    categories: [
+      {
+        image: "images/demo-jewellery-store-06.jpg",
+        title: "Bangles",
+        link: "demo-jewellery-store-shop.html"
+      },
+      {
+        image: "images/demo-jewellery-store-07.jpg",
+        title: "Pendants",
+        link: "demo-jewellery-store-shop.html"
+      },
+      {
+        image: "images/demo-jewellery-store-08.jpg",
+        title: "Chain",
+        link: "demo-jewellery-store-shop.html"
+      },
+      {
+        image: "images/demo-jewellery-store-01.jpg",
+        title: "Earrings",
+        link: "demo-jewellery-store-shop.html",
+        large: true
+      },
+      {
+        image: "images/demo-jewellery-store-02.jpg",
+        title: "Rings",
+        link: "demo-jewellery-store-shop.html"
+      },
+      {
+        image: "images/demo-jewellery-store-04.jpg",
+        title: "Necklace",
+        link: "demo-jewellery-store-shop.html",
+        large: true
+      },
+      {
+        image: "images/demo-jewellery-store-03.jpg",
+        title: "Bracelet",
+        link: "demo-jewellery-store-shop.html"
+      }
+    ]
+   } %}
+
+
+
+   {# {% BeautifulSliderSection [
+      {
+        src: "https://via.placeholder.com/510x300",
+        title: "Interior design",
+        description: "Lorem ipsum consectetur elit do eiusmod tempor incididunt."
+      },
+      {
+        src: "https://via.placeholder.com/510x300",
+        title: "Modern Architecture",
+        description: "Duis aute irure dolor in reprehenderit in voluptate velit esse."
+      },
+      {
+        src: "https://via.placeholder.com/510x300",
+        title: "Creative Spaces",
+        description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco."
+      }
+    ] %} #}
+
+
+
+{# <div class="row align-items-center">
+    <div class="col-md-12 position-relative">
+    <div class="outside-box-right-30 sm-outside-box-right-0">
+    <div class="swiper slider-three-slide magic-cursor base-color swiper-initialized swiper-horizontal swiper-backface-hidden" data-slider-options="{ &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 35, &quot;loop&quot;: true, &quot;autoplay&quot;: { &quot;delay&quot;: 4000, &quot;disableOnInteraction&quot;: false }, &quot;pagination&quot;: { &quot;el&quot;: &quot;.slider-four-slide-pagination-1&quot;, &quot;clickable&quot;: true, &quot;dynamicBullets&quot;: false }, &quot;keyboard&quot;: { &quot;enabled&quot;: true, &quot;onlyInViewport&quot;: true }, &quot;breakpoints&quot;: { &quot;1200&quot;: { &quot;slidesPerView&quot;: 4 }, &quot;992&quot;: { &quot;slidesPerView&quot;: 3 }, &quot;768&quot;: { &quot;slidesPerView&quot;: 3 }, &quot;320&quot;: { &quot;slidesPerView&quot;: 1 } }, &quot;effect&quot;: &quot;slide&quot; }">
+    <div class="swiper-wrapper" id="swiper-wrapper-56d7867fbc42e8d8" aria-live="off" style="transition-duration: 0ms; transform: translate3d(-3815px, 0px, 0px); transition-delay: 0ms;">
+    
+    
+    
+    <div class="swiper-slide swiper-slide-next" style="width: 510px; margin-right: 35px;" role="group" aria-label="3 / 8" data-swiper-slide-index="2">
+    <div class="interactive-banner-style-06">
+    <div class="interactive-banners-image">
+    <img src="https://via.placeholder.com/510x300 alt="" data-no-retina="">
+    <div class="overlay-bg bg-gradient-dark-transparent opacity-light"></div>
+    <a href="#" class="banners-icon icon-hover-base-color text-white position-absolute top-60px left-60px md-top-30px md-left-30px">
+    <i class="line-icon-Full-View icon-large"></i>
+    </a>
+    </div>
+    <div class="interactive-banners-content p-60px md-p-30px">
+    <div class="h-100 w-100 last-paragraph-no-margin">
+    <a href="#" class="fs-22 d-block text-white mb-10px fw-500">Interior design</a>
+    <p class="interactive-banners-content-text w-95 lg-w-100">Lorem ipsum consectetur elit do eiusmod tempor incididunt.</p>
+    </div>
+    </div>
+    <div class="box-overlay bg-gradient-dark-transparent"></div>
+    </div>
+    </div>
+    
+    
+   </div>
+    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+    </div>
+    
+    
+    
+    </div>
+    </div> #}
+
+
+
+   {% FeaturedCategoriesSection {
+    categories: [
+      {
+        image: "https://via.placeholder.com/150",
+        link: "demo-decor-store-shop.html",
+        count: "02",
+        title: "Lamp"
+      },
+      {
+        image: "https://via.placeholder.com/150",
+        link: "demo-decor-store-shop.html",
+        count: "03",
+        title: "Stool"
+      },
+      {
+        image: "https://via.placeholder.com/150",
+        link: "demo-decor-store-shop.html",
+        count: "05",
+        title: "Chair"
+      },
+      {
+        image: "https://via.placeholder.com/150",
+        link: "demo-decor-store-shop.html",
+        count: "03",
+        title: "Cabinet"
+      },
+      {
+        image: "https://via.placeholder.com/150",
+        link: "demo-decor-store-shop.html",
+        count: "08",
+        title: "Light"
+      },
+      {
+        image: "https://via.placeholder.com/150",
+        link: "demo-decor-store-shop.html",
+        count: "04",
+        title: "Sofa"
+      }
+    ]
+   } %}
+
+
+   {% ExploreCategoriesSquareRectangleMixSection {
+    categories: [
+      { image: "https://via.placeholder.com/500x500", title: "Wooden classic table", link: "demo-decor-store-shop.html", large: true },
+      { image: "https://via.placeholder.com/500x250", title: "Pottery products", link: "demo-decor-store-shop.html", large: false },
+      { image: "https://via.placeholder.com/500x250", title: "Florence compact", link: "demo-decor-store-shop.html", large: false }
+
+    ]
+   } %}
+
+
+
+
+
+      {# {% ProductDetailTopBarSection {
+     title: "Discover depth of beach",
+     location: "Maldives, South Asia",
+     price: "$1599",
+     reviewCount: 16,
+     starCount: 5
+   } %} #}
+
+
+
+
+
+
+   {% LeftToRightScrollerLightSection {
+    direction: "left", 
+    items: [
+      { text: "graphic.", index: "1" },
+      { text: "print.", index: "2" },
+      { text: "illustration.", index: "3" },
+      { text: "packaging.", index: "4" },
+      { text: "web.", index: "5" },
+      { text: "development.", index: "6" },
+      { text: "branding.", index: "7" },
+      { text: "branding.", index: "0" } 
+    ]
+   } %}
+
+
+
+
+
+
+
+
+   
+
+      {% RightToLeftScrollerDarkSection {
+    direction: "right", 
+    items: [
+      { text: "theme.", index: "5" },
+      { text: "agency.", index: "6" },
+      { text: "digital.", index: "7" },
+      { text: "photography.", index: "0" },
+      { text: "packaging.", index: "1" },
+      { text: "digital.", index: "2" },
+      { text: "interface.", index: "3" },
+      { text: "development.", index: "4" }
+    ]
+   } %}
+
+
+
+      {% CleanPricingTableSection {
+    plans: [
+      {
+        name: "Standard",
+        price: "20",
+        features: [
+          { name: "Marketing strategy", included: true },
+          { name: "Competitive work analysis", included: false },
+          { name: "Social media share audit", included: false }
+        ],
+        link: "#"
+      },
+      {
+        name: "Business",
+        price: "24",
+        features: [
+          { name: "Marketing strategy", included: true },
+          { name: "Competitive work analysis", included: true },
+          { name: "Social media share audit", included: false }
+        ],
+        link: "#"
+      },
+      {
+        name: "Ultimate",
+        price: "30",
+        features: [
+          { name: "Marketing strategy", included: true },
+          { name: "Competitive work analysis", included: true },
+          { name: "Social media share audit", included: true }
+        ],
+        link: "#"
+      }
+    ]
+   } %}
+
+
+
+
+      {% CategoryAndProductSliderSection {
+    promo: {
+      image: "https://via.placeholder.com/800x400",
+      title: "Lounge collection",
+      subtitle: "Save up to 50% off",
+      link: "demo-decor-store-shop.html"
+    },
+    products: [
+      {
+        image: "https://via.placeholder.com/200x200",
+        link: "demo-decor-store-single-product.html",
+        title: "Wooden cabinet",
+        originalPrice: "$50.00",
+        salePrice: "$23.00"
+      },
+      {
+        image: "https://via.placeholder.com/200x200",
+        link: "demo-decor-store-single-product.html",
+        title: "Modern chair",
+        originalPrice: "$40.00",
+        salePrice: "$18.00"
+      },
+      {
+        image: "https://via.placeholder.com/200x200",
+        link: "demo-decor-store-single-product.html",
+        title: "Classic stools",
+        originalPrice: "$56.00",
+        salePrice: "$24.00"
+      }
+    ]
+   } %}
+
+
+   {% numberedTimelineSection {
+    timelineEvents: [
+      {
+        title: "First time we met",
+        description: "Lorem ipsum consectetur adipiscing elit eiusmod.",
+        year: "2018"
+      },
+      {
+        title: "Our first date",
+        description: "Lorem ipsum consectetur adipiscing elit eiusmod.",
+        year: "2019"
+      },
+      {
+        title: "Our marriage proposal",
+        description: "Lorem ipsum consectetur adipiscing elit eiusmod.",
+        year: "2020"
+      },
+      {
+        title: "Our engagement",
+        description: "Lorem ipsum consectetur adipiscing elit eiusmod.",
+        year: "2023"
+      }
+    ]
+   } %}
+
+
+
+
+   {# {% AlternateProductUpDownSection {
+    products: [
+      {
+        link: "demo-web-agency-single-project-creative.html",
+        image: "https://via.placeholder.com/600x400",
+        title: "Tailoring inteo",
+        category: "Branding",
+        animationDirection: "up"
+      },
+      {
+        link: "demo-web-agency-single-project-creative.html",
+        image: "https://via.placeholder.com/600x400",
+        title: "Design blast",
+        category: "Photography",
+        animationDirection: "down"
+      },
+      {
+        link: "demo-web-agency-single-project-creative.html",
+        image: "https://via.placeholder.com/600x400",
+        title: "Herbal beauty",
+        category: "Application",
+        animationDirection: "up"
+      }
+    ]
+   } %} #}
 
 
 
@@ -173,8 +532,7 @@ numberOfLatestPostsToShow: 3
 } %}
 
 
-
-
+{% ContactInfoAndFormSection %}
 
 
 
@@ -272,7 +630,15 @@ numberOfLatestPostsToShow: 3
 } %}
 
 
-
+   {% AchievementsSection {
+    title: "Powerful achievement",
+    images: [
+      "https://via.placeholder.com/150",
+      "https://via.placeholder.com/150",
+      "https://via.placeholder.com/150",
+      "https://via.placeholder.com/150"
+    ]
+   } %}
 
 
 
@@ -549,6 +915,8 @@ numberOfLatestPostsToShow: 3
 
 
 
+
+
 {% PricingSection {
        headerText: "Beauty salon services",
        headerSubText: "Makeup and hairstyles",
@@ -583,6 +951,34 @@ numberOfLatestPostsToShow: 3
 
 
 
+
+
+   {% StepsTimelineSection {
+    processTitle: "Process cycle",
+    mainTitle: "Business <span class='text-highlight'>timeline<span class='bg-base-color opacity-3 h-10px bottom-10px'></span></span>",
+    steps: [
+      {
+        number: "01",
+        title: "Business founded",
+        description: "Lorem ipsum is simply text the printing typesetting standard dummy."
+      },
+      {
+        number: "02",
+        title: "Build new office",
+        description: "Lorem ipsum is simply text the printing typesetting standard dummy."
+      },
+      {
+        number: "03",
+        title: "Relocates headquarter",
+        description: "Lorem ipsum is simply text the printing typesetting standard dummy."
+      },
+      {
+        number: "04",
+        title: "Revenues of millions",
+        description: "Lorem ipsum is simply text the printing typesetting standard dummy."
+      }
+    ]
+   } %}
 
 
 
@@ -689,6 +1085,11 @@ numberOfLatestPostsToShow: 3
     "https://via.placeholder.com/510x300"
   ]
 } %} #}
+
+
+
+
+
 
 
 
@@ -848,7 +1249,45 @@ numberOfLatestPostsToShow: 3
 
 
 
+   {% SectionWiseFaqSection {
+    categories: [
+      {
+        id: "tab_seven1",
+        title: "General",
+        faqs: [
+          { question: "Can I order over the phone?", answer: "Lorem ipsum is simply dummy text of the printing and typesetting industry." }
+        ]
+      },
+      {
+        id: "tab_seven2",
+        title: "Shopping information",
+        faqs: [
+          { question: "I am having difficulty placing an order?", answer: "Lorem ipsum is simply dummy text of the printing and typesetting industry." }
+        ]
+      }
+    ]
+   } %}
 
+
+
+
+
+
+
+
+
+   {# {% TopTabBarHeaderSection {
+    freeDeliveryText: "Free Delivery on orders over £120. Don't miss discount.",
+    shopNowUrl: "demo-decor-store-shop.html",
+    customerServiceUrl: "demo-decor-store-contact.html",
+    findStoreUrl: "demo-decor-store-contact.html",
+    languageOptions: [
+      { flagUrl: "images/country-flag-16X16/usa.png", language: "English" },
+      { flagUrl: "images/country-flag-16X16/france.png", language: "France" },
+      { flagUrl: "images/country-flag-16X16/russian.png", language: "Russian" },
+      { flagUrl: "images/country-flag-16X16/spain.png", language: "Spain" }
+    ]
+   } %} #}
 
 
 
@@ -974,12 +1413,64 @@ numberOfLatestPostsToShow: 3
 
 
 
-   {# {% DynamicCreativeSolutionsSection {
+   {% WorkImagesSection {
+    items: [
+      {
+        link: "demo-design-agency-single-project-simple.html",
+        imageUrl: "https://via.placeholder.com/1920x1080",
+        title: "Pixflow",
+        category: ["digital", "selected"] 
+      },
+      {
+        link: "demo-design-agency-single-project-simple.html",
+        imageUrl: "https://via.placeholder.com/1920x1080",
+        title: "Skoda",
+        category: ["web", "digital"]
+      },
+      {
+        link: "demo-design-agency-single-project-simple.html",
+        imageUrl: "https://via.placeholder.com/1920x1080",
+        title: "Tailoring",
+        category: ["branding", "selected"]
+      }
+    ]
+   } %}
+
+
+
+
+
+   {% HistorySection {
+    backgroundImageUrl: "url('https://via.placeholder.com/1920x1080')",
+    aboutTitle: "About resorts",
+    mainTitle: "Relax at the luxury resorts around the entire world.",
+    description: "A design-led approach guides the team, implementing practices, products and services that are thoughtful and environmentally sound. Family of professionals that creates intelligent designs that help the face of hospitality.",
+    aboutUrl: "demo-hotel-and-resort-about-us.html",
+    phoneLink: "tel:1800222000",
+    phoneText: "1 800 222 000",
+    historyStartYear: "1995",
+    images: [
+      { imageUrl: "https://via.placeholder.com/600x400" },
+      { imageUrl: "https://via.placeholder.com/600x400" }
+    ],
+    marqueeTexts: [
+      "Our hotel has been present for over 20 years",
+      "We make the best for all our customers",
+      "The resort is built in and around an 18 acres",
+      "Sustainable and meaningful ecosystem of hospitality"
+    ]
+   } %}
+
+
+
+
+
+   {% RevolvingSolutionsSection {
     backgroundImageUrl: "url('https://via.placeholder.com/1920x1080')",
     videoUrl: "https://www.youtube.com/watch?v=cfXHhfNy7tU",
     rotationWords: ["business!", "problems!", "brands!"],
     contactUrl: "demo-corporate-contact.html"
-   } %} #}
+   } %}
 
 
 
@@ -1111,9 +1602,11 @@ numberOfLatestPostsToShow: 3
             review: "Perfection isn't just any other salon. It's a complete cut above the rest. Highly recommended!",
             rating: 5
         }
-      
     ]
 } %}
+
+
+
 
 
 
@@ -1181,6 +1674,72 @@ numberOfLatestPostsToShow: 3
 }] %}
 
 
+
+
+
+
+
+
+   {% StepsTimelineSection {
+    processTitle: "Process cycle",
+    mainTitle: "Business <span class='text-highlight'>timeline<span class='bg-base-color opacity-3 h-10px bottom-10px'></span></span>",
+    steps: [
+      {
+        number: "01",
+        title: "Business founded",
+        description: "Lorem ipsum is simply text the printing typesetting standard dummy."
+      },
+      {
+        number: "02",
+        title: "Build new office",
+        description: "Lorem ipsum is simply text the printing typesetting standard dummy."
+      },
+      {
+        number: "03",
+        title: "Relocates headquarter",
+        description: "Lorem ipsum is simply text the printing typesetting standard dummy."
+      },
+      {
+        number: "04",
+        title: "Revenues of millions",
+        description: "Lorem ipsum is simply text the printing typesetting standard dummy."
+      }
+    ]
+   } %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   {% MissionVisionSection {
+    imageUrl: "images/demo-medical-about-02.jpg",
+    videoUrl: "https://www.youtube.com/watch?v=cfXHhfNy7tU",
+    missionTitle: "Our mission and vision",
+    sections: [
+      {
+        number: "01",
+        title: "Our hospital mission",
+        content: "Velit officia consequat duis enim velit mollit amet minim mollit non."
+      },
+      {
+        number: "02",
+        title: "Our hospital vision",
+        content: "Velit officia consequat duis enim velit mollit amet minim mollit non.",
+        expanded: true
+      }
+    ]
+   } %}
 
 
 
@@ -1337,6 +1896,42 @@ numberOfLatestPostsToShow: 3
 
 
 
+
+
+{% ProductCardSliderWithPricesSection {
+    title: "Find what you love",
+    subtitle: "Popular classes",
+    items: [
+      {
+        imageUrl: "images/demo-yoga-and-meditation-home-04.jpg",
+        name: "Meditation classes",
+        description: "Lorem ipsum dolor eiusmod adipiscing lit tempor.",
+        price: "100",
+        link: "demo-yoga-and-meditation-classes.html"
+      },
+      {
+        imageUrl: "images/demo-yoga-and-meditation-home-03.jpg",
+        name: "Aerial yoga",
+        description: "Lorem ipsum dolor eiusmod adipiscing lit tempor.",
+        price: "240",
+        link: "demo-yoga-and-meditation-classes.html"
+      },
+      {
+        imageUrl: "images/demo-yoga-and-meditation-home-04.jpg",
+        name: "Meditation classes",
+        description: "Lorem ipsum dolor eiusmod adipiscing lit tempor.",
+        price: "100",
+        link: "demo-yoga-and-meditation-classes.html"
+      },
+      {
+        imageUrl: "images/demo-yoga-and-meditation-home-02.jpg",
+        name: "Kundalini yoga",
+        description: "Lorem ipsum dolor eiusmod adipiscing lit tempor.",
+        price: "220",
+        link: "demo-yoga-and-meditation-classes.html"
+      }
+    ]
+  } %}
 
 
 
@@ -1617,11 +2212,45 @@ numberOfLatestPostsToShow: 3
 
 
 
+   {% InstagramZeroMarginCenterSection {
+    images: [
+      "https://via.placeholder.com/300x300", 
+      "https://via.placeholder.com/300x300",
+      "https://via.placeholder.com/300x300",
+      "https://via.placeholder.com/300x300",
+      "https://via.placeholder.com/300x300",
+      "https://via.placeholder.com/300x300"
+    ],
+    instagramLink: "https://www.instagram.com"
+   } %}
 
 
 
+   {# {% TickerWithBackgroundImageSection {
+    backgroundImage: "https://via.placeholder.com/1920x1080",
+    messages: [
+      "Transformation of body and mind",
+      "Devotion and love to warm our hearts",
+      "More than the 30000+ people trusting crafto yoga",
+      "Choose the most comfortable way to train"
+    ]
+   } %} #}
 
 
+
+   {# {% AnimatedBoxVideoPlayerWithPlayButton {
+    videoUrl: "https://www.youtube.com/watch?v=cfXHhfNy7tU",
+    backgroundImageUrl: "https://via.placeholder.com/1920x1080",
+    altText: "Play Video"
+   } %} #}
+
+
+
+      {# {% SubscribeNewsletterSection {
+    backgroundImageUrl: "https://via.placeholder.com/1920x1080",
+    formActionUrl: "email-templates/subscribe-newsletter.php",
+    redirectUrl: "thank-you.html"
+   } %} #}
 
 
    {% DynamicDataAnalyticsSection {
@@ -1649,12 +2278,14 @@ numberOfLatestPostsToShow: 3
 
 
 
+
+
+
+
       {% DynamicCreativeSolutionsSection {
     backgroundImage: "https://via.placeholder.com/1920x1080",
     buttonLink: "link/to/project"
    } %}
-
-
 
 
 
