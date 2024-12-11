@@ -3302,7 +3302,7 @@ console.log("mySwiper");
     function stackAnimation() {
         windowScrollTop = window.pageYOffset || document.documentElement.scrollTop;
         $('.stack-box').each(function () {
-            if ($(window).width() > 1199) {
+            if ($(window).width() > 600) {
                 var _this = $(this);
                 var stackItems = _this.find('.stack-item');
                 if (stackItems.length) {

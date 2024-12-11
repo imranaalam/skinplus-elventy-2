@@ -1,0 +1,106 @@
+﻿---
+layout: layouts/home.njk
+eleventyNavigation:
+  key: contact
+  order: 6
+numberOfLatestPostsToShow: 3
+---
+
+    {% pageTitle {
+        backgroundImage: "images/demo-beauty-salon.jpeg",
+        title: "Custom Page Title"
+    } %}
+
+
+
+    
+
+<!-- start section -->  
+        <section class="position-relative z-index-1 pb-0">
+            <div class="d-none d-md-flex mb-1">
+                <a href="#down-section" class="section-link absolute-middle-center top-0">
+                    <div class="d-flex justify-content-center align-items-center mx-auto rounded-circle h-70px w-70px fs-22 text-dark-gray bg-white box-shadow-bottom">
+                        <i class="ti-mouse"></i>
+                    </div>
+                </a>
+            </div>
+            <div class="container">
+                <div class="row justify-content-center align-items-center"> 
+                    <div class="col-lg-6 pb-7 sm-pb-40px" data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 100, "staggervalue": 300, "easing": "easeOutQuad" }'> 
+                        <span class="fs-16 text-uppercase text-gradient-san-blue-new-york-red fw-700 mb-10px ls-1px d-inline-block">Book your appointment</span>
+                        <h2 class="alt-font fw-400 text-dark-gray ls-minus-1px w-80 lg-w-100 mb-40px sm-mb-30px">We would love to hear from you.</h2>
+                        <div class="row row-cols-1 row-cols-sm-2 mb-30px xs-mb-25px">
+                            <div class="col last-paragraph-no-margin xs-mb-25px">
+                                <span class="fs-18 fw-600 text-dark-gray">Visit beauty salon</span>
+                                <div class="h-1px w-80 sm-w-100 bg-dark-gray mt-10px mb-10px"></div>
+                                <p class="w-75 lg-w-90">401 Broadway, 24th Floor New York, NY 10013</p>
+                            </div>
+                            <div class="col">
+                                <span class="fs-18 fw-600 text-dark-gray">Book appointment</span>
+                                <div class="h-1px w-80 sm-w-100 bg-dark-gray mt-10px mb-10px"></div>
+                                <div class="w-100 d-block">
+                                    <a href="mailto:info@yourdomain.com">info@yourdomain.com</a><br><a href="mailto:booking@yourdomain.com">booking@yourdomain.com</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-cols-1 row-cols-sm-2">
+                            <div class="col last-paragraph-no-margin xs-mb-25px">
+                                <span class="fs-18 fw-600 text-dark-gray">Let's talk with us</span>
+                                <div class="h-1px w-80 sm-w-100 bg-dark-gray mt-10px mb-10px"></div>
+                                <div class="w-100 d-block">
+                                    <span class="d-block"><span class="fw-600 text-dark-gray">Phone:</span> <a href="tel:1800222000" class="text-medium-gray">1-800-222-000</a></span>
+                                    <span class="d-block"><span class="fw-600 text-dark-gray">Fax:</span> 1-800-222-002</span>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <span class="fs-18 fw-600 text-dark-gray">Opening hours</span>
+                                <div class="h-1px w-80 sm-w-100 bg-dark-gray mt-10px mb-10px"></div>
+                                <div class="w-100 d-block">
+                                    <span class="d-block"><span class="fw-600 text-dark-gray">Mon - Fri:</span> 09 am to 08 pm</span>
+                                    <span class="d-block"><span class="fw-600 text-dark-gray">Sat - Sun:</span> 09 am to 06 pm</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-lg-5 offset-lg-1 align-self-end contact-form-style-03 sm-mb-50px"> 
+                        <div class="bg-dark-gray box-shadow-double-large p-13 lg-p-10 border-radius-10px position-relative overflow-hidden">
+                            <h2 class="alt-font text-white xs-mb-15px fancy-text-style-4 ls-minus-1px">Say  
+                                <span data-fancy-text='{ "effect": "rotate", "string": ["hello!", "hallå!", "salve!"] }'></span> 
+                            </h2>
+                            <form action="email-templates/contact-form.php" method="post">
+                                <div class="position-relative form-group mb-20px">
+                                    <span class="form-icon"><i class="bi bi-person icon-extra-medium"></i></span>
+                                    <input class="ps-0 border-radius-0px fs-17 bg-transparent border-color-transparent-white-light placeholder-medium-gray form-control required" type="text" name="name" placeholder="Enter your name*">
+                                </div>
+                                <div class="position-relative form-group mb-20px">
+                                    <span class="form-icon"><i class="bi bi-envelope icon-extra-medium"></i></span>
+                                    <input class="ps-0 border-radius-0px fs-17 bg-transparent border-color-transparent-white-light placeholder-medium-gray form-control required" type="email" name="email" placeholder="Enter your email address*">
+                                </div>
+                                <div class="position-relative form-group form-textarea mt-15px mb-12"> 
+                                    <textarea class="ps-0 border-radius-0px fs-17 bg-transparent border-color-transparent-white-light placeholder-medium-gray form-control" name="comment" placeholder="Enter your message" rows="4"></textarea>
+                                    <span class="form-icon"><i class="bi bi-chat-square-dots icon-extra-medium"></i></span>
+                                    <input type="hidden" name="redirect" value="">
+                                    <button class="btn btn-medium btn-white btn-box-shadow mt-30px fw-700 submit btn-round-edge" type="submit">Send message</button>
+                                    <div class="form-results mt-20px d-none"></div>
+                                </div>
+                            </form>
+                            <div class="w-200px h-200px xs-w-150px xs-h-150px border-radius-100 bg-gradient-solitude-blue-fair-pink d-flex align-items-center justify-content-center position-absolute right-minus-30px xs-right-minus-20px bottom-minus-60px xs-bottom-minus-40px">
+                                <img src="https://via.placeholder.com/170x170" class="h-85px" alt="">
+                            </div>
+                        </div>
+                    </div> 
+                </div> 
+            </div>
+        </section>
+        <!-- end section --> 
+        <!-- start section --> 
+        <section class="p-0" id="down-section">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 p-0"> 
+                        <div id="map" class="map h-550px sm-h-350px" data-map-options='{ "lat": -37.805688, "lng": 144.962312, "style": "Silver", "marker": { "type": "image", "class": "marker01", "src": "https://via.placeholder.com/100x100" }, "popup": { "defaultOpen": false, "html": "<div class=infowindow><strong class=\"mb-3 d-inline-block alt-font\">Crafto Beauty Salon</strong><p class=\"alt-font\">16122 Collins street, Melbourne, Australia</p></div><div class=\"google-maps-link alt-font\"> <a aria-label=\"View larger map\" target=\"_blank\" jstcache=\"31\" href=\"https://maps.google.com/maps?ll=-37.805688,144.962312&amp;z=17&amp;t=m&amp;hl=en-US&amp;gl=IN&amp;mapclient=embed&amp;cid=13153204942596594449\" jsaction=\"mouseup:placeCard.largerMap\">VIEW LARGER MAP</a></div>" } }'></div>
+                    </div> 
+                </div>
+            </div>
+        </section>
+        <!-- end section --> 

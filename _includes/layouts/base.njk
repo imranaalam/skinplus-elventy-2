@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html class="no-js" lang="{{ metadata.language or 'en' }}">
     <head>
@@ -6,21 +7,25 @@
         <meta name="author" content="ThemeZaa">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>{{ title or "Crafto - The Multipurpose HTML5 Template" }}</title>
-        <meta
-        name="description" content="{{ description or "Elevate your online presence with Crafto - a modern, versatile, multipurpose Bootstrap 5 responsive HTML5, SCSS template using highly creative 48+ ready demos." }}"> <!-- Favicon icons -->
+        <meta name="description" content="{{ description or "Elevate your online presence with Crafto - a modern, versatile, multipurpose Bootstrap 5 responsive HTML5, SCSS template using highly creative 48+ ready demos." }}">
+        
+        <!-- Favicon icons -->
         <link rel="shortcut icon" href="/public/images/favicon.png">
         <link rel="apple-touch-icon" sizes="57x57" href="/public/images/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="72x72" href="/public/images/apple-touch-icon-72x72.png">
-        <link
-        rel="apple-touch-icon" sizes="114x114" href="/public/images/apple-touch-icon-114x114.png"> <!-- Google Fonts -->
+        <link rel="apple-touch-icon" sizes="114x114" href="/public/images/apple-touch-icon-114x114.png"> 
+        
+        <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-        <link
-        rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- style sheets and font icons  -->
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        
+        <!-- Stylesheets and Font Icons -->
         {%- css %}{% include "public/css/vendors.min.css" %}{% endcss %}
         {%- css %}{% include "public/css/icon.min.css" %}{% endcss %}
         {%- css %}{% include "public/css/style.css" %}{% endcss %}
         {%- css %}{% include "public/css/responsive.css" %}{% endcss %}
         {%- css %}{% include "public/css/beauty-salon/beauty-salon.css" %}{% endcss %}
+        
         <style>{% getBundle "css" %}</style>
     </head>
     <body
@@ -28,30 +33,38 @@
         data-mobile-nav-style="modern"
         data-mobile-nav-bg-color="#2E3844"
         class="custom-cursor">
-        <!-- start cursor -->
+        
+        <!-- Start Cursor -->
         <div class="cursor-page-inner">
             <div class="circle-cursor circle-cursor-inner"></div>
             <div class="circle-cursor circle-cursor-outer"></div>
         </div>
-        <!-- end cursor -->
-        <!-- Content from specific page -->
+        <!-- End Cursor -->
+        
+        <!-- Header -->
         <header>
-            <!-- Your navigation here, adapted from the provided layout -->
-            {% include "nav.njk" %}
+            {% if page.url == "/" %}
+                {% include "partials/header-home.njk" %}
+            {% else %}
+                {% include "partials/header-default.njk" %}
+            {% endif %}
         </header>
+        
+        <!-- Main Content -->
         <main id="skip">
             {{ content | safe }}
         </main>
-        <footer></footer>
+        
+        <!-- Footer -->
+          {% include "partials/footer.njk" %}
+        
         <!-- Scripts -->
-        {# <script src="/public/js/jquery.js"></script>
-        <script src="/public/js/vendors.min.js"></script>
-        <script src="/public/js/main.js"></script> #}
         {%- js %}{% include "public/js/jquery.js" %}{% endjs %}
-                {%- js %}{% include "public/js/vendors.js" %}{% endjs %}
-                {%- js %}{% include "public/js/main.js" %}{% endjs %}
-                <script >{% getBundle "js"  %}</script>
-    <!-- Google Maps API for templates that need maps -->
+        {%- js %}{% include "public/js/vendors.js" %}{% endjs %}
+        {%- js %}{% include "public/js/main.js" %}{% endjs %}
+        <script>{% getBundle "js" %}</script>
+        
+        <!-- Google Maps API for templates that need maps -->
         {# <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script> #}
     </body>
 </html>

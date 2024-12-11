@@ -104,6 +104,43 @@ module.exports = function (eleventyConfig) {
 	// add short codes
 	/////////////////////////
 
+
+    ///////////////////
+    // page title section
+    ///////////////////
+
+    /*
+
+    {% pageTitle {
+        backgroundImage: "/path/to/your-background-image.jpg",
+        title: "Custom Page Title"
+    } %}
+
+    */
+
+    eleventyConfig.addShortcode(
+        "pageTitle",
+        function ({
+            backgroundImage = "https://via.placeholder.com/1920x1100", // Default background image
+            title = "Default Title", // Default title
+        }) {
+            return `
+            <!-- start page title -->
+            <section class="page-title-big-typography bg-dark-gray cover-background pb-0 top-space-padding overlap-height" style="background-image: url('${backgroundImage}')">
+                <div class="container">
+                    <div class="row align-items-center justify-content-center extra-very-small-screen">
+                        <div class="col-lg-6 col-md-8 position-relative text-center page-title-extra-small" data-anime='{ "el": "childs", "translateY": [-15, 0], "perspective": [1200,1200], "scale": [1.1, 1], "rotateX": [50, 0], "opacity": [0,1], "duration": 800, "delay": 200, "staggervalue": 300, "easing": "easeOutQuad" }'>
+                            <h1 class="alt-font text-white mb-0">${title}</h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- end page title -->
+            `;
+        }
+    );
+
+
 	///////////////////
 	// banner slider
 	//////////////////
